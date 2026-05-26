@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国語 単語練習プリント</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --card: #ffffff;
+    --accent: #b5505a;
+    --accent-light: #f3dde0;
+    --text: #2c2420;
+    --text-sub: #7a6a56;
+    --border: #e8ddd5;
+    --header-bg: #2c2420;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'Noto Serif JP', serif; color: var(--text); min-height: 100vh; }
+  .wrapper { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  .doc-header { text-align: center; margin-bottom: 48px; }
+  .doc-header::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent); margin: 20px auto 0; }
+  .doc-header .subtitle { font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 10px; }
+  .doc-header h1 { font-size: 28px; font-weight: 700; letter-spacing: .08em; color: var(--text); }
+
+  .unit-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .unit-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--card);
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(44,36,32,.06);
+    padding: 24px 28px;
+    text-decoration: none;
+    color: var(--text);
+    border: 1px solid var(--border);
+    transition: background .15s, box-shadow .15s;
+  }
+  .unit-card:hover { background: var(--accent-light); box-shadow: 0 4px 12px rgba(44,36,32,.1); }
+
+  .unit-left { display: flex; align-items: center; gap: 20px; }
+
+  .unit-badge {
+    background: var(--header-bg);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 5px 12px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .unit-info {}
+  .unit-title { font-size: 17px; font-weight: 700; letter-spacing: .04em; margin-bottom: 4px; }
+  .unit-range { font-size: 12px; color: var(--text-sub); letter-spacing: .06em; margin-bottom: 8px; }
+  .unit-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: var(--accent-light);
+    color: var(--accent);
+    letter-spacing: .05em;
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  .unit-arrow { color: var(--accent); flex-shrink: 0; margin-left: 16px; transition: transform .2s; }
+  .unit-card:hover .unit-arrow { transform: translateX(4px); }
+
+  .footer-note {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-sub);
+    letter-spacing: .06em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  @media (max-width: 480px) {
+    .unit-card { padding: 18px 16px; }
+    .unit-left { gap: 14px; }
+    .unit-badge { font-size: 11px; padding: 4px 8px; }
+    .unit-title { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="doc-header">
+    <p class="subtitle">北海道大学 · 中国語</p>
+    <h1>単語練習プリント</h1>
+  </div>
+
+  <div class="unit-list">
+
+    <a class="unit-card" href="unit1.html">
+      <div class="unit-left">
+        <div class="unit-badge">第 1 単元</div>
+        <div class="unit-info">
+          <div class="unit-title">第1課 〜 第4課</div>
+          <div class="unit-range">飲食・人称代名詞・自己紹介・形容詞</div>
+          <div class="unit-tags">
+            <span class="tag">飲食</span>
+            <span class="tag">人称代名詞</span>
+            <span class="tag">自己紹介</span>
+            <span class="tag">形容詞</span>
+          </div>
+        </div>
+      </div>
+      <svg class="unit-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a class="unit-card" href="unit2.html">
+      <div class="unit-left">
+        <div class="unit-badge">第 2 単元</div>
+        <div class="unit-info">
+          <div class="unit-title">第5課 〜 第8課</div>
+          <div class="unit-range">家族・行事・場所・日常生活</div>
+          <div class="unit-tags">
+            <span class="tag">家族</span>
+            <span class="tag">行事・日付</span>
+            <span class="tag">場所・位置</span>
+            <span class="tag">日常生活</span>
+          </div>
+        </div>
+      </div>
+      <svg class="unit-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <a class="unit-card" href="unit3.html">
+      <div class="unit-left">
+        <div class="unit-badge">第 3 単元</div>
+        <div class="unit-info">
+          <div class="unit-title">第9課 〜 第12課</div>
+          <div class="unit-range">道案内・数・能力許可・比較</div>
+          <div class="unit-tags">
+            <span class="tag">道案内</span>
+            <span class="tag">数・情報</span>
+            <span class="tag">能力・許可</span>
+            <span class="tag">比較</span>
+          </div>
+        </div>
+      </div>
+      <svg class="unit-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+  </div>
+
+  <div class="footer-note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    各単語をタップすると中国語の発音が再生されます（要インターネット接続）
+  </div>
+
+</div>
+</body>
+</html>
