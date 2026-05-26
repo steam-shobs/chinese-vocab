@@ -3981,28 +3981,142 @@ function checkChoice(btn, q, selected, answerField) {
 }
 
 // ── ピンイン正誤判定 ──
-// 声調記号→番号変換テーブル
-const TONE_MAP = {
-  'ā':'a1','á':'a2','ǎ':'a3','à':'a4',
-  'ē':'e1','é':'e2','ě':'e3','è':'e4',
-  'ī':'i1','í':'i2','ǐ':'i3','ì':'i4',
-  'ō':'o1','ó':'o2','ǒ':'o3','ò':'o4',
-  'ū':'u1','ú':'u2','ǔ':'u3','ù':'u4',
-  'ǖ':'v1','ǘ':'v2','ǚ':'v3','ǜ':'v4',
-  'ü':'v',
+// 声調記号付きピンインを、正しい声調番号表記へ変換する。
+// 例: bǐjìběn -> bi3ji4ben3, nǐhǎo -> ni3hao3
+const TONE_MARKS = {
+  'ā':['a','1'],'á':['a','2'],'ǎ':['a','3'],'à':['a','4'],
+  'ē':['e','1'],'é':['e','2'],'ě':['e','3'],'è':['e','4'],
+  'ī':['i','1'],'í':['i','2'],'ǐ':['i','3'],'ì':['i','4'],
+  'ō':['o','1'],'ó':['o','2'],'ǒ':['o','3'],'ò':['o','4'],
+  'ū':['u','1'],'ú':['u','2'],'ǔ':['u','3'],'ù':['u','4'],
+  'ǖ':['v','1'],'ǘ':['v','2'],'ǚ':['v','3'],'ǜ':['v','4'],
+  'ń':['n','2'],'ň':['n','3'],'ǹ':['n','4'],'ḿ':['m','2']
 };
 
-// 声調記号付きピンイン → 声調番号ピンインに正規化（スペース・大文字除去）
-function normalizePy(s) {
-  let r = s.toLowerCase();
-  for (const [mark, num] of Object.entries(TONE_MAP)) {
-    r = r.replaceAll(mark, num);
+const PY_INITIALS = ['', 'b','p','m','f','d','t','n','l','g','k','h','j','q','x','zh','ch','sh','r','z','c','s','y','w'];
+const PY_FINALS = [
+  'a','ai','an','ang','ao',
+  'e','ei','en','eng','er',
+  'o','ou','ong',
+  'i','ia','ian','iang','iao','ie','in','ing','iong','iu',
+  'u','ua','uai','uan','uang','ue','ui','un','uo',
+  'v','ve','van','vn'
+];
+const PY_SYLLABLES = (() => {
+  const set = new Set(['m','n','ng','hm','hng']);
+  for (const ini of PY_INITIALS) {
+    for (const fin of PY_FINALS) set.add(ini + fin);
   }
-  // ü → v（声調なし）
-  r = r.replace(/ü/g, 'v');
-  // スペース・ハイフン除去
-  r = r.replace(/[\s\-]+/g, '');
-  return r;
+  return set;
+})();
+
+function stripPyNotes(s) {
+  return String(s)
+    .replace(/（[^）]*）/g, '')
+    .replace(/\([^)]*\)/g, '')
+    .replace(/[，,。]/g, ' ');
+}
+
+function splitPyAlternatives(s) {
+  return stripPyNotes(s)
+    .split(/[\/／]/)
+    .map(x => x.trim())
+    .filter(Boolean);
+}
+
+function deaccentChar(ch) {
+  if (TONE_MARKS[ch]) return TONE_MARKS[ch][0];
+  if (ch === 'ü') return 'v';
+  return ch;
+}
+
+function normalizeNumberedToken(token) {
+  return token
+    .split('')
+    .map(deaccentChar)
+    .join('')
+    .replace(/u:/g, 'v')
+    .replace(/ü/g, 'v')
+    .replace(/[^a-zv1-5]/g, '');
+}
+
+function splitBasePinyin(base) {
+  const memo = new Map();
+  function rec(pos) {
+    if (pos >= base.length) return [];
+    if (memo.has(pos)) return memo.get(pos);
+
+    const maxLen = Math.min(6, base.length - pos);
+    for (let len = maxLen; len >= 1; len--) {
+      const part = base.slice(pos, pos + len);
+      const ok = PY_SYLLABLES.has(part) || (part.endsWith('r') && PY_SYLLABLES.has(part.slice(0, -1)));
+      if (!ok) continue;
+      const rest = rec(pos + len);
+      if (rest !== null) {
+        const ans = [[pos, pos + len], ...rest];
+        memo.set(pos, ans);
+        return ans;
+      }
+    }
+    memo.set(pos, null);
+    return null;
+  }
+  return rec(0);
+}
+
+function normalizeMarkedToken(token) {
+  token = token.toLowerCase().replace(/u:/g, 'v');
+
+  // 入力がすでに ni3hao3 型なら、そのまま番号表記として扱う。
+  if (/[1-5]/.test(token)) return normalizeNumberedToken(token);
+
+  let base = '';
+  const toneAt = [];
+  for (const ch of token) {
+    if (TONE_MARKS[ch]) {
+      toneAt[base.length] = TONE_MARKS[ch][1];
+      base += TONE_MARKS[ch][0];
+    } else if (ch === 'ü') {
+      base += 'v';
+    } else if (/[a-zv]/.test(ch)) {
+      base += ch;
+    }
+  }
+
+  if (!base) return '';
+  const parts = splitBasePinyin(base);
+
+  // KTV など、ピンインとして分割不能な語はそのまま返す。
+  if (!parts) return base;
+
+  return parts.map(([a, b]) => {
+    const syl = base.slice(a, b);
+    const tone = toneAt.slice(a, b).filter(Boolean)[0] || '';
+    return syl + tone;
+  }).join('');
+}
+
+// 単一のピンイン文字列を比較用に正規化する。
+function normalizePySingle(s) {
+  const cleaned = stripPyNotes(s).toLowerCase();
+  const tokens = cleaned.match(/[a-züāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜńňǹḿ0-9:]+/g) || [];
+  return tokens.map(normalizeMarkedToken).join('');
+}
+
+// ユーザー入力用。スペース・ハイフン・アポストロフィの有無は問わない。
+function normalizePy(s) {
+  return normalizePySingle(s);
+}
+
+// 正解側。"shéi / shuí" のような別読みはどちらも正解にする。
+function getAcceptedPyNorms(s) {
+  return splitPyAlternatives(s).map(normalizePySingle).filter(Boolean);
+}
+
+// 画面表示用。例: "shéi / shuí" -> "shei2 / shui2"
+function formatPyNumber(s) {
+  const alts = getAcceptedPyNorms(s);
+  return alts.length ? alts.join(' / ') : normalizePySingle(s);
 }
 
 function submitPinyin() {
@@ -4012,18 +4126,17 @@ function submitPinyin() {
   if (!val) return;
 
   const userNorm = normalizePy(val);
-  const ansNorm  = normalizePy(q.py);
-  const isCorrect = userNorm === ansNorm;
+  const ansNorms = getAcceptedPyNorms(q.py);
+  const isCorrect = ansNorms.includes(userNorm);
 
   inp.disabled = true;
   document.getElementById('submit-btn').disabled = true;
   inp.className = 'pinyin-input ' + (isCorrect ? 'correct' : 'wrong');
 
-  // ヒント：声調番号表記で正解を表示
-  const ansNum = normalizePy(q.py); // 番号表記
+  const ansNum = formatPyNumber(q.py);
   document.getElementById('pinyin-hint').innerHTML = isCorrect
     ? ''
-    : '入力: <b>' + normalizePy(val) + '</b>　正解: <b>' + ansNum + '</b>';
+    : '入力: <b>' + userNorm + '</b>　正解: <b>' + ansNum + '</b>';
 
   showFeedback(isCorrect, q);
   if (isCorrect) session.correct++;
@@ -4044,7 +4157,7 @@ function showFeedback(isCorrect, q) {
   document.getElementById('feedback-result').textContent = isCorrect ? '✓ 正解！' : '✗ 不正解';
 
   // 声調番号表記も横に並べて表示
-  const pyNum = normalizePy(q.py);
+  const pyNum = formatPyNumber(q.py);
   document.getElementById('feedback-answer').innerHTML =
     '<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px;">' +
       '<span style="font-family:Noto Sans SC,sans-serif;font-size:20px;font-weight:600;color:var(--text);">' + q.cn + '</span>' +
