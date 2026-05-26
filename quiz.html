@@ -236,6 +236,54 @@
     .result-stats { grid-template-columns: 1fr 1fr 1fr; }
     .opt-btn .opt-main { font-size: 13px; }
   }
+
+  /* ── 進捗単語リスト ── */
+  .lesson-progress-wrap { margin-bottom: 16px; }
+  .lesson-progress-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 4px;
+    cursor: pointer; user-select: none;
+    font-size: 13px; font-weight: 700;
+  }
+  .lesson-progress-header:hover { background: var(--accent-light); }
+  .lesson-progress-header .lph-right { display: flex; align-items: center; gap: 10px; }
+  .lesson-progress-header .lph-arrow { font-size: 11px; color: var(--text-sub); transition: transform .2s; }
+  .lesson-progress-header.open .lph-arrow { transform: rotate(180deg); }
+
+  .word-table-wrap { display: none; border: 1px solid var(--border); border-top: none; border-radius: 0 0 4px 4px; overflow: hidden; }
+  .word-table-wrap.open { display: block; }
+
+  .word-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .word-table thead tr { background: var(--header-bg); color: #fff; }
+  .word-table thead th { padding: 7px 10px; text-align: center; font-size: 11px; letter-spacing: .1em; font-weight: 500; }
+  .word-table thead th:nth-child(1) { width: 22%; }
+  .word-table thead th:nth-child(2) { width: 24%; }
+  .word-table thead th:nth-child(3) { width: 30%; }
+  .word-table thead th:nth-child(4) { width: 8%; }
+  .word-table thead th:nth-child(5) { width: 8%; }
+  .word-table thead th:nth-child(6) { width: 8%; }
+  .word-table tbody tr { border-bottom: 1px solid var(--border); }
+  .word-table tbody tr:last-child { border-bottom: none; }
+  .word-table tbody tr:nth-child(even) { background: var(--row-alt); }
+  .word-table td { padding: 7px 10px; vertical-align: middle; text-align: center; }
+  .word-table td:nth-child(1) { font-family: 'Noto Sans SC', sans-serif; font-size: 15px; font-weight: 500; }
+  .word-table td:nth-child(2) { font-style: italic; color: var(--accent); font-size: 11px; }
+  .word-table td:nth-child(3) { text-align: left; color: var(--text-sub); }
+
+  .mastery-dot {
+    display: inline-block; width: 14px; height: 14px; border-radius: 50%;
+    font-size: 10px; line-height: 14px; text-align: center;
+  }
+  .mastery-dot.known { background: var(--green-light); color: var(--green); }
+  .mastery-dot.unknown { background: var(--red-light); color: var(--red); }
+  .mastery-dot.none { background: var(--border); }
+
+  .type-badges { display: flex; gap: 4px; flex-wrap: wrap; }
+  .type-badge { font-size: 10px; padding: 2px 6px; border-radius: 10px; }
+  .type-badge.known { background: var(--green-light); color: var(--green); }
+  .type-badge.unknown { background: var(--red-light); color: var(--red); }
+  .type-badge.none { background: var(--border); color: var(--text-sub); }
 </style>
 </head>
 <body>
@@ -4061,30 +4109,68 @@ function showProgress() {
     { label: '第3単元', val: 3 },
   ];
 
-  let html = '';
+  let h = '';
   units.forEach(u => {
     const lessons = [...new Set(WORDS.filter(w=>w.unit===u.val).map(w=>w.lesson))].sort((a,b)=>a-b);
-    html += '<div class="section-title" style="margin-top:20px;">' + u.label + '</div>';
+    h += '<div class="section-title" style="margin-top:20px;">' + u.label + '</div>';
     lessons.forEach(l => {
       const pool = WORDS.filter(w => w.unit === u.val && w.lesson === l);
-      html += '<div style="margin-bottom:8px;">';
-      html += '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">第' + l + '課（' + pool.length + '語）</div>';
-      html += '<div class="progress-overview">';
+      const knownAll = pool.filter(w => types.every(t => mastery[getMasteryKey(w.id, t.key)])).length;
+      const unknownAll = pool.length - pool.filter(w => types.some(t => mastery[getMasteryKey(w.id, t.key)])).length;
+      const uid = 'lesson-' + u.val + '-' + l;
+
+      // ヘッダー（クリックで展開）
+      h += '<div class="lesson-progress-wrap">';
+      h += '<div class="lesson-progress-header" id="hdr-' + uid + '" onclick="toggleLessonDetail('' + uid + '')">';
+      h += '<span>第' + l + '課　<span style="font-size:11px;color:var(--text-sub);font-weight:400;">全' + pool.length + '語</span></span>';
+      h += '<div class="lph-right">';
+      // 問題形式ごとのバー
       types.forEach(t => {
         const known = pool.filter(w => mastery[getMasteryKey(w.id, t.key)]).length;
         const pct = Math.round(known / pool.length * 100);
-        html += '<div class="progress-row" style="padding:8px 14px;">' +
-          '<span class="pr-label" style="min-width:60px;font-size:12px;">' + t.label + '</span>' +
-          '<div class="pr-bar-wrap"><div class="pr-bar"><div class="pr-fill" style="width:' + pct + '%"></div></div></div>' +
-          '<span class="pr-num">' + known + '/' + pool.length + '</span>' +
+        h += '<div style="display:flex;align-items:center;gap:4px;">' +
+          '<span style="font-size:10px;color:var(--text-sub);">' + t.label + '</span>' +
+          '<div style="width:40px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;">' +
+            '<div style="width:' + pct + '%;height:100%;background:var(--green);border-radius:2px;"></div>' +
+          '</div>' +
+          '<span style="font-size:10px;color:var(--text-sub);">' + known + '/' + pool.length + '</span>' +
           '</div>';
       });
-      html += '</div></div>';
+      h += '<span class="lph-arrow">▼</span>';
+      h += '</div></div>';
+
+      // 単語テーブル（折りたたみ）
+      h += '<div class="word-table-wrap" id="tbl-' + uid + '">';
+      h += '<table class="word-table"><thead><tr>' +
+        '<th>中国語</th><th>ピンイン</th><th>日本語</th><th>中→日</th><th>日→中</th><th>ピンイン</th>' +
+        '</tr></thead><tbody>';
+
+      pool.forEach(w => {
+        h += '<tr>';
+        h += '<td>' + w.cn + '</td>';
+        h += '<td>' + w.py + '</td>';
+        h += '<td>' + w.jp + '</td>';
+        types.forEach(t => {
+          const k = mastery[getMasteryKey(w.id, t.key)];
+          if (k === true)  h += '<td><span class="mastery-dot known">✓</span></td>';
+          else if (k === false) h += '<td><span class="mastery-dot unknown">✗</span></td>';
+          else h += '<td><span class="mastery-dot none">－</span></td>';
+        });
+        h += '</tr>';
+      });
+      h += '</tbody></table></div></div>';
     });
   });
 
-  document.getElementById('progress-content').innerHTML = html;
+  document.getElementById('progress-content').innerHTML = h;
   showScreen('screen-progress');
+}
+
+function toggleLessonDetail(uid) {
+  const hdr = document.getElementById('hdr-' + uid);
+  const tbl = document.getElementById('tbl-' + uid);
+  hdr.classList.toggle('open');
+  tbl.classList.toggle('open');
 }
 
 function resetProgress() {
