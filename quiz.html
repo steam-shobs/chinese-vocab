@@ -64,6 +64,20 @@
   .opt-btn .opt-sub { font-size: 11px; opacity: .7; letter-spacing: .04em; }
   .opt-btn.selected .opt-sub { opacity: .85; }
 
+  .toggle-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 20px;
+    border: 1px solid var(--border); background: var(--card);
+    font-family: 'Noto Serif JP', serif; font-size: 12px;
+    letter-spacing: .06em; color: var(--text-sub);
+    cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .toggle-btn:hover { background: var(--accent-light); border-color: #e8c0c4; }
+  .toggle-btn.active {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+
   .start-btn {
     width: 100%; margin-top: 28px; padding: 15px;
     background: var(--accent); color: #fff; border: none; border-radius: 6px;
@@ -4121,7 +4135,7 @@ function showProgress() {
 
       // ヘッダー（クリックで展開）
       h += '<div class="lesson-progress-wrap">';
-      h += '<div class="lesson-progress-header" id="hdr-' + uid + '" onclick="toggleLessonDetail('' + uid + '')">';
+      h += '<div class="lesson-progress-header" id="hdr-' + uid + '" onclick="toggleLessonDetail(\'' + uid + '\')">';
       h += '<span>第' + l + '課　<span style="font-size:11px;color:var(--text-sub);font-weight:400;">全' + pool.length + '語</span></span>';
       h += '<div class="lph-right">';
       // 問題形式ごとのバー
