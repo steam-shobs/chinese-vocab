@@ -1,0 +1,2480 @@
+{
+  "unit1.html": [
+    {
+      "unit": "unit1",
+      "number": 1,
+      "text": "笔记本",
+      "audio": "audio/unit1/001.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 2,
+      "text": "不",
+      "audio": "audio/unit1/002.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 3,
+      "text": "炒饭",
+      "audio": "audio/unit1/003.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 4,
+      "text": "吃",
+      "audio": "audio/unit1/004.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 5,
+      "text": "邓丽君",
+      "audio": "audio/unit1/005.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 6,
+      "text": "东京",
+      "audio": "audio/unit1/006.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 7,
+      "text": "汉语",
+      "audio": "audio/unit1/007.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 8,
+      "text": "喝",
+      "audio": "audio/unit1/008.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 9,
+      "text": "红茶",
+      "audio": "audio/unit1/009.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 10,
+      "text": "饺子",
+      "audio": "audio/unit1/010.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 11,
+      "text": "咖啡",
+      "audio": "audio/unit1/011.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 12,
+      "text": "开车",
+      "audio": "audio/unit1/012.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 13,
+      "text": "可乐",
+      "audio": "audio/unit1/013.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 14,
+      "text": "课文",
+      "audio": "audio/unit1/014.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 15,
+      "text": "拉面",
+      "audio": "audio/unit1/015.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 16,
+      "text": "老师",
+      "audio": "audio/unit1/016.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 17,
+      "text": "练习",
+      "audio": "audio/unit1/017.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 18,
+      "text": "铃木",
+      "audio": "audio/unit1/018.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 19,
+      "text": "刘文正",
+      "audio": "audio/unit1/019.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 20,
+      "text": "吗",
+      "audio": "audio/unit1/020.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 21,
+      "text": "们",
+      "audio": "audio/unit1/021.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 22,
+      "text": "你们",
+      "audio": "audio/unit1/022.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 23,
+      "text": "您",
+      "audio": "audio/unit1/023.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 24,
+      "text": "牛奶",
+      "audio": "audio/unit1/024.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 25,
+      "text": "啤酒",
+      "audio": "audio/unit1/025.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 26,
+      "text": "普通话",
+      "audio": "audio/unit1/026.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 27,
+      "text": "汽水",
+      "audio": "audio/unit1/027.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 28,
+      "text": "去",
+      "audio": "audio/unit1/028.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 29,
+      "text": "日语",
+      "audio": "audio/unit1/029.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 30,
+      "text": "生词",
+      "audio": "audio/unit1/030.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 31,
+      "text": "食堂",
+      "audio": "audio/unit1/031.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 32,
+      "text": "说",
+      "audio": "audio/unit1/032.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 33,
+      "text": "酸奶",
+      "audio": "audio/unit1/033.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 34,
+      "text": "他",
+      "audio": "audio/unit1/034.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 35,
+      "text": "她",
+      "audio": "audio/unit1/035.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 36,
+      "text": "太极拳",
+      "audio": "audio/unit1/036.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 37,
+      "text": "他们",
+      "audio": "audio/unit1/037.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 38,
+      "text": "她们",
+      "audio": "audio/unit1/038.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 39,
+      "text": "它们",
+      "audio": "audio/unit1/039.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 40,
+      "text": "汤",
+      "audio": "audio/unit1/040.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 41,
+      "text": "汤姆",
+      "audio": "audio/unit1/041.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 42,
+      "text": "图书馆",
+      "audio": "audio/unit1/042.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 43,
+      "text": "我",
+      "audio": "audio/unit1/043.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 44,
+      "text": "我们",
+      "audio": "audio/unit1/044.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 45,
+      "text": "学",
+      "audio": "audio/unit1/045.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 46,
+      "text": "要",
+      "audio": "audio/unit1/046.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 47,
+      "text": "英语",
+      "audio": "audio/unit1/047.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 48,
+      "text": "饮料",
+      "audio": "audio/unit1/048.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 49,
+      "text": "佐藤",
+      "audio": "audio/unit1/049.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 50,
+      "text": "爸爸",
+      "audio": "audio/unit1/050.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 51,
+      "text": "大家",
+      "audio": "audio/unit1/051.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 52,
+      "text": "大熊猫",
+      "audio": "audio/unit1/052.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 53,
+      "text": "大学",
+      "audio": "audio/unit1/053.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 54,
+      "text": "的",
+      "audio": "audio/unit1/054.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 55,
+      "text": "多",
+      "audio": "audio/unit1/055.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 56,
+      "text": "高兴",
+      "audio": "audio/unit1/056.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 57,
+      "text": "狗",
+      "audio": "audio/unit1/057.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 58,
+      "text": "贵姓",
+      "audio": "audio/unit1/058.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 59,
+      "text": "好",
+      "audio": "audio/unit1/059.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 60,
+      "text": "很",
+      "audio": "audio/unit1/060.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 61,
+      "text": "华生",
+      "audio": "audio/unit1/061.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 62,
+      "text": "家",
+      "audio": "audio/unit1/062.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 63,
+      "text": "叫",
+      "audio": "audio/unit1/063.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 64,
+      "text": "课本",
+      "audio": "audio/unit1/064.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 65,
+      "text": "李小龙",
+      "audio": "audio/unit1/065.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 66,
+      "text": "猫",
+      "audio": "audio/unit1/066.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 67,
+      "text": "毛毛",
+      "audio": "audio/unit1/067.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 68,
+      "text": "咪咪",
+      "audio": "audio/unit1/068.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 69,
+      "text": "名字",
+      "audio": "audio/unit1/069.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 70,
+      "text": "那",
+      "audio": "audio/unit1/070.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 71,
+      "text": "你好",
+      "audio": "audio/unit1/071.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 72,
+      "text": "朋友",
+      "audio": "audio/unit1/072.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 73,
+      "text": "请",
+      "audio": "audio/unit1/073.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 74,
+      "text": "人工智能",
+      "audio": "audio/unit1/074.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 75,
+      "text": "认识",
+      "audio": "audio/unit1/075.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 76,
+      "text": "日本",
+      "audio": "audio/unit1/076.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 77,
+      "text": "日本人",
+      "audio": "audio/unit1/077.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 78,
+      "text": "什么",
+      "audio": "audio/unit1/078.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 79,
+      "text": "是",
+      "audio": "audio/unit1/079.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 80,
+      "text": "书",
+      "audio": "audio/unit1/080.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 81,
+      "text": "书包",
+      "audio": "audio/unit1/081.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 82,
+      "text": "同学",
+      "audio": "audio/unit1/082.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 83,
+      "text": "香香",
+      "audio": "audio/unit1/083.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 84,
+      "text": "姓",
+      "audio": "audio/unit1/084.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 85,
+      "text": "学生",
+      "audio": "audio/unit1/085.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 86,
+      "text": "优子",
+      "audio": "audio/unit1/086.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 87,
+      "text": "这",
+      "audio": "audio/unit1/087.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 88,
+      "text": "指教",
+      "audio": "audio/unit1/088.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 89,
+      "text": "中国",
+      "audio": "audio/unit1/089.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 90,
+      "text": "中国人",
+      "audio": "audio/unit1/090.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 91,
+      "text": "报纸",
+      "audio": "audio/unit1/091.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 92,
+      "text": "笔",
+      "audio": "audio/unit1/092.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 93,
+      "text": "词典",
+      "audio": "audio/unit1/093.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 94,
+      "text": "德语",
+      "audio": "audio/unit1/094.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 95,
+      "text": "电子词典",
+      "audio": "audio/unit1/095.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 96,
+      "text": "豆浆",
+      "audio": "audio/unit1/096.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 97,
+      "text": "俄语",
+      "audio": "audio/unit1/097.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 98,
+      "text": "法语",
+      "audio": "audio/unit1/098.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 99,
+      "text": "韩语",
+      "audio": "audio/unit1/099.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 100,
+      "text": "汉英词典",
+      "audio": "audio/unit1/100.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 101,
+      "text": "李英",
+      "audio": "audio/unit1/101.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 102,
+      "text": "留学生",
+      "audio": "audio/unit1/102.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 103,
+      "text": "呢",
+      "audio": "audio/unit1/103.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 104,
+      "text": "噢",
+      "audio": "audio/unit1/104.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 105,
+      "text": "谁",
+      "audio": "audio/unit1/105.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 106,
+      "text": "手机",
+      "audio": "audio/unit1/106.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 107,
+      "text": "小林",
+      "audio": "audio/unit1/107.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 108,
+      "text": "西班牙语",
+      "audio": "audio/unit1/108.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 109,
+      "text": "谢谢",
+      "audio": "audio/unit1/109.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 110,
+      "text": "眼镜",
+      "audio": "audio/unit1/110.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 111,
+      "text": "噫",
+      "audio": "audio/unit1/111.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 112,
+      "text": "啊",
+      "audio": "audio/unit1/112.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 113,
+      "text": "啊",
+      "audio": "audio/unit1/113.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 114,
+      "text": "白",
+      "audio": "audio/unit1/114.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 115,
+      "text": "蹦蹦跳跳",
+      "audio": "audio/unit1/115.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 116,
+      "text": "长",
+      "audio": "audio/unit1/116.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 117,
+      "text": "胆子",
+      "audio": "audio/unit1/117.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 118,
+      "text": "短",
+      "audio": "audio/unit1/118.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 119,
+      "text": "耳朵",
+      "audio": "audio/unit1/119.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 120,
+      "text": "发音",
+      "audio": "audio/unit1/120.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 121,
+      "text": "非常",
+      "audio": "audio/unit1/121.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 122,
+      "text": "工作",
+      "audio": "audio/unit1/122.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 123,
+      "text": "还",
+      "audio": "audio/unit1/123.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 124,
+      "text": "好",
+      "audio": "audio/unit1/124.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 125,
+      "text": "红",
+      "audio": "audio/unit1/125.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 126,
+      "text": "见",
+      "audio": "audio/unit1/126.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 127,
+      "text": "家务",
+      "audio": "audio/unit1/127.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 128,
+      "text": "今天",
+      "audio": "audio/unit1/128.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 129,
+      "text": "久",
+      "audio": "audio/unit1/129.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 130,
+      "text": "可以",
+      "audio": "audio/unit1/130.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 131,
+      "text": "了",
+      "audio": "audio/unit1/131.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 132,
+      "text": "凉快",
+      "audio": "audio/unit1/132.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 133,
+      "text": "忙",
+      "audio": "audio/unit1/133.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 134,
+      "text": "毛衫",
+      "audio": "audio/unit1/134.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 135,
+      "text": "难",
+      "audio": "audio/unit1/135.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 136,
+      "text": "暖和",
+      "audio": "audio/unit1/136.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 137,
+      "text": "热",
+      "audio": "audio/unit1/137.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 138,
+      "text": "人",
+      "audio": "audio/unit1/138.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 139,
+      "text": "太",
+      "audio": "audio/unit1/139.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 140,
+      "text": "天气",
+      "audio": "audio/unit1/140.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 141,
+      "text": "田中",
+      "audio": "audio/unit1/141.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 142,
+      "text": "尾巴",
+      "audio": "audio/unit1/142.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 143,
+      "text": "小",
+      "audio": "audio/unit1/143.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 144,
+      "text": "喜欢",
+      "audio": "audio/unit1/144.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 145,
+      "text": "学习",
+      "audio": "audio/unit1/145.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 146,
+      "text": "眼睛",
+      "audio": "audio/unit1/146.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 147,
+      "text": "也",
+      "audio": "audio/unit1/147.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 148,
+      "text": "有意思",
+      "audio": "audio/unit1/148.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 149,
+      "text": "语法",
+      "audio": "audio/unit1/149.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 150,
+      "text": "怎么样",
+      "audio": "audio/unit1/150.mp3"
+    },
+    {
+      "unit": "unit1",
+      "number": 151,
+      "text": "最近",
+      "audio": "audio/unit1/151.mp3"
+    }
+  ],
+  "unit2.html": [
+    {
+      "unit": "unit2",
+      "number": 1,
+      "text": "弟弟",
+      "audio": "audio/unit2/001.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 2,
+      "text": "都",
+      "audio": "audio/unit2/002.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 3,
+      "text": "多大",
+      "audio": "audio/unit2/003.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 4,
+      "text": "儿子",
+      "audio": "audio/unit2/004.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 5,
+      "text": "个",
+      "audio": "audio/unit2/005.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 6,
+      "text": "哥哥",
+      "audio": "audio/unit2/006.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 7,
+      "text": "孩子",
+      "audio": "audio/unit2/007.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 8,
+      "text": "和",
+      "audio": "audio/unit2/008.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 9,
+      "text": "几",
+      "audio": "audio/unit2/009.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 10,
+      "text": "姐姐",
+      "audio": "audio/unit2/010.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 11,
+      "text": "今年",
+      "audio": "audio/unit2/011.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 12,
+      "text": "可爱",
+      "audio": "audio/unit2/012.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 13,
+      "text": "口",
+      "audio": "audio/unit2/013.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 14,
+      "text": "妈妈",
+      "audio": "audio/unit2/014.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 15,
+      "text": "没",
+      "audio": "audio/unit2/015.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 16,
+      "text": "妹妹",
+      "audio": "audio/unit2/016.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 17,
+      "text": "摩托车",
+      "audio": "audio/unit2/017.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 18,
+      "text": "汽车",
+      "audio": "audio/unit2/018.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 19,
+      "text": "岁",
+      "audio": "audio/unit2/019.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 20,
+      "text": "岁数",
+      "audio": "audio/unit2/020.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 21,
+      "text": "相机",
+      "audio": "audio/unit2/021.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 22,
+      "text": "兄弟姐妹",
+      "audio": "audio/unit2/022.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 23,
+      "text": "爷爷",
+      "audio": "audio/unit2/023.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 24,
+      "text": "有",
+      "audio": "audio/unit2/024.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 25,
+      "text": "赵朋",
+      "audio": "audio/unit2/025.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 26,
+      "text": "真",
+      "audio": "audio/unit2/026.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 27,
+      "text": "侄子",
+      "audio": "audio/unit2/027.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 28,
+      "text": "自行车",
+      "audio": "audio/unit2/028.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 29,
+      "text": "不错",
+      "audio": "audio/unit2/029.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 30,
+      "text": "唱",
+      "audio": "audio/unit2/030.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 31,
+      "text": "重阳节",
+      "audio": "audio/unit2/031.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 32,
+      "text": "春节",
+      "audio": "audio/unit2/032.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 33,
+      "text": "打",
+      "audio": "audio/unit2/033.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 34,
+      "text": "端午节",
+      "audio": "audio/unit2/034.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 35,
+      "text": "对",
+      "audio": "audio/unit2/035.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 36,
+      "text": "儿童节",
+      "audio": "audio/unit2/036.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 37,
+      "text": "饭",
+      "audio": "audio/unit2/037.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 38,
+      "text": "歌",
+      "audio": "audio/unit2/038.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 39,
+      "text": "国庆节",
+      "audio": "audio/unit2/039.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 40,
+      "text": "号",
+      "audio": "audio/unit2/040.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 41,
+      "text": "KTV",
+      "audio": "audio/unit2/041.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 42,
+      "text": "开",
+      "audio": "audio/unit2/042.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 43,
+      "text": "课",
+      "audio": "audio/unit2/043.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 44,
+      "text": "聊天",
+      "audio": "audio/unit2/044.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 45,
+      "text": "明年",
+      "audio": "audio/unit2/045.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 46,
+      "text": "明天",
+      "audio": "audio/unit2/046.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 47,
+      "text": "那",
+      "audio": "audio/unit2/047.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 48,
+      "text": "哪一天",
+      "audio": "audio/unit2/048.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 49,
+      "text": "派对",
+      "audio": "audio/unit2/049.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 50,
+      "text": "排球",
+      "audio": "audio/unit2/050.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 51,
+      "text": "清明节",
+      "audio": "audio/unit2/051.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 52,
+      "text": "情人节",
+      "audio": "audio/unit2/052.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 53,
+      "text": "上",
+      "audio": "audio/unit2/053.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 54,
+      "text": "上",
+      "audio": "audio/unit2/054.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 55,
+      "text": "上学",
+      "audio": "audio/unit2/055.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 56,
+      "text": "圣诞节",
+      "audio": "audio/unit2/056.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 57,
+      "text": "生日",
+      "audio": "audio/unit2/057.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 58,
+      "text": "体育馆",
+      "audio": "audio/unit2/058.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 59,
+      "text": "下",
+      "audio": "audio/unit2/059.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 60,
+      "text": "星期",
+      "audio": "audio/unit2/060.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 61,
+      "text": "邀请",
+      "audio": "audio/unit2/061.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 62,
+      "text": "一起",
+      "audio": "audio/unit2/062.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 63,
+      "text": "元旦",
+      "audio": "audio/unit2/063.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 64,
+      "text": "月",
+      "audio": "audio/unit2/064.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 65,
+      "text": "中秋节",
+      "audio": "audio/unit2/065.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 66,
+      "text": "北海道",
+      "audio": "audio/unit2/066.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 67,
+      "text": "本",
+      "audio": "audio/unit2/067.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 68,
+      "text": "餐厅",
+      "audio": "audio/unit2/068.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 69,
+      "text": "抽屉",
+      "audio": "audio/unit2/069.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 70,
+      "text": "大通",
+      "audio": "audio/unit2/070.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 71,
+      "text": "电脑",
+      "audio": "audio/unit2/071.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 72,
+      "text": "电视塔",
+      "audio": "audio/unit2/072.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 73,
+      "text": "东边",
+      "audio": "audio/unit2/073.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 74,
+      "text": "对面",
+      "audio": "audio/unit2/074.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 75,
+      "text": "房间",
+      "audio": "audio/unit2/075.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 76,
+      "text": "附近",
+      "audio": "audio/unit2/076.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 77,
+      "text": "公园",
+      "audio": "audio/unit2/077.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 78,
+      "text": "酒店",
+      "audio": "audio/unit2/078.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 79,
+      "text": "巨蛋",
+      "audio": "audio/unit2/079.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 80,
+      "text": "咖啡店",
+      "audio": "audio/unit2/080.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 81,
+      "text": "里",
+      "audio": "audio/unit2/081.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 82,
+      "text": "里边儿",
+      "audio": "audio/unit2/082.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 83,
+      "text": "那儿",
+      "audio": "audio/unit2/083.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 84,
+      "text": "哪儿",
+      "audio": "audio/unit2/084.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 85,
+      "text": "旁边儿",
+      "audio": "audio/unit2/085.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 86,
+      "text": "前",
+      "audio": "audio/unit2/086.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 87,
+      "text": "前边儿",
+      "audio": "audio/unit2/087.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 88,
+      "text": "书架",
+      "audio": "audio/unit2/088.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 89,
+      "text": "台",
+      "audio": "audio/unit2/089.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 90,
+      "text": "外边儿",
+      "audio": "audio/unit2/090.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 91,
+      "text": "小卖部",
+      "audio": "audio/unit2/091.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 92,
+      "text": "洗手间",
+      "audio": "audio/unit2/092.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 93,
+      "text": "钥匙",
+      "audio": "audio/unit2/093.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 94,
+      "text": "银行",
+      "audio": "audio/unit2/094.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 95,
+      "text": "邮局",
+      "audio": "audio/unit2/095.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 96,
+      "text": "在",
+      "audio": "audio/unit2/096.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 97,
+      "text": "札幌",
+      "audio": "audio/unit2/097.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 98,
+      "text": "张",
+      "audio": "audio/unit2/098.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 99,
+      "text": "照片",
+      "audio": "audio/unit2/099.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 100,
+      "text": "这里",
+      "audio": "audio/unit2/100.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 101,
+      "text": "这儿",
+      "audio": "audio/unit2/101.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 102,
+      "text": "中间",
+      "audio": "audio/unit2/102.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 103,
+      "text": "钟楼",
+      "audio": "audio/unit2/103.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 104,
+      "text": "桌子",
+      "audio": "audio/unit2/104.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 105,
+      "text": "吧",
+      "audio": "audio/unit2/105.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 106,
+      "text": "半",
+      "audio": "audio/unit2/106.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 107,
+      "text": "杯",
+      "audio": "audio/unit2/107.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 108,
+      "text": "便利店",
+      "audio": "audio/unit2/108.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 109,
+      "text": "必修",
+      "audio": "audio/unit2/109.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 110,
+      "text": "参加",
+      "audio": "audio/unit2/110.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 111,
+      "text": "差",
+      "audio": "audio/unit2/111.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 112,
+      "text": "打工",
+      "audio": "audio/unit2/112.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 113,
+      "text": "第一",
+      "audio": "audio/unit2/113.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 114,
+      "text": "点",
+      "audio": "audio/unit2/114.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 115,
+      "text": "分",
+      "audio": "audio/unit2/115.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 116,
+      "text": "份",
+      "audio": "audio/unit2/116.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 117,
+      "text": "根",
+      "audio": "audio/unit2/117.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 118,
+      "text": "果汁",
+      "audio": "audio/unit2/118.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 119,
+      "text": "黑",
+      "audio": "audio/unit2/119.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 120,
+      "text": "煎",
+      "audio": "audio/unit2/120.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 121,
+      "text": "鸡蛋",
+      "audio": "audio/unit2/121.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 122,
+      "text": "节",
+      "audio": "audio/unit2/122.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 123,
+      "text": "开始",
+      "audio": "audio/unit2/123.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 124,
+      "text": "看",
+      "audio": "audio/unit2/124.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 125,
+      "text": "刻",
+      "audio": "audio/unit2/125.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 126,
+      "text": "来",
+      "audio": "audio/unit2/126.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 127,
+      "text": "篮球",
+      "audio": "audio/unit2/127.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 128,
+      "text": "两",
+      "audio": "audio/unit2/128.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 129,
+      "text": "每天",
+      "audio": "audio/unit2/129.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 130,
+      "text": "面包",
+      "audio": "audio/unit2/130.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 131,
+      "text": "那么",
+      "audio": "audio/unit2/131.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 132,
+      "text": "片",
+      "audio": "audio/unit2/132.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 133,
+      "text": "起床",
+      "audio": "audio/unit2/133.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 134,
+      "text": "沙拉",
+      "audio": "audio/unit2/134.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 135,
+      "text": "上课",
+      "audio": "audio/unit2/135.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 136,
+      "text": "午饭",
+      "audio": "audio/unit2/136.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 137,
+      "text": "香肠",
+      "audio": "audio/unit2/137.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 138,
+      "text": "下午",
+      "audio": "audio/unit2/138.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 139,
+      "text": "下学",
+      "audio": "audio/unit2/139.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 140,
+      "text": "休息",
+      "audio": "audio/unit2/140.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 141,
+      "text": "选修",
+      "audio": "audio/unit2/141.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 142,
+      "text": "以后",
+      "audio": "audio/unit2/142.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 143,
+      "text": "早饭",
+      "audio": "audio/unit2/143.mp3"
+    },
+    {
+      "unit": "unit2",
+      "number": 144,
+      "text": "只",
+      "audio": "audio/unit2/144.mp3"
+    }
+  ],
+  "unit3.html": [
+    {
+      "unit": "unit3",
+      "number": 1,
+      "text": "北",
+      "audio": "audio/unit3/001.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 2,
+      "text": "北京",
+      "audio": "audio/unit3/002.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 3,
+      "text": "北十八条",
+      "audio": "audio/unit3/003.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 4,
+      "text": "车",
+      "audio": "audio/unit3/004.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 5,
+      "text": "地铁",
+      "audio": "audio/unit3/005.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 6,
+      "text": "拐",
+      "audio": "audio/unit3/006.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 7,
+      "text": "火车",
+      "audio": "audio/unit3/007.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 8,
+      "text": "近",
+      "audio": "audio/unit3/008.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 9,
+      "text": "开水",
+      "audio": "audio/unit3/009.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 10,
+      "text": "烤鸭",
+      "audio": "audio/unit3/010.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 11,
+      "text": "离",
+      "audio": "audio/unit3/011.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 12,
+      "text": "南北线",
+      "audio": "audio/unit3/012.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 13,
+      "text": "普洱茶",
+      "audio": "audio/unit3/013.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 14,
+      "text": "然后",
+      "audio": "audio/unit3/014.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 15,
+      "text": "十字路口",
+      "audio": "audio/unit3/015.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 16,
+      "text": "往",
+      "audio": "audio/unit3/016.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 17,
+      "text": "西",
+      "audio": "audio/unit3/017.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 18,
+      "text": "写",
+      "audio": "audio/unit3/018.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 19,
+      "text": "学校",
+      "audio": "audio/unit3/019.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 20,
+      "text": "一直",
+      "audio": "audio/unit3/020.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 21,
+      "text": "用",
+      "audio": "audio/unit3/021.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 22,
+      "text": "右",
+      "audio": "audio/unit3/022.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 23,
+      "text": "远",
+      "audio": "audio/unit3/023.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 24,
+      "text": "在",
+      "audio": "audio/unit3/024.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 25,
+      "text": "怎么",
+      "audio": "audio/unit3/025.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 26,
+      "text": "站",
+      "audio": "audio/unit3/026.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 27,
+      "text": "种",
+      "audio": "audio/unit3/027.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 28,
+      "text": "走",
+      "audio": "audio/unit3/028.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 29,
+      "text": "左",
+      "audio": "audio/unit3/029.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 30,
+      "text": "坐",
+      "audio": "audio/unit3/030.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 31,
+      "text": "百",
+      "audio": "audio/unit3/031.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 32,
+      "text": "菜",
+      "audio": "audio/unit3/032.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 33,
+      "text": "参考书",
+      "audio": "audio/unit3/033.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 34,
+      "text": "长城",
+      "audio": "audio/unit3/034.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 35,
+      "text": "的",
+      "audio": "audio/unit3/035.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 36,
+      "text": "电话",
+      "audio": "audio/unit3/036.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 37,
+      "text": "电影",
+      "audio": "audio/unit3/037.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 38,
+      "text": "对不起",
+      "audio": "audio/unit3/038.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 39,
+      "text": "告诉",
+      "audio": "audio/unit3/039.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 40,
+      "text": "给",
+      "audio": "audio/unit3/040.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 41,
+      "text": "公里",
+      "audio": "audio/unit3/041.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 42,
+      "text": "还是",
+      "audio": "audio/unit3/042.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 43,
+      "text": "号码",
+      "audio": "audio/unit3/043.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 44,
+      "text": "教",
+      "audio": "audio/unit3/044.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 45,
+      "text": "集会",
+      "audio": "audio/unit3/045.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 46,
+      "text": "空",
+      "audio": "audio/unit3/046.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 47,
+      "text": "辣",
+      "audio": "audio/unit3/047.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 48,
+      "text": "面积",
+      "audio": "audio/unit3/048.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 49,
+      "text": "男生",
+      "audio": "audio/unit3/049.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 50,
+      "text": "女生",
+      "audio": "audio/unit3/050.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 51,
+      "text": "票",
+      "audio": "audio/unit3/051.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 52,
+      "text": "平方",
+      "audio": "audio/unit3/052.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 53,
+      "text": "葡萄酒",
+      "audio": "audio/unit3/053.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 54,
+      "text": "千",
+      "audio": "audio/unit3/054.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 55,
+      "text": "人口",
+      "audio": "audio/unit3/055.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 56,
+      "text": "送",
+      "audio": "audio/unit3/056.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 57,
+      "text": "甜",
+      "audio": "audio/unit3/057.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 58,
+      "text": "万",
+      "audio": "audio/unit3/058.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 59,
+      "text": "位",
+      "audio": "audio/unit3/059.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 60,
+      "text": "位子",
+      "audio": "audio/unit3/060.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 61,
+      "text": "乌龙茶",
+      "audio": "audio/unit3/061.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 62,
+      "text": "现在",
+      "audio": "audio/unit3/062.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 63,
+      "text": "消息",
+      "audio": "audio/unit3/063.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 64,
+      "text": "亿",
+      "audio": "audio/unit3/064.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 65,
+      "text": "座位",
+      "audio": "audio/unit3/065.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 66,
+      "text": "左右",
+      "audio": "audio/unit3/066.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 67,
+      "text": "帮",
+      "audio": "audio/unit3/067.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 68,
+      "text": "暴风雨",
+      "audio": "audio/unit3/068.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 69,
+      "text": "报告",
+      "audio": "audio/unit3/069.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 70,
+      "text": "不过",
+      "audio": "audio/unit3/070.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 71,
+      "text": "不行",
+      "audio": "audio/unit3/071.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 72,
+      "text": "抽",
+      "audio": "audio/unit3/072.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 73,
+      "text": "达夫",
+      "audio": "audio/unit3/073.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 74,
+      "text": "东西",
+      "audio": "audio/unit3/074.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 75,
+      "text": "分钟",
+      "audio": "audio/unit3/075.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 76,
+      "text": "会",
+      "audio": "audio/unit3/076.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 77,
+      "text": "教室",
+      "audio": "audio/unit3/077.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 78,
+      "text": "驾照",
+      "audio": "audio/unit3/078.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 79,
+      "text": "进来",
+      "audio": "audio/unit3/079.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 80,
+      "text": "酒",
+      "audio": "audio/unit3/080.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 81,
+      "text": "可以",
+      "audio": "audio/unit3/081.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 82,
+      "text": "厉害",
+      "audio": "audio/unit3/082.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 83,
+      "text": "米",
+      "audio": "audio/unit3/083.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 84,
+      "text": "能",
+      "audio": "audio/unit3/084.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 85,
+      "text": "生鱼片",
+      "audio": "audio/unit3/085.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 86,
+      "text": "身体",
+      "audio": "audio/unit3/086.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 87,
+      "text": "舒服",
+      "audio": "audio/unit3/087.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 88,
+      "text": "小玲",
+      "audio": "audio/unit3/088.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 89,
+      "text": "烟",
+      "audio": "audio/unit3/089.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 90,
+      "text": "英文",
+      "audio": "audio/unit3/090.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 91,
+      "text": "医院",
+      "audio": "audio/unit3/091.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 92,
+      "text": "游",
+      "audio": "audio/unit3/092.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 93,
+      "text": "游泳",
+      "audio": "audio/unit3/093.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 94,
+      "text": "字",
+      "audio": "audio/unit3/094.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 95,
+      "text": "做",
+      "audio": "audio/unit3/095.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 96,
+      "text": "比",
+      "audio": "audio/unit3/096.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 97,
+      "text": "大",
+      "audio": "audio/unit3/097.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 98,
+      "text": "高",
+      "audio": "audio/unit3/098.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 99,
+      "text": "跟",
+      "audio": "audio/unit3/099.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 100,
+      "text": "更",
+      "audio": "audio/unit3/100.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 101,
+      "text": "个子",
+      "audio": "audio/unit3/101.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 102,
+      "text": "贵",
+      "audio": "audio/unit3/102.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 103,
+      "text": "和",
+      "audio": "audio/unit3/103.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 104,
+      "text": "黄豆",
+      "audio": "audio/unit3/104.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 105,
+      "text": "件",
+      "audio": "audio/unit3/105.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 106,
+      "text": "冷",
+      "audio": "audio/unit3/106.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 107,
+      "text": "了解",
+      "audio": "audio/unit3/107.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 108,
+      "text": "牛肉",
+      "audio": "audio/unit3/108.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 109,
+      "text": "便宜",
+      "audio": "audio/unit3/109.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 110,
+      "text": "情况",
+      "audio": "audio/unit3/110.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 111,
+      "text": "水平",
+      "audio": "audio/unit3/111.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 112,
+      "text": "样子",
+      "audio": "audio/unit3/112.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 113,
+      "text": "一点儿",
+      "audio": "audio/unit3/113.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 114,
+      "text": "营养",
+      "audio": "audio/unit3/114.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 115,
+      "text": "一样",
+      "audio": "audio/unit3/115.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 116,
+      "text": "有点儿",
+      "audio": "audio/unit3/116.mp3"
+    },
+    {
+      "unit": "unit3",
+      "number": 117,
+      "text": "昨天",
+      "audio": "audio/unit3/117.mp3"
+    }
+  ]
+}
