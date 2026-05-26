@@ -47,6 +47,51 @@
   .speak-btn.playing { background: var(--accent); color: #fff; border-color: var(--accent); }
   .speak-btn .icon { font-size: 13px; opacity: .6; transition: opacity .15s; }
   .speak-btn.playing .icon, .speak-btn:hover .icon { opacity: 1; }
+
+  /* ── 列表示トグル ── */
+  .toggle-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .toggle-label {
+    font-size: 12px;
+    color: var(--text-sub);
+    letter-spacing: .08em;
+    margin-right: 4px;
+  }
+  .toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .toggle-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .toggle-btn .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .7;
+  }
+  /* 列非表示 */
+  .hide-cn .col-cn { display: none; }
+  .hide-py .col-py { display: none; }
+  .hide-jp .col-jp { display: none; }
 </style>
 </head>
 <body>
@@ -60,150 +105,157 @@
   <div class="hint-bar">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
     中国語をクリックすると発音が再生されます（インターネット接続が必要です）
+    <div class="toggle-bar">
+    <span class="toggle-label">表示する列：</span>
+    <button class="toggle-btn active" data-col="cn"><span class="dot"></span>中国語</button>
+    <button class="toggle-btn active" data-col="py"><span class="dot"></span>ピンイン</button>
+    <button class="toggle-btn active" data-col="jp"><span class="dot"></span>日本語</button>
   </div>
+
+</div>
 
   <!-- ═══ 第9課 ═══ -->
   <div class="lesson">
     <div class="lesson-header"><span class="lesson-number">第 9 課</span><span class="lesson-title">道案内・交通</span></div>
-    <table class="vocab-table"><thead><tr><th>中国語</th><th>ピンイン</th><th>日本語</th></tr></thead><tbody>
-      <tr><td><button class="speak-btn" data-text="北"><span class="icon">🔊</span>北</button></td><td class="td-py">běi</td><td class="td-jp">北</td></tr>
-      <tr><td><button class="speak-btn" data-text="北京"><span class="icon">🔊</span>北京</button></td><td class="td-py">Běijīng</td><td class="td-jp">北京</td></tr>
-      <tr><td><button class="speak-btn" data-text="北十八条"><span class="icon">🔊</span>北十八条</button></td><td class="td-py">Běishíbātiáo</td><td class="td-jp">北18条</td></tr>
-      <tr><td><button class="speak-btn" data-text="车"><span class="icon">🔊</span>车</button></td><td class="td-py">chē</td><td class="td-jp">車</td></tr>
-      <tr><td><button class="speak-btn" data-text="地铁"><span class="icon">🔊</span>地铁</button></td><td class="td-py">dìtiě</td><td class="td-jp">地下鉄</td></tr>
-      <tr><td><button class="speak-btn" data-text="拐"><span class="icon">🔊</span>拐</button></td><td class="td-py">guǎi</td><td class="td-jp">曲がる</td></tr>
-      <tr><td><button class="speak-btn" data-text="火车"><span class="icon">🔊</span>火车</button></td><td class="td-py">huǒchē</td><td class="td-jp">汽車、列車</td></tr>
-      <tr><td><button class="speak-btn" data-text="近"><span class="icon">🔊</span>近</button></td><td class="td-py">jìn</td><td class="td-jp">近い</td></tr>
-      <tr><td><button class="speak-btn" data-text="开水"><span class="icon">🔊</span>开水</button></td><td class="td-py">kāishuǐ</td><td class="td-jp">お湯</td></tr>
-      <tr><td><button class="speak-btn" data-text="烤鸭"><span class="icon">🔊</span>烤鸭</button></td><td class="td-py">kǎoyā</td><td class="td-jp">ローストダック</td></tr>
-      <tr><td><button class="speak-btn" data-text="离"><span class="icon">🔊</span>离</button></td><td class="td-py">lí</td><td class="td-jp">から</td></tr>
-      <tr><td><button class="speak-btn" data-text="南北线"><span class="icon">🔊</span>南北线</button></td><td class="td-py">Nánběixiàn</td><td class="td-jp">南北線</td></tr>
-      <tr><td><button class="speak-btn" data-text="普洱茶"><span class="icon">🔊</span>普洱茶</button></td><td class="td-py">Pǔ'ěrchá</td><td class="td-jp">プーアル茶</td></tr>
-      <tr><td><button class="speak-btn" data-text="然后"><span class="icon">🔊</span>然后</button></td><td class="td-py">ránhòu</td><td class="td-jp">その後</td></tr>
-      <tr><td><button class="speak-btn" data-text="十字路口"><span class="icon">🔊</span>十字路口</button></td><td class="td-py">shízìlùkǒu</td><td class="td-jp">十字路</td></tr>
-      <tr><td><button class="speak-btn" data-text="往"><span class="icon">🔊</span>往</button></td><td class="td-py">wǎng</td><td class="td-jp">〜の方へ</td></tr>
-      <tr><td><button class="speak-btn" data-text="西"><span class="icon">🔊</span>西</button></td><td class="td-py">xī</td><td class="td-jp">西</td></tr>
-      <tr><td><button class="speak-btn" data-text="写"><span class="icon">🔊</span>写</button></td><td class="td-py">xiě</td><td class="td-jp">書く</td></tr>
-      <tr><td><button class="speak-btn" data-text="学校"><span class="icon">🔊</span>学校</button></td><td class="td-py">xuéxiào</td><td class="td-jp">学校</td></tr>
-      <tr><td><button class="speak-btn" data-text="一直"><span class="icon">🔊</span>一直</button></td><td class="td-py">yīzhí</td><td class="td-jp">まっすぐ、ずっと</td></tr>
-      <tr><td><button class="speak-btn" data-text="用"><span class="icon">🔊</span>用</button></td><td class="td-py">yòng</td><td class="td-jp">使う、用いる</td></tr>
-      <tr><td><button class="speak-btn" data-text="右"><span class="icon">🔊</span>右</button></td><td class="td-py">yòu</td><td class="td-jp">右</td></tr>
-      <tr><td><button class="speak-btn" data-text="远"><span class="icon">🔊</span>远</button></td><td class="td-py">yuǎn</td><td class="td-jp">遠い</td></tr>
-      <tr><td><button class="speak-btn" data-text="在"><span class="icon">🔊</span>在</button></td><td class="td-py">zài（介）</td><td class="td-jp">〜で</td></tr>
-      <tr><td><button class="speak-btn" data-text="怎么"><span class="icon">🔊</span>怎么</button></td><td class="td-py">zěnme</td><td class="td-jp">どう、どのように</td></tr>
-      <tr><td><button class="speak-btn" data-text="站"><span class="icon">🔊</span>站</button></td><td class="td-py">zhàn</td><td class="td-jp">駅</td></tr>
-      <tr><td><button class="speak-btn" data-text="种"><span class="icon">🔊</span>种</button></td><td class="td-py">zhǒng</td><td class="td-jp">種類</td></tr>
-      <tr><td><button class="speak-btn" data-text="走"><span class="icon">🔊</span>走</button></td><td class="td-py">zǒu</td><td class="td-jp">行く</td></tr>
-      <tr><td><button class="speak-btn" data-text="左"><span class="icon">🔊</span>左</button></td><td class="td-py">zuǒ</td><td class="td-jp">左</td></tr>
-      <tr><td><button class="speak-btn" data-text="坐"><span class="icon">🔊</span>坐</button></td><td class="td-py">zuò</td><td class="td-jp">座る、乗る</td></tr>
+    <table class="vocab-table"><thead><tr><th class="col-cn">中国語</th><th class="col-py">ピンイン</th><th class="col-jp">日本語</th></tr></thead><tbody>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="北"><span class="icon">🔊</span>北</button></td><td class="td-py col-py">běi</td><td class="td-jp col-jp">北</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="北京"><span class="icon">🔊</span>北京</button></td><td class="td-py col-py">Běijīng</td><td class="td-jp col-jp">北京</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="北十八条"><span class="icon">🔊</span>北十八条</button></td><td class="td-py col-py">Běishíbātiáo</td><td class="td-jp col-jp">北18条</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="车"><span class="icon">🔊</span>车</button></td><td class="td-py col-py">chē</td><td class="td-jp col-jp">車</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="地铁"><span class="icon">🔊</span>地铁</button></td><td class="td-py col-py">dìtiě</td><td class="td-jp col-jp">地下鉄</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="拐"><span class="icon">🔊</span>拐</button></td><td class="td-py col-py">guǎi</td><td class="td-jp col-jp">曲がる</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="火车"><span class="icon">🔊</span>火车</button></td><td class="td-py col-py">huǒchē</td><td class="td-jp col-jp">汽車、列車</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="近"><span class="icon">🔊</span>近</button></td><td class="td-py col-py">jìn</td><td class="td-jp col-jp">近い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="开水"><span class="icon">🔊</span>开水</button></td><td class="td-py col-py">kāishuǐ</td><td class="td-jp col-jp">お湯</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="烤鸭"><span class="icon">🔊</span>烤鸭</button></td><td class="td-py col-py">kǎoyā</td><td class="td-jp col-jp">ローストダック</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="离"><span class="icon">🔊</span>离</button></td><td class="td-py col-py">lí</td><td class="td-jp col-jp">から</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="南北线"><span class="icon">🔊</span>南北线</button></td><td class="td-py col-py">Nánběixiàn</td><td class="td-jp col-jp">南北線</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="普洱茶"><span class="icon">🔊</span>普洱茶</button></td><td class="td-py col-py">Pǔ'ěrchá</td><td class="td-jp col-jp">プーアル茶</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="然后"><span class="icon">🔊</span>然后</button></td><td class="td-py col-py">ránhòu</td><td class="td-jp col-jp">その後</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="十字路口"><span class="icon">🔊</span>十字路口</button></td><td class="td-py col-py">shízìlùkǒu</td><td class="td-jp col-jp">十字路</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="往"><span class="icon">🔊</span>往</button></td><td class="td-py col-py">wǎng</td><td class="td-jp col-jp">〜の方へ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="西"><span class="icon">🔊</span>西</button></td><td class="td-py col-py">xī</td><td class="td-jp col-jp">西</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="写"><span class="icon">🔊</span>写</button></td><td class="td-py col-py">xiě</td><td class="td-jp col-jp">書く</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="学校"><span class="icon">🔊</span>学校</button></td><td class="td-py col-py">xuéxiào</td><td class="td-jp col-jp">学校</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="一直"><span class="icon">🔊</span>一直</button></td><td class="td-py col-py">yīzhí</td><td class="td-jp col-jp">まっすぐ、ずっと</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="用"><span class="icon">🔊</span>用</button></td><td class="td-py col-py">yòng</td><td class="td-jp col-jp">使う、用いる</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="右"><span class="icon">🔊</span>右</button></td><td class="td-py col-py">yòu</td><td class="td-jp col-jp">右</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="远"><span class="icon">🔊</span>远</button></td><td class="td-py col-py">yuǎn</td><td class="td-jp col-jp">遠い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="在"><span class="icon">🔊</span>在</button></td><td class="td-py col-py">zài（介）</td><td class="td-jp col-jp">〜で</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="怎么"><span class="icon">🔊</span>怎么</button></td><td class="td-py col-py">zěnme</td><td class="td-jp col-jp">どう、どのように</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="站"><span class="icon">🔊</span>站</button></td><td class="td-py col-py">zhàn</td><td class="td-jp col-jp">駅</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="种"><span class="icon">🔊</span>种</button></td><td class="td-py col-py">zhǒng</td><td class="td-jp col-jp">種類</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="走"><span class="icon">🔊</span>走</button></td><td class="td-py col-py">zǒu</td><td class="td-jp col-jp">行く</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="左"><span class="icon">🔊</span>左</button></td><td class="td-py col-py">zuǒ</td><td class="td-jp col-jp">左</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="坐"><span class="icon">🔊</span>坐</button></td><td class="td-py col-py">zuò</td><td class="td-jp col-jp">座る、乗る</td></tr>
     </tbody></table>
   </div>
 
   <!-- ═══ 第10課 ═══ -->
   <div class="lesson">
     <div class="lesson-header"><span class="lesson-number">第 10 課</span><span class="lesson-title">数・情報</span></div>
-    <table class="vocab-table"><thead><tr><th>中国語</th><th>ピンイン</th><th>日本語</th></tr></thead><tbody>
-      <tr><td><button class="speak-btn" data-text="百"><span class="icon">🔊</span>百</button></td><td class="td-py">bǎi</td><td class="td-jp">百</td></tr>
-      <tr><td><button class="speak-btn" data-text="菜"><span class="icon">🔊</span>菜</button></td><td class="td-py">cài</td><td class="td-jp">料理</td></tr>
-      <tr><td><button class="speak-btn" data-text="参考书"><span class="icon">🔊</span>参考书</button></td><td class="td-py">cānkǎoshū</td><td class="td-jp">参考書</td></tr>
-      <tr><td><button class="speak-btn" data-text="长城"><span class="icon">🔊</span>长城</button></td><td class="td-py">Chángchéng</td><td class="td-jp">万里の長城</td></tr>
-      <tr><td><button class="speak-btn" data-text="的"><span class="icon">🔊</span>的</button></td><td class="td-py">de</td><td class="td-jp">〜の</td></tr>
-      <tr><td><button class="speak-btn" data-text="电话"><span class="icon">🔊</span>电话</button></td><td class="td-py">diànhuà</td><td class="td-jp">電話</td></tr>
-      <tr><td><button class="speak-btn" data-text="电影"><span class="icon">🔊</span>电影</button></td><td class="td-py">diànyǐng</td><td class="td-jp">映画</td></tr>
-      <tr><td><button class="speak-btn" data-text="对不起"><span class="icon">🔊</span>对不起</button></td><td class="td-py">duìbuqǐ</td><td class="td-jp">ごめんなさい</td></tr>
-      <tr><td><button class="speak-btn" data-text="告诉"><span class="icon">🔊</span>告诉</button></td><td class="td-py">gàosu</td><td class="td-jp">告げる</td></tr>
-      <tr><td><button class="speak-btn" data-text="给"><span class="icon">🔊</span>给</button></td><td class="td-py">gěi</td><td class="td-jp">〜にあげる、くれる</td></tr>
-      <tr><td><button class="speak-btn" data-text="公里"><span class="icon">🔊</span>公里</button></td><td class="td-py">gōnglǐ</td><td class="td-jp">キロメートル</td></tr>
-      <tr><td><button class="speak-btn" data-text="还是"><span class="icon">🔊</span>还是</button></td><td class="td-py">háishi</td><td class="td-jp">それとも</td></tr>
-      <tr><td><button class="speak-btn" data-text="号码"><span class="icon">🔊</span>号码</button></td><td class="td-py">hàomǎ</td><td class="td-jp">番号</td></tr>
-      <tr><td><button class="speak-btn" data-text="教"><span class="icon">🔊</span>教</button></td><td class="td-py">jiāo</td><td class="td-jp">教える</td></tr>
-      <tr><td><button class="speak-btn" data-text="集会"><span class="icon">🔊</span>集会</button></td><td class="td-py">jíhuì</td><td class="td-jp">集会する</td></tr>
-      <tr><td><button class="speak-btn" data-text="空"><span class="icon">🔊</span>空</button></td><td class="td-py">kòng</td><td class="td-jp">空いている</td></tr>
-      <tr><td><button class="speak-btn" data-text="辣"><span class="icon">🔊</span>辣</button></td><td class="td-py">là</td><td class="td-jp">辛い</td></tr>
-      <tr><td><button class="speak-btn" data-text="面积"><span class="icon">🔊</span>面积</button></td><td class="td-py">miànjī</td><td class="td-jp">面積</td></tr>
-      <tr><td><button class="speak-btn" data-text="男生"><span class="icon">🔊</span>男生</button></td><td class="td-py">nánshēng</td><td class="td-jp">男性</td></tr>
-      <tr><td><button class="speak-btn" data-text="女生"><span class="icon">🔊</span>女生</button></td><td class="td-py">nǚshēng</td><td class="td-jp">女性</td></tr>
-      <tr><td><button class="speak-btn" data-text="票"><span class="icon">🔊</span>票</button></td><td class="td-py">piào</td><td class="td-jp">チケット</td></tr>
-      <tr><td><button class="speak-btn" data-text="平方"><span class="icon">🔊</span>平方</button></td><td class="td-py">píngfāng</td><td class="td-jp">平方</td></tr>
-      <tr><td><button class="speak-btn" data-text="葡萄酒"><span class="icon">🔊</span>葡萄酒</button></td><td class="td-py">pútaojiǔ</td><td class="td-jp">ワイン</td></tr>
-      <tr><td><button class="speak-btn" data-text="千"><span class="icon">🔊</span>千</button></td><td class="td-py">qiān</td><td class="td-jp">千</td></tr>
-      <tr><td><button class="speak-btn" data-text="人口"><span class="icon">🔊</span>人口</button></td><td class="td-py">rénkǒu</td><td class="td-jp">人口</td></tr>
-      <tr><td><button class="speak-btn" data-text="送"><span class="icon">🔊</span>送</button></td><td class="td-py">sòng</td><td class="td-jp">送る</td></tr>
-      <tr><td><button class="speak-btn" data-text="甜"><span class="icon">🔊</span>甜</button></td><td class="td-py">tián</td><td class="td-jp">甘い</td></tr>
-      <tr><td><button class="speak-btn" data-text="万"><span class="icon">🔊</span>万</button></td><td class="td-py">wàn</td><td class="td-jp">万</td></tr>
-      <tr><td><button class="speak-btn" data-text="位"><span class="icon">🔊</span>位</button></td><td class="td-py">wèi</td><td class="td-jp">敬意を持って人を数える時の量詞</td></tr>
-      <tr><td><button class="speak-btn" data-text="位子"><span class="icon">🔊</span>位子</button></td><td class="td-py">wèizi</td><td class="td-jp">席</td></tr>
-      <tr><td><button class="speak-btn" data-text="乌龙茶"><span class="icon">🔊</span>乌龙茶</button></td><td class="td-py">wūlóngchá</td><td class="td-jp">烏龍茶</td></tr>
-      <tr><td><button class="speak-btn" data-text="现在"><span class="icon">🔊</span>现在</button></td><td class="td-py">xiànzài</td><td class="td-jp">現在</td></tr>
-      <tr><td><button class="speak-btn" data-text="消息"><span class="icon">🔊</span>消息</button></td><td class="td-py">xiāoxi</td><td class="td-jp">知らせ、ニュース</td></tr>
-      <tr><td><button class="speak-btn" data-text="亿"><span class="icon">🔊</span>亿</button></td><td class="td-py">yì</td><td class="td-jp">億</td></tr>
-      <tr><td><button class="speak-btn" data-text="座位"><span class="icon">🔊</span>座位</button></td><td class="td-py">zuòwèi</td><td class="td-jp">座席</td></tr>
-      <tr><td><button class="speak-btn" data-text="左右"><span class="icon">🔊</span>左右</button></td><td class="td-py">zuǒyòu</td><td class="td-jp">くらい、前後</td></tr>
+    <table class="vocab-table"><thead><tr><th class="col-cn">中国語</th><th class="col-py">ピンイン</th><th class="col-jp">日本語</th></tr></thead><tbody>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="百"><span class="icon">🔊</span>百</button></td><td class="td-py col-py">bǎi</td><td class="td-jp col-jp">百</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="菜"><span class="icon">🔊</span>菜</button></td><td class="td-py col-py">cài</td><td class="td-jp col-jp">料理</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="参考书"><span class="icon">🔊</span>参考书</button></td><td class="td-py col-py">cānkǎoshū</td><td class="td-jp col-jp">参考書</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="长城"><span class="icon">🔊</span>长城</button></td><td class="td-py col-py">Chángchéng</td><td class="td-jp col-jp">万里の長城</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="的"><span class="icon">🔊</span>的</button></td><td class="td-py col-py">de</td><td class="td-jp col-jp">〜の</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="电话"><span class="icon">🔊</span>电话</button></td><td class="td-py col-py">diànhuà</td><td class="td-jp col-jp">電話</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="电影"><span class="icon">🔊</span>电影</button></td><td class="td-py col-py">diànyǐng</td><td class="td-jp col-jp">映画</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="对不起"><span class="icon">🔊</span>对不起</button></td><td class="td-py col-py">duìbuqǐ</td><td class="td-jp col-jp">ごめんなさい</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="告诉"><span class="icon">🔊</span>告诉</button></td><td class="td-py col-py">gàosu</td><td class="td-jp col-jp">告げる</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="给"><span class="icon">🔊</span>给</button></td><td class="td-py col-py">gěi</td><td class="td-jp col-jp">〜にあげる、くれる</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="公里"><span class="icon">🔊</span>公里</button></td><td class="td-py col-py">gōnglǐ</td><td class="td-jp col-jp">キロメートル</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="还是"><span class="icon">🔊</span>还是</button></td><td class="td-py col-py">háishi</td><td class="td-jp col-jp">それとも</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="号码"><span class="icon">🔊</span>号码</button></td><td class="td-py col-py">hàomǎ</td><td class="td-jp col-jp">番号</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="教"><span class="icon">🔊</span>教</button></td><td class="td-py col-py">jiāo</td><td class="td-jp col-jp">教える</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="集会"><span class="icon">🔊</span>集会</button></td><td class="td-py col-py">jíhuì</td><td class="td-jp col-jp">集会する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="空"><span class="icon">🔊</span>空</button></td><td class="td-py col-py">kòng</td><td class="td-jp col-jp">空いている</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="辣"><span class="icon">🔊</span>辣</button></td><td class="td-py col-py">là</td><td class="td-jp col-jp">辛い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="面积"><span class="icon">🔊</span>面积</button></td><td class="td-py col-py">miànjī</td><td class="td-jp col-jp">面積</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="男生"><span class="icon">🔊</span>男生</button></td><td class="td-py col-py">nánshēng</td><td class="td-jp col-jp">男性</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="女生"><span class="icon">🔊</span>女生</button></td><td class="td-py col-py">nǚshēng</td><td class="td-jp col-jp">女性</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="票"><span class="icon">🔊</span>票</button></td><td class="td-py col-py">piào</td><td class="td-jp col-jp">チケット</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="平方"><span class="icon">🔊</span>平方</button></td><td class="td-py col-py">píngfāng</td><td class="td-jp col-jp">平方</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="葡萄酒"><span class="icon">🔊</span>葡萄酒</button></td><td class="td-py col-py">pútaojiǔ</td><td class="td-jp col-jp">ワイン</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="千"><span class="icon">🔊</span>千</button></td><td class="td-py col-py">qiān</td><td class="td-jp col-jp">千</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="人口"><span class="icon">🔊</span>人口</button></td><td class="td-py col-py">rénkǒu</td><td class="td-jp col-jp">人口</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="送"><span class="icon">🔊</span>送</button></td><td class="td-py col-py">sòng</td><td class="td-jp col-jp">送る</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="甜"><span class="icon">🔊</span>甜</button></td><td class="td-py col-py">tián</td><td class="td-jp col-jp">甘い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="万"><span class="icon">🔊</span>万</button></td><td class="td-py col-py">wàn</td><td class="td-jp col-jp">万</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="位"><span class="icon">🔊</span>位</button></td><td class="td-py col-py">wèi</td><td class="td-jp col-jp">敬意を持って人を数える時の量詞</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="位子"><span class="icon">🔊</span>位子</button></td><td class="td-py col-py">wèizi</td><td class="td-jp col-jp">席</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="乌龙茶"><span class="icon">🔊</span>乌龙茶</button></td><td class="td-py col-py">wūlóngchá</td><td class="td-jp col-jp">烏龍茶</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="现在"><span class="icon">🔊</span>现在</button></td><td class="td-py col-py">xiànzài</td><td class="td-jp col-jp">現在</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="消息"><span class="icon">🔊</span>消息</button></td><td class="td-py col-py">xiāoxi</td><td class="td-jp col-jp">知らせ、ニュース</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="亿"><span class="icon">🔊</span>亿</button></td><td class="td-py col-py">yì</td><td class="td-jp col-jp">億</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="座位"><span class="icon">🔊</span>座位</button></td><td class="td-py col-py">zuòwèi</td><td class="td-jp col-jp">座席</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="左右"><span class="icon">🔊</span>左右</button></td><td class="td-py col-py">zuǒyòu</td><td class="td-jp col-jp">くらい、前後</td></tr>
     </tbody></table>
   </div>
 
   <!-- ═══ 第11課 ═══ -->
   <div class="lesson">
     <div class="lesson-header"><span class="lesson-number">第 11 課</span><span class="lesson-title">能力・許可</span></div>
-    <table class="vocab-table"><thead><tr><th>中国語</th><th>ピンイン</th><th>日本語</th></tr></thead><tbody>
-      <tr><td><button class="speak-btn" data-text="帮"><span class="icon">🔊</span>帮</button></td><td class="td-py">bāng</td><td class="td-jp">助ける</td></tr>
-      <tr><td><button class="speak-btn" data-text="暴风雨"><span class="icon">🔊</span>暴风雨</button></td><td class="td-py">bàofēngyǔ</td><td class="td-jp">暴風雨</td></tr>
-      <tr><td><button class="speak-btn" data-text="报告"><span class="icon">🔊</span>报告</button></td><td class="td-py">bàogào</td><td class="td-jp">レポート</td></tr>
-      <tr><td><button class="speak-btn" data-text="不过"><span class="icon">🔊</span>不过</button></td><td class="td-py">búguò</td><td class="td-jp">しかし</td></tr>
-      <tr><td><button class="speak-btn" data-text="不行"><span class="icon">🔊</span>不行</button></td><td class="td-py">bùxíng</td><td class="td-jp">いけない、ダメ</td></tr>
-      <tr><td><button class="speak-btn" data-text="抽"><span class="icon">🔊</span>抽</button></td><td class="td-py">chōu</td><td class="td-jp">吸う</td></tr>
-      <tr><td><button class="speak-btn" data-text="达夫"><span class="icon">🔊</span>达夫</button></td><td class="td-py">Dáfū</td><td class="td-jp">人名（ダフさん）</td></tr>
-      <tr><td><button class="speak-btn" data-text="东西"><span class="icon">🔊</span>东西</button></td><td class="td-py">dōngxi</td><td class="td-jp">もの</td></tr>
-      <tr><td><button class="speak-btn" data-text="分钟"><span class="icon">🔊</span>分（钟）</button></td><td class="td-py">fēn(zhōng)</td><td class="td-jp">分</td></tr>
-      <tr><td><button class="speak-btn" data-text="会"><span class="icon">🔊</span>会</button></td><td class="td-py">huì</td><td class="td-jp">できる（習得）</td></tr>
-      <tr><td><button class="speak-btn" data-text="教室"><span class="icon">🔊</span>教室</button></td><td class="td-py">jiàoshì</td><td class="td-jp">教室</td></tr>
-      <tr><td><button class="speak-btn" data-text="驾照"><span class="icon">🔊</span>驾照</button></td><td class="td-py">jiàzhào</td><td class="td-jp">運転免許証</td></tr>
-      <tr><td><button class="speak-btn" data-text="进来"><span class="icon">🔊</span>进来</button></td><td class="td-py">jìnlái</td><td class="td-jp">入ってくる</td></tr>
-      <tr><td><button class="speak-btn" data-text="酒"><span class="icon">🔊</span>酒</button></td><td class="td-py">jiǔ</td><td class="td-jp">酒</td></tr>
-      <tr><td><button class="speak-btn" data-text="可以"><span class="icon">🔊</span>可以</button></td><td class="td-py">kěyǐ</td><td class="td-jp">できる（許可）</td></tr>
-      <tr><td><button class="speak-btn" data-text="厉害"><span class="icon">🔊</span>厉害</button></td><td class="td-py">lìhai</td><td class="td-jp">すごい、激しい</td></tr>
-      <tr><td><button class="speak-btn" data-text="米"><span class="icon">🔊</span>米</button></td><td class="td-py">mǐ</td><td class="td-jp">メートル</td></tr>
-      <tr><td><button class="speak-btn" data-text="能"><span class="icon">🔊</span>能</button></td><td class="td-py">néng</td><td class="td-jp">できる（状況・能力）</td></tr>
-      <tr><td><button class="speak-btn" data-text="生鱼片"><span class="icon">🔊</span>生鱼片</button></td><td class="td-py">shēngyúpiàn</td><td class="td-jp">刺身</td></tr>
-      <tr><td><button class="speak-btn" data-text="身体"><span class="icon">🔊</span>身体</button></td><td class="td-py">shēntǐ</td><td class="td-jp">身体</td></tr>
-      <tr><td><button class="speak-btn" data-text="舒服"><span class="icon">🔊</span>舒服</button></td><td class="td-py">shūfu</td><td class="td-jp">気分がよい</td></tr>
-      <tr><td><button class="speak-btn" data-text="小玲"><span class="icon">🔊</span>小玲</button></td><td class="td-py">Xiǎolíng</td><td class="td-jp">玲さん</td></tr>
-      <tr><td><button class="speak-btn" data-text="烟"><span class="icon">🔊</span>烟</button></td><td class="td-py">yān</td><td class="td-jp">タバコ</td></tr>
-      <tr><td><button class="speak-btn" data-text="英文"><span class="icon">🔊</span>英文</button></td><td class="td-py">Yīngwén</td><td class="td-jp">英語</td></tr>
-      <tr><td><button class="speak-btn" data-text="医院"><span class="icon">🔊</span>医院</button></td><td class="td-py">yīyuàn</td><td class="td-jp">病院</td></tr>
-      <tr><td><button class="speak-btn" data-text="游"><span class="icon">🔊</span>游</button></td><td class="td-py">yóu</td><td class="td-jp">泳ぐ（動詞単体）</td></tr>
-      <tr><td><button class="speak-btn" data-text="游泳"><span class="icon">🔊</span>游泳</button></td><td class="td-py">yóuyǒng</td><td class="td-jp">泳ぐ（游泳する）</td></tr>
-      <tr><td><button class="speak-btn" data-text="字"><span class="icon">🔊</span>字</button></td><td class="td-py">zì</td><td class="td-jp">字</td></tr>
-      <tr><td><button class="speak-btn" data-text="做"><span class="icon">🔊</span>做</button></td><td class="td-py">zuò</td><td class="td-jp">つくる、する</td></tr>
+    <table class="vocab-table"><thead><tr><th class="col-cn">中国語</th><th class="col-py">ピンイン</th><th class="col-jp">日本語</th></tr></thead><tbody>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="帮"><span class="icon">🔊</span>帮</button></td><td class="td-py col-py">bāng</td><td class="td-jp col-jp">助ける</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="暴风雨"><span class="icon">🔊</span>暴风雨</button></td><td class="td-py col-py">bàofēngyǔ</td><td class="td-jp col-jp">暴風雨</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="报告"><span class="icon">🔊</span>报告</button></td><td class="td-py col-py">bàogào</td><td class="td-jp col-jp">レポート</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="不过"><span class="icon">🔊</span>不过</button></td><td class="td-py col-py">búguò</td><td class="td-jp col-jp">しかし</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="不行"><span class="icon">🔊</span>不行</button></td><td class="td-py col-py">bùxíng</td><td class="td-jp col-jp">いけない、ダメ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="抽"><span class="icon">🔊</span>抽</button></td><td class="td-py col-py">chōu</td><td class="td-jp col-jp">吸う</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="达夫"><span class="icon">🔊</span>达夫</button></td><td class="td-py col-py">Dáfū</td><td class="td-jp col-jp">人名（ダフさん）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="东西"><span class="icon">🔊</span>东西</button></td><td class="td-py col-py">dōngxi</td><td class="td-jp col-jp">もの</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="分钟"><span class="icon">🔊</span>分（钟）</button></td><td class="td-py col-py">fēn(zhōng)</td><td class="td-jp col-jp">分</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="会"><span class="icon">🔊</span>会</button></td><td class="td-py col-py">huì</td><td class="td-jp col-jp">できる（習得）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="教室"><span class="icon">🔊</span>教室</button></td><td class="td-py col-py">jiàoshì</td><td class="td-jp col-jp">教室</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="驾照"><span class="icon">🔊</span>驾照</button></td><td class="td-py col-py">jiàzhào</td><td class="td-jp col-jp">運転免許証</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="进来"><span class="icon">🔊</span>进来</button></td><td class="td-py col-py">jìnlái</td><td class="td-jp col-jp">入ってくる</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="酒"><span class="icon">🔊</span>酒</button></td><td class="td-py col-py">jiǔ</td><td class="td-jp col-jp">酒</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="可以"><span class="icon">🔊</span>可以</button></td><td class="td-py col-py">kěyǐ</td><td class="td-jp col-jp">できる（許可）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="厉害"><span class="icon">🔊</span>厉害</button></td><td class="td-py col-py">lìhai</td><td class="td-jp col-jp">すごい、激しい</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="米"><span class="icon">🔊</span>米</button></td><td class="td-py col-py">mǐ</td><td class="td-jp col-jp">メートル</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="能"><span class="icon">🔊</span>能</button></td><td class="td-py col-py">néng</td><td class="td-jp col-jp">できる（状況・能力）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="生鱼片"><span class="icon">🔊</span>生鱼片</button></td><td class="td-py col-py">shēngyúpiàn</td><td class="td-jp col-jp">刺身</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="身体"><span class="icon">🔊</span>身体</button></td><td class="td-py col-py">shēntǐ</td><td class="td-jp col-jp">身体</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="舒服"><span class="icon">🔊</span>舒服</button></td><td class="td-py col-py">shūfu</td><td class="td-jp col-jp">気分がよい</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="小玲"><span class="icon">🔊</span>小玲</button></td><td class="td-py col-py">Xiǎolíng</td><td class="td-jp col-jp">玲さん</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="烟"><span class="icon">🔊</span>烟</button></td><td class="td-py col-py">yān</td><td class="td-jp col-jp">タバコ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="英文"><span class="icon">🔊</span>英文</button></td><td class="td-py col-py">Yīngwén</td><td class="td-jp col-jp">英語</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="医院"><span class="icon">🔊</span>医院</button></td><td class="td-py col-py">yīyuàn</td><td class="td-jp col-jp">病院</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="游"><span class="icon">🔊</span>游</button></td><td class="td-py col-py">yóu</td><td class="td-jp col-jp">泳ぐ（動詞単体）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="游泳"><span class="icon">🔊</span>游泳</button></td><td class="td-py col-py">yóuyǒng</td><td class="td-jp col-jp">泳ぐ（游泳する）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="字"><span class="icon">🔊</span>字</button></td><td class="td-py col-py">zì</td><td class="td-jp col-jp">字</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="做"><span class="icon">🔊</span>做</button></td><td class="td-py col-py">zuò</td><td class="td-jp col-jp">つくる、する</td></tr>
     </tbody></table>
   </div>
 
   <!-- ═══ 第12課 ═══ -->
   <div class="lesson">
     <div class="lesson-header"><span class="lesson-number">第 12 課</span><span class="lesson-title">比較</span></div>
-    <table class="vocab-table"><thead><tr><th>中国語</th><th>ピンイン</th><th>日本語</th></tr></thead><tbody>
-      <tr><td><button class="speak-btn" data-text="比"><span class="icon">🔊</span>比</button></td><td class="td-py">bǐ</td><td class="td-jp">比べる</td></tr>
-      <tr><td><button class="speak-btn" data-text="大"><span class="icon">🔊</span>大</button></td><td class="td-py">dà</td><td class="td-jp">年かさがいっている</td></tr>
-      <tr><td><button class="speak-btn" data-text="高"><span class="icon">🔊</span>高</button></td><td class="td-py">gāo</td><td class="td-jp">高い</td></tr>
-      <tr><td><button class="speak-btn" data-text="跟"><span class="icon">🔊</span>跟</button></td><td class="td-py">gēn</td><td class="td-jp">〜と（介詞）</td></tr>
-      <tr><td><button class="speak-btn" data-text="更"><span class="icon">🔊</span>更</button></td><td class="td-py">gèng</td><td class="td-jp">いっそう、ますます</td></tr>
-      <tr><td><button class="speak-btn" data-text="个子"><span class="icon">🔊</span>个子</button></td><td class="td-py">gèzi</td><td class="td-jp">背丈</td></tr>
-      <tr><td><button class="speak-btn" data-text="贵"><span class="icon">🔊</span>贵</button></td><td class="td-py">guì</td><td class="td-jp">値段が高い</td></tr>
-      <tr><td><button class="speak-btn" data-text="和"><span class="icon">🔊</span>和</button></td><td class="td-py">hé</td><td class="td-jp">〜と（介詞）</td></tr>
-      <tr><td><button class="speak-btn" data-text="黄豆"><span class="icon">🔊</span>黄豆</button></td><td class="td-py">huángdòu</td><td class="td-jp">大豆</td></tr>
-      <tr><td><button class="speak-btn" data-text="件"><span class="icon">🔊</span>件</button></td><td class="td-py">jiàn</td><td class="td-jp">衣類を数える量詞</td></tr>
-      <tr><td><button class="speak-btn" data-text="冷"><span class="icon">🔊</span>冷</button></td><td class="td-py">lěng</td><td class="td-jp">寒い</td></tr>
-      <tr><td><button class="speak-btn" data-text="了解"><span class="icon">🔊</span>了解</button></td><td class="td-py">liǎojiě</td><td class="td-jp">理解する、知る</td></tr>
-      <tr><td><button class="speak-btn" data-text="牛肉"><span class="icon">🔊</span>牛肉</button></td><td class="td-py">niúròu</td><td class="td-jp">牛肉</td></tr>
-      <tr><td><button class="speak-btn" data-text="便宜"><span class="icon">🔊</span>便宜</button></td><td class="td-py">piányi</td><td class="td-jp">値段が安い</td></tr>
-      <tr><td><button class="speak-btn" data-text="情况"><span class="icon">🔊</span>情况</button></td><td class="td-py">qíngkuàng</td><td class="td-jp">状況</td></tr>
-      <tr><td><button class="speak-btn" data-text="水平"><span class="icon">🔊</span>水平</button></td><td class="td-py">shuǐpíng</td><td class="td-jp">レベル</td></tr>
-      <tr><td><button class="speak-btn" data-text="样子"><span class="icon">🔊</span>样子</button></td><td class="td-py">yàngzi</td><td class="td-jp">形、様子</td></tr>
-      <tr><td><button class="speak-btn" data-text="一点儿"><span class="icon">🔊</span>一点儿</button></td><td class="td-py">yīdiǎnr</td><td class="td-jp">少し</td></tr>
-      <tr><td><button class="speak-btn" data-text="营养"><span class="icon">🔊</span>营养</button></td><td class="td-py">yíngyǎng</td><td class="td-jp">栄養</td></tr>
-      <tr><td><button class="speak-btn" data-text="一样"><span class="icon">🔊</span>一样</button></td><td class="td-py">yīyàng</td><td class="td-jp">同じ</td></tr>
-      <tr><td><button class="speak-btn" data-text="有点儿"><span class="icon">🔊</span>有点儿</button></td><td class="td-py">yǒudiǎnr</td><td class="td-jp">少し（やや〜）</td></tr>
-      <tr><td><button class="speak-btn" data-text="昨天"><span class="icon">🔊</span>昨天</button></td><td class="td-py">zuótiān</td><td class="td-jp">昨日</td></tr>
+    <table class="vocab-table"><thead><tr><th class="col-cn">中国語</th><th class="col-py">ピンイン</th><th class="col-jp">日本語</th></tr></thead><tbody>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="比"><span class="icon">🔊</span>比</button></td><td class="td-py col-py">bǐ</td><td class="td-jp col-jp">比べる</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="大"><span class="icon">🔊</span>大</button></td><td class="td-py col-py">dà</td><td class="td-jp col-jp">年かさがいっている</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="高"><span class="icon">🔊</span>高</button></td><td class="td-py col-py">gāo</td><td class="td-jp col-jp">高い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="跟"><span class="icon">🔊</span>跟</button></td><td class="td-py col-py">gēn</td><td class="td-jp col-jp">〜と（介詞）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="更"><span class="icon">🔊</span>更</button></td><td class="td-py col-py">gèng</td><td class="td-jp col-jp">いっそう、ますます</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="个子"><span class="icon">🔊</span>个子</button></td><td class="td-py col-py">gèzi</td><td class="td-jp col-jp">背丈</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="贵"><span class="icon">🔊</span>贵</button></td><td class="td-py col-py">guì</td><td class="td-jp col-jp">値段が高い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="和"><span class="icon">🔊</span>和</button></td><td class="td-py col-py">hé</td><td class="td-jp col-jp">〜と（介詞）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="黄豆"><span class="icon">🔊</span>黄豆</button></td><td class="td-py col-py">huángdòu</td><td class="td-jp col-jp">大豆</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="件"><span class="icon">🔊</span>件</button></td><td class="td-py col-py">jiàn</td><td class="td-jp col-jp">衣類を数える量詞</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="冷"><span class="icon">🔊</span>冷</button></td><td class="td-py col-py">lěng</td><td class="td-jp col-jp">寒い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="了解"><span class="icon">🔊</span>了解</button></td><td class="td-py col-py">liǎojiě</td><td class="td-jp col-jp">理解する、知る</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="牛肉"><span class="icon">🔊</span>牛肉</button></td><td class="td-py col-py">niúròu</td><td class="td-jp col-jp">牛肉</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="便宜"><span class="icon">🔊</span>便宜</button></td><td class="td-py col-py">piányi</td><td class="td-jp col-jp">値段が安い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="情况"><span class="icon">🔊</span>情况</button></td><td class="td-py col-py">qíngkuàng</td><td class="td-jp col-jp">状況</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="水平"><span class="icon">🔊</span>水平</button></td><td class="td-py col-py">shuǐpíng</td><td class="td-jp col-jp">レベル</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="样子"><span class="icon">🔊</span>样子</button></td><td class="td-py col-py">yàngzi</td><td class="td-jp col-jp">形、様子</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="一点儿"><span class="icon">🔊</span>一点儿</button></td><td class="td-py col-py">yīdiǎnr</td><td class="td-jp col-jp">少し</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="营养"><span class="icon">🔊</span>营养</button></td><td class="td-py col-py">yíngyǎng</td><td class="td-jp col-jp">栄養</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="一样"><span class="icon">🔊</span>一样</button></td><td class="td-py col-py">yīyàng</td><td class="td-jp col-jp">同じ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="有点儿"><span class="icon">🔊</span>有点儿</button></td><td class="td-py col-py">yǒudiǎnr</td><td class="td-jp col-jp">少し（やや〜）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="昨天"><span class="icon">🔊</span>昨天</button></td><td class="td-py col-py">zuótiān</td><td class="td-jp col-jp">昨日</td></tr>
     </tbody></table>
   </div>
 
@@ -250,6 +302,17 @@
 
   document.querySelectorAll('.speak-btn').forEach(btn => {
     btn.addEventListener('click', () => speak(btn.dataset.text, btn));
+  });
+
+  // ── 列トグル ── 
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const col = btn.dataset.col;
+      const body = document.body;
+      const cls = 'hide-' + col;
+      const isHidden = body.classList.toggle(cls);
+      btn.classList.toggle('active', !isHidden);
+    });
   });
 </script>
 </body>
