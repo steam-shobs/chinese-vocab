@@ -298,53 +298,58 @@
 
 <script>
   let currentBtn = null;
-  let currentAudio = null;
+  // iOSはAudio要素をあらかじめ生成しておく必要がある
+  const audio = new Audio();
+  audio.preload = 'none';
 
   function speak(text, btn) {
-    if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+    audio.pause();
+    audio.src = '';
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
     if (currentBtn) {
       currentBtn.classList.remove('playing');
       if (currentBtn === btn) { currentBtn = null; return; }
     }
+    btn.classList.add('playing');
+    currentBtn = btn;
+
     const url = 'https://translate.googleapis.com/translate_tts?ie=UTF-8'
       + '&q=' + encodeURIComponent(text)
       + '&tl=zh-CN&client=gtx&prev=input';
-    const audio = new Audio(url);
-    currentAudio = audio;
-    currentBtn = btn;
-    btn.classList.add('playing');
-    audio.onended = () => { btn.classList.remove('playing'); currentBtn = null; currentAudio = null; };
+
+    audio.src = url;
+    audio.onended = () => { btn.classList.remove('playing'); currentBtn = null; };
     audio.onerror = () => {
-      btn.classList.remove('playing'); currentBtn = null; currentAudio = null;
-      fallbackSpeak(text, btn);
+      btn.classList.remove('playing'); currentBtn = null;
+      // Google TTSが失敗したらWeb Speech APIにフォールバック
+      webSpeechFallback(text, btn);
     };
-    audio.play().catch(() => fallbackSpeak(text, btn));
+    // クリックイベントの同期コンテキスト内でplay()を呼ぶ（iOS対応）
+    const p = audio.play();
+    if (p && p.catch) p.catch(() => webSpeechFallback(text, btn));
   }
 
-  function fallbackSpeak(text, btn) {
+  function webSpeechFallback(text, btn) {
     if (!window.speechSynthesis) return;
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = 'zh-CN'; utter.rate = 0.85;
-    const v = speechSynthesis.getVoices().find(v => v.lang.startsWith('zh'));
-    if (v) utter.voice = v;
+    const voices = window.speechSynthesis.getVoices();
+    const zh = voices.find(v => v.lang === 'zh-CN') ||
+               voices.find(v => v.lang === 'zh-TW') ||
+               voices.find(v => v.lang.startsWith('zh'));
+    if (zh) utter.voice = zh;
     btn.classList.add('playing'); currentBtn = btn;
     utter.onend = utter.onerror = () => { btn.classList.remove('playing'); currentBtn = null; };
-    speechSynthesis.speak(utter);
+    window.speechSynthesis.speak(utter);
+  }
+
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
   }
 
   document.querySelectorAll('.speak-btn').forEach(btn => {
     btn.addEventListener('click', () => speak(btn.dataset.text, btn));
-  });
-
-  // ── 列トグル ── 
-  document.querySelectorAll('.toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const col = btn.dataset.col;
-      const body = document.body;
-      const cls = 'hide-' + col;
-      const isHidden = body.classList.toggle(cls);
-      btn.classList.toggle('active', !isHidden);
-    });
   });
 </script>
 </body>
