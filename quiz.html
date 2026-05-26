@@ -1,0 +1,4016 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国語 練習問題</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2; --card: #ffffff; --accent: #b5505a;
+    --accent-light: #f3dde0; --text: #2c2420; --text-sub: #7a6a56;
+    --border: #e8ddd5; --header-bg: #2c2420; --row-alt: #fdf5f0;
+    --green: #4a7a5a; --green-light: #dff0e6;
+    --red: #b5505a; --red-light: #f3dde0;
+    --yellow: #a07830; --yellow-light: #fdf3dc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'Noto Serif JP', serif; color: var(--text); min-height: 100vh; }
+  .wrapper { max-width: 640px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  /* ── ヘッダー ── */
+  .page-header { text-align: center; margin-bottom: 36px; }
+  .page-header::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent); margin: 16px auto 0; }
+  .page-header .subtitle { font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 8px; }
+  .page-header h1 { font-size: 24px; font-weight: 700; letter-spacing: .06em; }
+
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; color: var(--text-sub); text-decoration: none;
+    margin-bottom: 24px; letter-spacing: .04em;
+    background: none; border: none; cursor: pointer; padding: 0;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .back-btn:hover { color: var(--accent); }
+
+  /* ── セクション共通 ── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  .section-title {
+    font-size: 13px; font-weight: 700; letter-spacing: .15em;
+    color: var(--text-sub); text-transform: uppercase;
+    margin-bottom: 14px; margin-top: 28px;
+  }
+  .section-title:first-child { margin-top: 0; }
+
+  /* ── 選択ボタン群 ── */
+  .option-grid { display: grid; gap: 10px; }
+  .option-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .option-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .opt-btn {
+    display: flex; flex-direction: column; align-items: flex-start;
+    padding: 16px 18px; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--card);
+    cursor: pointer; text-align: left;
+    font-family: 'Noto Serif JP', serif;
+    transition: background .15s, border-color .15s, transform .1s;
+  }
+  .opt-btn:hover { background: var(--accent-light); border-color: #e0b0b4; }
+  .opt-btn:active { transform: scale(.98); }
+  .opt-btn.selected { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .opt-btn .opt-main { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .opt-btn .opt-sub { font-size: 11px; opacity: .7; letter-spacing: .04em; }
+  .opt-btn.selected .opt-sub { opacity: .85; }
+
+  .start-btn {
+    width: 100%; margin-top: 28px; padding: 15px;
+    background: var(--accent); color: #fff; border: none; border-radius: 6px;
+    font-size: 15px; font-weight: 700; letter-spacing: .1em;
+    font-family: 'Noto Serif JP', serif; cursor: pointer;
+    transition: opacity .15s, transform .1s;
+  }
+  .start-btn:hover { opacity: .9; }
+  .start-btn:active { transform: scale(.99); }
+  .start-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+  /* ── 問題画面 ── */
+  .progress-bar-wrap { margin-bottom: 20px; }
+  .progress-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-sub); margin-bottom: 6px; }
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width .3s; }
+
+  .question-card {
+    background: var(--card); border-radius: 8px;
+    padding: 32px 28px; margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(44,36,32,.06);
+    border: 1px solid var(--border); text-align: center;
+  }
+  .question-type-label {
+    font-size: 11px; letter-spacing: .2em; color: var(--text-sub);
+    margin-bottom: 16px; text-transform: uppercase;
+  }
+  .question-text {
+    font-size: 28px; font-weight: 700; margin-bottom: 8px;
+    font-family: 'Noto Sans SC', sans-serif; line-height: 1.3;
+  }
+  .question-text.jp { font-family: 'Noto Serif JP', serif; font-size: 22px; }
+  .question-sub { font-size: 13px; color: var(--text-sub); }
+
+  /* 4択 */
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  .choice-btn {
+    padding: 14px 12px; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--card);
+    font-family: 'Noto Serif JP', serif; font-size: 14px;
+    cursor: pointer; text-align: center; line-height: 1.4;
+    transition: background .15s, border-color .15s, transform .1s;
+    color: var(--text);
+  }
+  .choice-btn .choice-cn { font-family: 'Noto Sans SC', sans-serif; font-size: 18px; font-weight: 500; display: block; }
+  .choice-btn .choice-py { font-size: 11px; color: var(--text-sub); display: block; margin-top: 2px; }
+  .choice-btn:hover:not(:disabled) { background: var(--accent-light); border-color: #e0b0b4; }
+  .choice-btn:active:not(:disabled) { transform: scale(.98); }
+  .choice-btn.correct { background: var(--green-light) !important; border-color: var(--green) !important; color: var(--green) !important; }
+  .choice-btn.wrong { background: var(--red-light) !important; border-color: var(--red) !important; color: var(--red) !important; }
+  .choice-btn.reveal { background: var(--green-light) !important; border-color: var(--green) !important; color: var(--green) !important; }
+  .choice-btn:disabled { cursor: default; }
+
+  /* ピンイン入力 */
+  .pinyin-input-wrap { margin-bottom: 16px; }
+  .pinyin-input {
+    width: 100%; padding: 14px 16px; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--card);
+    font-size: 18px; font-family: 'Noto Serif JP', serif;
+    color: var(--text); letter-spacing: .04em;
+    outline: none; transition: border-color .15s;
+  }
+  .pinyin-input:focus { border-color: var(--accent); }
+  .pinyin-input.correct { border-color: var(--green); background: var(--green-light); color: var(--green); }
+  .pinyin-input.wrong { border-color: var(--red); background: var(--red-light); }
+  .pinyin-hint { font-size: 12px; color: var(--text-sub); margin-top: 6px; letter-spacing: .04em; }
+
+  .submit-btn {
+    width: 100%; padding: 13px;
+    background: var(--header-bg); color: #fff; border: none; border-radius: 6px;
+    font-size: 14px; font-weight: 600; letter-spacing: .08em;
+    font-family: 'Noto Serif JP', serif; cursor: pointer;
+    transition: opacity .15s; margin-bottom: 20px;
+  }
+  .submit-btn:hover { opacity: .85; }
+  .submit-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+  /* 正誤フィードバック */
+  .feedback-box {
+    border-radius: 6px; padding: 16px 18px; margin-bottom: 16px;
+    display: none;
+  }
+  .feedback-box.show { display: block; }
+  .feedback-box.correct-fb { background: var(--green-light); border: 1px solid var(--green); }
+  .feedback-box.wrong-fb { background: var(--red-light); border: 1px solid var(--red); }
+  .feedback-result { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .feedback-box.correct-fb .feedback-result { color: var(--green); }
+  .feedback-box.wrong-fb .feedback-result { color: var(--red); }
+  .feedback-answer { font-size: 13px; color: var(--text-sub); }
+  .feedback-answer strong { color: var(--text); font-family: 'Noto Sans SC', sans-serif; }
+
+  /* 覚えた判定ボタン */
+  .mastery-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; padding: 16px 18px; margin-bottom: 20px;
+    display: none;
+  }
+  .mastery-box.show { display: block; }
+  .mastery-label { font-size: 12px; color: var(--text-sub); margin-bottom: 10px; letter-spacing: .06em; }
+  .mastery-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mastery-btn {
+    padding: 11px; border-radius: 6px; border: 1px solid var(--border);
+    font-size: 13px; font-weight: 600; font-family: 'Noto Serif JP', serif;
+    cursor: pointer; letter-spacing: .06em;
+    transition: background .15s, transform .1s;
+  }
+  .mastery-btn:active { transform: scale(.98); }
+  .mastery-btn.known { background: var(--green-light); border-color: var(--green); color: var(--green); }
+  .mastery-btn.known:hover { background: var(--green); color: #fff; }
+  .mastery-btn.unknown { background: var(--yellow-light); border-color: var(--yellow); color: var(--yellow); }
+  .mastery-btn.unknown:hover { background: var(--yellow); color: #fff; }
+
+  /* ── 結果画面 ── */
+  .result-card {
+    background: var(--card); border-radius: 8px;
+    padding: 32px 28px; margin-bottom: 20px;
+    box-shadow: 0 1px 4px rgba(44,36,32,.06);
+    border: 1px solid var(--border); text-align: center;
+  }
+  .result-score { font-size: 48px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+  .result-score span { font-size: 20px; color: var(--text-sub); }
+  .result-label { font-size: 14px; color: var(--text-sub); margin-bottom: 24px; }
+  .result-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+  .stat-box { background: var(--bg); border-radius: 6px; padding: 12px 8px; }
+  .stat-num { font-size: 22px; font-weight: 700; }
+  .stat-num.green { color: var(--green); }
+  .stat-num.red { color: var(--red); }
+  .stat-num.yellow { color: var(--yellow); }
+  .stat-lbl { font-size: 11px; color: var(--text-sub); margin-top: 2px; }
+
+  .result-review { margin-top: 20px; text-align: left; }
+  .review-title { font-size: 12px; font-weight: 700; color: var(--text-sub); letter-spacing: .1em; margin-bottom: 10px; }
+  .review-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px; border-radius: 4px; margin-bottom: 6px;
+    background: var(--red-light); border: 1px solid #e8c0c4;
+    font-size: 13px;
+  }
+  .review-item .ri-cn { font-family: 'Noto Sans SC', sans-serif; font-size: 16px; font-weight: 500; }
+  .review-item .ri-right { text-align: right; color: var(--text-sub); font-size: 12px; }
+
+  .result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+  .action-btn {
+    padding: 13px; border-radius: 6px; border: none;
+    font-size: 13px; font-weight: 600; letter-spacing: .06em;
+    font-family: 'Noto Serif JP', serif; cursor: pointer;
+    transition: opacity .15s;
+  }
+  .action-btn:hover { opacity: .85; }
+  .action-btn.primary { background: var(--accent); color: #fff; }
+  .action-btn.secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+
+  /* ── 進捗確認画面 ── */
+  .progress-overview { margin-bottom: 12px; }
+  .progress-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; background: var(--card); border-radius: 4px;
+    border: 1px solid var(--border); margin-bottom: 8px; font-size: 13px;
+  }
+  .progress-row .pr-label { font-weight: 600; }
+  .progress-row .pr-bar-wrap { flex: 1; margin: 0 14px; }
+  .pr-bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .pr-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width .5s; }
+  .progress-row .pr-num { font-size: 12px; color: var(--text-sub); white-space: nowrap; }
+
+  @media (max-width: 480px) {
+    .wrapper { padding: 28px 14px 60px; }
+    .question-text { font-size: 22px; }
+    .choices { grid-template-columns: 1fr; }
+    .result-stats { grid-template-columns: 1fr 1fr 1fr; }
+    .opt-btn .opt-main { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ── 設定画面 ── -->
+  <div id="screen-setup" class="screen active">
+    <button class="back-btn" onclick="location.href='index.html'">
+      ← トップに戻る
+    </button>
+    <div class="page-header">
+      <p class="subtitle">中国語 · 練習問題</p>
+      <h1>クイズ設定</h1>
+    </div>
+
+    <div class="section-title">単元を選択</div>
+    <div class="option-grid col2" id="unit-options">
+      <button class="opt-btn" data-val="all" onclick="selectOpt(this,'unit')">
+        <span class="opt-main">全単元</span>
+        <span class="opt-sub">第1〜12課・全412語</span>
+      </button>
+      <button class="opt-btn" data-val="1" onclick="selectOpt(this,'unit')">
+        <span class="opt-main">第1単元</span>
+        <span class="opt-sub">第1〜4課</span>
+      </button>
+      <button class="opt-btn" data-val="2" onclick="selectOpt(this,'unit')">
+        <span class="opt-main">第2単元</span>
+        <span class="opt-sub">第5〜8課</span>
+      </button>
+      <button class="opt-btn" data-val="3" onclick="selectOpt(this,'unit')">
+        <span class="opt-main">第3単元</span>
+        <span class="opt-sub">第9〜12課</span>
+      </button>
+    </div>
+
+    <div class="section-title">問題形式</div>
+    <div class="option-grid col2" id="type-options">
+      <button class="opt-btn" data-val="4choice-cn-jp" onclick="selectOpt(this,'type')">
+        <span class="opt-main">中→日 4択</span>
+        <span class="opt-sub">中国語を見て日本語を選ぶ</span>
+      </button>
+      <button class="opt-btn" data-val="4choice-jp-cn" onclick="selectOpt(this,'type')">
+        <span class="opt-main">日→中 4択</span>
+        <span class="opt-sub">日本語を見て中国語を選ぶ</span>
+      </button>
+      <button class="opt-btn" data-val="pinyin" onclick="selectOpt(this,'type')">
+        <span class="opt-main">ピンイン入力</span>
+        <span class="opt-sub">中国語を見てピンインを入力</span>
+      </button>
+    </div>
+
+    <div class="section-title">出題モード</div>
+    <div class="option-grid col2" id="mode-options">
+      <button class="opt-btn" data-val="priority" onclick="selectOpt(this,'mode')">
+        <span class="opt-main">⚡ 優先モード</span>
+        <span class="opt-sub">覚えていない単語を優先出題</span>
+      </button>
+      <button class="opt-btn" data-val="all" onclick="selectOpt(this,'mode')">
+        <span class="opt-main">🔀 全範囲モード</span>
+        <span class="opt-sub">選択範囲からランダム出題</span>
+      </button>
+    </div>
+
+    <button class="start-btn" id="start-btn" onclick="startQuiz()" disabled>開始する</button>
+
+    <div style="margin-top:28px; text-align:center;">
+      <button class="back-btn" onclick="showProgress()" style="justify-content:center;">
+        📊 学習進捗を確認する
+      </button>
+    </div>
+  </div>
+
+  <!-- ── 問題画面 ── -->
+  <div id="screen-quiz" class="screen">
+    <button class="back-btn" onclick="confirmBack()">← 設定に戻る</button>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-info">
+        <span id="q-counter">1 / 10</span>
+        <span id="q-type-label"></span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-type-label" id="q-direction"></div>
+      <div class="question-text" id="q-text"></div>
+      <div class="question-sub" id="q-sub"></div>
+    </div>
+
+    <!-- 4択 -->
+    <div id="choices-wrap" class="choices"></div>
+
+    <!-- ピンイン入力 -->
+    <div id="pinyin-wrap" style="display:none;">
+      <div class="pinyin-input-wrap">
+        <input type="text" class="pinyin-input" id="pinyin-input"
+          placeholder="ピンインを入力（例: nǐ hǎo）"
+          autocomplete="off" autocorrect="off" spellcheck="false">
+        <div class="pinyin-hint" id="pinyin-hint"></div>
+      </div>
+      <button class="submit-btn" id="submit-btn" onclick="submitPinyin()">答える</button>
+    </div>
+
+    <!-- フィードバック -->
+    <div class="feedback-box" id="feedback-box">
+      <div class="feedback-result" id="feedback-result"></div>
+      <div class="feedback-answer" id="feedback-answer"></div>
+    </div>
+
+    <!-- 覚えた判定 -->
+    <div class="mastery-box" id="mastery-box">
+      <div class="mastery-label">この単語、覚えましたか？</div>
+      <div class="mastery-btns">
+        <button class="mastery-btn known" onclick="recordMastery(true)">✓ 覚えた</button>
+        <button class="mastery-btn unknown" onclick="recordMastery(false)">△ まだ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 結果画面 ── -->
+  <div id="screen-result" class="screen">
+    <div class="page-header">
+      <p class="subtitle">クイズ結果</p>
+      <h1>お疲れ様でした！</h1>
+    </div>
+
+    <div class="result-card">
+      <div class="result-score" id="result-score">0<span>/10</span></div>
+      <div class="result-label" id="result-label"></div>
+      <div class="result-stats">
+        <div class="stat-box">
+          <div class="stat-num green" id="stat-correct">0</div>
+          <div class="stat-lbl">正解</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num red" id="stat-wrong">0</div>
+          <div class="stat-lbl">不正解</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num green" id="stat-known">0</div>
+          <div class="stat-lbl">覚えた</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-review" id="result-review"></div>
+
+    <div class="result-actions">
+      <button class="action-btn primary" onclick="startQuiz()">もう一度</button>
+      <button class="action-btn secondary" onclick="showScreen('screen-setup')">設定に戻る</button>
+    </div>
+  </div>
+
+  <!-- ── 進捗画面 ── -->
+  <div id="screen-progress" class="screen">
+    <button class="back-btn" onclick="showScreen('screen-setup')">← 戻る</button>
+    <div class="page-header">
+      <p class="subtitle">学習状況</p>
+      <h1>進捗確認</h1>
+    </div>
+    <div id="progress-content"></div>
+    <button class="action-btn secondary" style="width:100%;margin-top:16px;"
+      onclick="if(confirm('全ての進捗をリセットしますか？'))resetProgress()">進捗をリセット</button>
+  </div>
+
+</div>
+<script>
+const WORDS = [
+  {
+    "id": "u1-l1-0",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "笔记本",
+    "py": "bǐjìběn",
+    "jp": "ノート"
+  },
+  {
+    "id": "u1-l1-1",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "不",
+    "py": "bù",
+    "jp": "しない、ではない"
+  },
+  {
+    "id": "u1-l1-2",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "炒饭",
+    "py": "chǎofàn",
+    "jp": "チャーハン"
+  },
+  {
+    "id": "u1-l1-3",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "吃",
+    "py": "chī",
+    "jp": "食べる"
+  },
+  {
+    "id": "u1-l1-4",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "邓丽君",
+    "py": "Dèng Lìjūn",
+    "jp": "テレサテン"
+  },
+  {
+    "id": "u1-l1-5",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "东京",
+    "py": "Dōngjīng",
+    "jp": "東京"
+  },
+  {
+    "id": "u1-l1-6",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "汉语",
+    "py": "Hànyǔ",
+    "jp": "中国語"
+  },
+  {
+    "id": "u1-l1-7",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "喝",
+    "py": "hē",
+    "jp": "飲む"
+  },
+  {
+    "id": "u1-l1-8",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "红茶",
+    "py": "hóngchá",
+    "jp": "紅茶"
+  },
+  {
+    "id": "u1-l1-9",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "饺子",
+    "py": "jiǎozi",
+    "jp": "餃子"
+  },
+  {
+    "id": "u1-l1-10",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "咖啡",
+    "py": "kāfēi",
+    "jp": "コーヒー"
+  },
+  {
+    "id": "u1-l1-11",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "开车",
+    "py": "kāichē",
+    "jp": "車を運転する"
+  },
+  {
+    "id": "u1-l1-12",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "可乐",
+    "py": "kělè",
+    "jp": "コーラ"
+  },
+  {
+    "id": "u1-l1-13",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "课文",
+    "py": "kèwén",
+    "jp": "本文"
+  },
+  {
+    "id": "u1-l1-14",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "拉面",
+    "py": "lāmiàn",
+    "jp": "ラーメン"
+  },
+  {
+    "id": "u1-l1-15",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "老师",
+    "py": "lǎoshī",
+    "jp": "先生、教師"
+  },
+  {
+    "id": "u1-l1-16",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "练习",
+    "py": "liànxí",
+    "jp": "練習する"
+  },
+  {
+    "id": "u1-l1-17",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "铃木",
+    "py": "Língmù",
+    "jp": "鈴木"
+  },
+  {
+    "id": "u1-l1-18",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "刘文正",
+    "py": "Liú Wénzhèng",
+    "jp": "劉文正"
+  },
+  {
+    "id": "u1-l1-19",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "吗",
+    "py": "ma",
+    "jp": "〜か（疑問文末）"
+  },
+  {
+    "id": "u1-l1-20",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "们",
+    "py": "-men",
+    "jp": "〜たち"
+  },
+  {
+    "id": "u1-l1-21",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "你们",
+    "py": "nǐmen",
+    "jp": "あなたたち"
+  },
+  {
+    "id": "u1-l1-22",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "您",
+    "py": "nín",
+    "jp": "あなたさま"
+  },
+  {
+    "id": "u1-l1-23",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "牛奶",
+    "py": "niúnǎi",
+    "jp": "牛乳、ミルク"
+  },
+  {
+    "id": "u1-l1-24",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "啤酒",
+    "py": "píjiǔ",
+    "jp": "ビール"
+  },
+  {
+    "id": "u1-l1-25",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "普通话",
+    "py": "pǔtōnghuà",
+    "jp": "標準語"
+  },
+  {
+    "id": "u1-l1-26",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "汽水",
+    "py": "qìshuǐ",
+    "jp": "炭酸飲料"
+  },
+  {
+    "id": "u1-l1-27",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "去",
+    "py": "qù",
+    "jp": "行く"
+  },
+  {
+    "id": "u1-l1-28",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "日语",
+    "py": "Rìyǔ",
+    "jp": "日本語"
+  },
+  {
+    "id": "u1-l1-29",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "生词",
+    "py": "shēngcí",
+    "jp": "新出単語"
+  },
+  {
+    "id": "u1-l1-30",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "食堂",
+    "py": "shítáng",
+    "jp": "食堂"
+  },
+  {
+    "id": "u1-l1-31",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "说",
+    "py": "shuō",
+    "jp": "言う、話す、しゃべる"
+  },
+  {
+    "id": "u1-l1-32",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "酸奶",
+    "py": "suānnǎi",
+    "jp": "ヨーグルト"
+  },
+  {
+    "id": "u1-l1-33",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "他",
+    "py": "tā",
+    "jp": "彼"
+  },
+  {
+    "id": "u1-l1-34",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "她",
+    "py": "tā",
+    "jp": "彼女"
+  },
+  {
+    "id": "u1-l1-35",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "太极拳",
+    "py": "tàijíquán",
+    "jp": "太極拳"
+  },
+  {
+    "id": "u1-l1-36",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "他们",
+    "py": "tāmen",
+    "jp": "彼ら"
+  },
+  {
+    "id": "u1-l1-37",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "她们",
+    "py": "tāmen",
+    "jp": "彼女たち"
+  },
+  {
+    "id": "u1-l1-38",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "它们",
+    "py": "tāmen",
+    "jp": "それら、あれら（人間以外）"
+  },
+  {
+    "id": "u1-l1-39",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "汤",
+    "py": "tāng",
+    "jp": "スープ"
+  },
+  {
+    "id": "u1-l1-40",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "汤姆",
+    "py": "Tāngmǔ",
+    "jp": "トム"
+  },
+  {
+    "id": "u1-l1-41",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "图书馆",
+    "py": "túshūguǎn",
+    "jp": "図書館"
+  },
+  {
+    "id": "u1-l1-42",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "我",
+    "py": "wǒ",
+    "jp": "私"
+  },
+  {
+    "id": "u1-l1-43",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "我们",
+    "py": "wǒmen",
+    "jp": "私たち"
+  },
+  {
+    "id": "u1-l1-44",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "学",
+    "py": "xué",
+    "jp": "学ぶ、習う"
+  },
+  {
+    "id": "u1-l1-45",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "要",
+    "py": "yào",
+    "jp": "要る、ほしい"
+  },
+  {
+    "id": "u1-l1-46",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "英语",
+    "py": "Yīngyǔ",
+    "jp": "英語"
+  },
+  {
+    "id": "u1-l1-47",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "饮料",
+    "py": "yǐnliào",
+    "jp": "飲み物"
+  },
+  {
+    "id": "u1-l1-48",
+    "unit": 1,
+    "lesson": 1,
+    "cn": "佐藤",
+    "py": "Zuǒténg",
+    "jp": "佐藤"
+  },
+  {
+    "id": "u1-l2-49",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "爸爸",
+    "py": "bàba",
+    "jp": "お父さん"
+  },
+  {
+    "id": "u1-l2-50",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "大家",
+    "py": "dàjiā",
+    "jp": "みなさん"
+  },
+  {
+    "id": "u1-l2-51",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "大熊猫",
+    "py": "dàxióngmāo",
+    "jp": "パンダ"
+  },
+  {
+    "id": "u1-l2-52",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "大学",
+    "py": "dàxué",
+    "jp": "大学"
+  },
+  {
+    "id": "u1-l2-53",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "的",
+    "py": "de",
+    "jp": "〜の"
+  },
+  {
+    "id": "u1-l2-54",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "多",
+    "py": "duō",
+    "jp": "多い"
+  },
+  {
+    "id": "u1-l2-55",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "高兴",
+    "py": "gāoxìng",
+    "jp": "うれしい"
+  },
+  {
+    "id": "u1-l2-56",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "狗",
+    "py": "gǒu",
+    "jp": "犬"
+  },
+  {
+    "id": "u1-l2-57",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "贵姓",
+    "py": "guìxìng",
+    "jp": "お名前（苗字）"
+  },
+  {
+    "id": "u1-l2-58",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "好",
+    "py": "hǎo",
+    "jp": "良い"
+  },
+  {
+    "id": "u1-l2-59",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "很",
+    "py": "hěn",
+    "jp": "とても"
+  },
+  {
+    "id": "u1-l2-60",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "华生",
+    "py": "Huáshēng",
+    "jp": "ワトソン（名前）"
+  },
+  {
+    "id": "u1-l2-61",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "家",
+    "py": "jiā",
+    "jp": "家"
+  },
+  {
+    "id": "u1-l2-62",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "叫",
+    "py": "jiào",
+    "jp": "（名前を）〜と呼ぶ"
+  },
+  {
+    "id": "u1-l2-63",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "课本",
+    "py": "kěběn",
+    "jp": "教科書"
+  },
+  {
+    "id": "u1-l2-64",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "李小龙",
+    "py": "Lǐ Xiǎolóng",
+    "jp": "李小龍（ブルースリー）"
+  },
+  {
+    "id": "u1-l2-65",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "猫",
+    "py": "māo",
+    "jp": "猫"
+  },
+  {
+    "id": "u1-l2-66",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "毛毛",
+    "py": "Máomao",
+    "jp": "毛毛（名前）"
+  },
+  {
+    "id": "u1-l2-67",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "咪咪",
+    "py": "Mīmī",
+    "jp": "ミミ（名前）"
+  },
+  {
+    "id": "u1-l2-68",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "名字",
+    "py": "míngzi",
+    "jp": "名前"
+  },
+  {
+    "id": "u1-l2-69",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "那",
+    "py": "nà",
+    "jp": "あれ"
+  },
+  {
+    "id": "u1-l2-70",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "你好",
+    "py": "nǐhǎo",
+    "jp": "こんにちは"
+  },
+  {
+    "id": "u1-l2-71",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "朋友",
+    "py": "péngyou",
+    "jp": "友達"
+  },
+  {
+    "id": "u1-l2-72",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "请",
+    "py": "qǐng",
+    "jp": "頼む、お願いする"
+  },
+  {
+    "id": "u1-l2-73",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "人工智能",
+    "py": "réngōng zhìnéng",
+    "jp": "人工知能"
+  },
+  {
+    "id": "u1-l2-74",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "认识",
+    "py": "rènshi",
+    "jp": "知っている"
+  },
+  {
+    "id": "u1-l2-75",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "日本",
+    "py": "Rìběn",
+    "jp": "日本"
+  },
+  {
+    "id": "u1-l2-76",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "日本人",
+    "py": "Rìběnrén",
+    "jp": "日本人"
+  },
+  {
+    "id": "u1-l2-77",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "什么",
+    "py": "shénme",
+    "jp": "何"
+  },
+  {
+    "id": "u1-l2-78",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "是",
+    "py": "shì",
+    "jp": "〜である"
+  },
+  {
+    "id": "u1-l2-79",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "书",
+    "py": "shū",
+    "jp": "本"
+  },
+  {
+    "id": "u1-l2-80",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "书包",
+    "py": "shūbāo",
+    "jp": "カバン"
+  },
+  {
+    "id": "u1-l2-81",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "同学",
+    "py": "tóngxué",
+    "jp": "同級生、同窓生"
+  },
+  {
+    "id": "u1-l2-82",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "香香",
+    "py": "Xiāngxiang",
+    "jp": "シャンシャン（名前）"
+  },
+  {
+    "id": "u1-l2-83",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "姓",
+    "py": "xìng",
+    "jp": "苗字"
+  },
+  {
+    "id": "u1-l2-84",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "学生",
+    "py": "xuésheng",
+    "jp": "学生"
+  },
+  {
+    "id": "u1-l2-85",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "优子",
+    "py": "Yōuzǐ",
+    "jp": "優子（名前）"
+  },
+  {
+    "id": "u1-l2-86",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "这",
+    "py": "zhè",
+    "jp": "これ"
+  },
+  {
+    "id": "u1-l2-87",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "指教",
+    "py": "zhǐjiào",
+    "jp": "指導する"
+  },
+  {
+    "id": "u1-l2-88",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "中国",
+    "py": "Zhōngguó",
+    "jp": "中国"
+  },
+  {
+    "id": "u1-l2-89",
+    "unit": 1,
+    "lesson": 2,
+    "cn": "中国人",
+    "py": "Zhōngguórén",
+    "jp": "中国人"
+  },
+  {
+    "id": "u1-l3-90",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "报纸",
+    "py": "bàozhǐ",
+    "jp": "新聞"
+  },
+  {
+    "id": "u1-l3-91",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "笔",
+    "py": "bǐ",
+    "jp": "ペン"
+  },
+  {
+    "id": "u1-l3-92",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "词典",
+    "py": "cídiǎn",
+    "jp": "辞書"
+  },
+  {
+    "id": "u1-l3-93",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "德语",
+    "py": "Déyǔ",
+    "jp": "ドイツ語"
+  },
+  {
+    "id": "u1-l3-94",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "电子词典",
+    "py": "diànzǐ cídiǎn",
+    "jp": "電子辞書"
+  },
+  {
+    "id": "u1-l3-95",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "豆浆",
+    "py": "dòujiāng",
+    "jp": "豆乳"
+  },
+  {
+    "id": "u1-l3-96",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "俄语",
+    "py": "Éyǔ",
+    "jp": "ロシア語"
+  },
+  {
+    "id": "u1-l3-97",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "法语",
+    "py": "Fǎyǔ",
+    "jp": "フランス語"
+  },
+  {
+    "id": "u1-l3-98",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "韩语",
+    "py": "Hányǔ",
+    "jp": "韓国語"
+  },
+  {
+    "id": "u1-l3-99",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "汉英词典",
+    "py": "Hàn-Yīng cídiǎn",
+    "jp": "中英辞典"
+  },
+  {
+    "id": "u1-l3-100",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "李英",
+    "py": "Lǐ Yīng",
+    "jp": "李英（名前）"
+  },
+  {
+    "id": "u1-l3-101",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "留学生",
+    "py": "liúxuéshēng",
+    "jp": "留学生"
+  },
+  {
+    "id": "u1-l3-102",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "呢",
+    "py": "ne",
+    "jp": "〜は（文末）"
+  },
+  {
+    "id": "u1-l3-103",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "噢",
+    "py": "ō",
+    "jp": "ああ（感嘆）"
+  },
+  {
+    "id": "u1-l3-104",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "谁",
+    "py": "shéi / shuí",
+    "jp": "誰"
+  },
+  {
+    "id": "u1-l3-105",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "手机",
+    "py": "shǒujī",
+    "jp": "携帯電話"
+  },
+  {
+    "id": "u1-l3-106",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "小林",
+    "py": "Xiǎolín",
+    "jp": "小林（名前）"
+  },
+  {
+    "id": "u1-l3-107",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "西班牙语",
+    "py": "Xībānyáyǔ",
+    "jp": "スペイン語"
+  },
+  {
+    "id": "u1-l3-108",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "谢谢",
+    "py": "xièxie",
+    "jp": "ありがとう"
+  },
+  {
+    "id": "u1-l3-109",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "眼镜",
+    "py": "yǎnjìng",
+    "jp": "メガネ"
+  },
+  {
+    "id": "u1-l3-110",
+    "unit": 1,
+    "lesson": 3,
+    "cn": "噫",
+    "py": "yí",
+    "jp": "あれ（驚き）"
+  },
+  {
+    "id": "u1-l4-111",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "啊",
+    "py": "à",
+    "jp": "ああ（嘆声）"
+  },
+  {
+    "id": "u1-l4-112",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "啊",
+    "py": "a",
+    "jp": "〜ね（文末助詞）"
+  },
+  {
+    "id": "u1-l4-113",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "白",
+    "py": "bái",
+    "jp": "白い"
+  },
+  {
+    "id": "u1-l4-114",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "蹦蹦跳跳",
+    "py": "bèngbèng tiàotiào",
+    "jp": "跳んだりはねたりする"
+  },
+  {
+    "id": "u1-l4-115",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "长",
+    "py": "cháng",
+    "jp": "長い"
+  },
+  {
+    "id": "u1-l4-116",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "胆子",
+    "py": "dǎnzi",
+    "jp": "肝っ玉、度胸"
+  },
+  {
+    "id": "u1-l4-117",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "短",
+    "py": "duǎn",
+    "jp": "短い"
+  },
+  {
+    "id": "u1-l4-118",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "耳朵",
+    "py": "ěrduo",
+    "jp": "耳"
+  },
+  {
+    "id": "u1-l4-119",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "发音",
+    "py": "fāyīn",
+    "jp": "発音"
+  },
+  {
+    "id": "u1-l4-120",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "非常",
+    "py": "fēicháng",
+    "jp": "非常に"
+  },
+  {
+    "id": "u1-l4-121",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "工作",
+    "py": "gōngzuò",
+    "jp": "仕事"
+  },
+  {
+    "id": "u1-l4-122",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "还",
+    "py": "hái",
+    "jp": "まあまあ"
+  },
+  {
+    "id": "u1-l4-123",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "好",
+    "py": "hǎo（副）",
+    "jp": "良い（副詞）"
+  },
+  {
+    "id": "u1-l4-124",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "红",
+    "py": "hóng",
+    "jp": "赤い"
+  },
+  {
+    "id": "u1-l4-125",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "见",
+    "py": "jiàn",
+    "jp": "会う"
+  },
+  {
+    "id": "u1-l4-126",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "家务",
+    "py": "jiāwù",
+    "jp": "家事"
+  },
+  {
+    "id": "u1-l4-127",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "今天",
+    "py": "jīntiān",
+    "jp": "今日"
+  },
+  {
+    "id": "u1-l4-128",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "久",
+    "py": "jiǔ",
+    "jp": "（時間が）長い"
+  },
+  {
+    "id": "u1-l4-129",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "可以",
+    "py": "kěyǐ（形）",
+    "jp": "悪くない"
+  },
+  {
+    "id": "u1-l4-130",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "了",
+    "py": "le",
+    "jp": "（変化を表す）〜た"
+  },
+  {
+    "id": "u1-l4-131",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "凉快",
+    "py": "liángkuai",
+    "jp": "涼しい"
+  },
+  {
+    "id": "u1-l4-132",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "忙",
+    "py": "máng",
+    "jp": "忙しい"
+  },
+  {
+    "id": "u1-l4-133",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "毛衫",
+    "py": "máoshān",
+    "jp": "セーター"
+  },
+  {
+    "id": "u1-l4-134",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "难",
+    "py": "nán",
+    "jp": "難しい"
+  },
+  {
+    "id": "u1-l4-135",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "暖和",
+    "py": "nuǎnhuo",
+    "jp": "暖かい"
+  },
+  {
+    "id": "u1-l4-136",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "热",
+    "py": "rè",
+    "jp": "暑い、熱い"
+  },
+  {
+    "id": "u1-l4-137",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "人",
+    "py": "rén",
+    "jp": "人"
+  },
+  {
+    "id": "u1-l4-138",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "太",
+    "py": "tài",
+    "jp": "あまりにも"
+  },
+  {
+    "id": "u1-l4-139",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "天气",
+    "py": "tiānqì",
+    "jp": "天気"
+  },
+  {
+    "id": "u1-l4-140",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "田中",
+    "py": "Tiánzhōng",
+    "jp": "田中（名前）"
+  },
+  {
+    "id": "u1-l4-141",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "尾巴",
+    "py": "wěiba",
+    "jp": "尻尾"
+  },
+  {
+    "id": "u1-l4-142",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "小",
+    "py": "xiǎo",
+    "jp": "小さい"
+  },
+  {
+    "id": "u1-l4-143",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "喜欢",
+    "py": "xǐhuan",
+    "jp": "好き"
+  },
+  {
+    "id": "u1-l4-144",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "学习",
+    "py": "xuéxí",
+    "jp": "学ぶ"
+  },
+  {
+    "id": "u1-l4-145",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "眼睛",
+    "py": "yǎnjing",
+    "jp": "目"
+  },
+  {
+    "id": "u1-l4-146",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "也",
+    "py": "yě",
+    "jp": "〜も"
+  },
+  {
+    "id": "u1-l4-147",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "有意思",
+    "py": "yǒu yìsi",
+    "jp": "おもしろい"
+  },
+  {
+    "id": "u1-l4-148",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "语法",
+    "py": "yǔfǎ",
+    "jp": "文法"
+  },
+  {
+    "id": "u1-l4-149",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "怎么样",
+    "py": "zěnmeyàng",
+    "jp": "どうですか"
+  },
+  {
+    "id": "u1-l4-150",
+    "unit": 1,
+    "lesson": 4,
+    "cn": "最近",
+    "py": "zuìjìn",
+    "jp": "最近"
+  },
+  {
+    "id": "u2-l5-151",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "弟弟",
+    "py": "dìdi",
+    "jp": "弟"
+  },
+  {
+    "id": "u2-l5-152",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "都",
+    "py": "dōu",
+    "jp": "全て"
+  },
+  {
+    "id": "u2-l5-153",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "多大",
+    "py": "duōdà",
+    "jp": "何歳"
+  },
+  {
+    "id": "u2-l5-154",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "儿子",
+    "py": "érzi",
+    "jp": "息子"
+  },
+  {
+    "id": "u2-l5-155",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "个",
+    "py": "ge",
+    "jp": "〜つ、〜こ"
+  },
+  {
+    "id": "u2-l5-156",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "哥哥",
+    "py": "gēge",
+    "jp": "兄"
+  },
+  {
+    "id": "u2-l5-157",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "孩子",
+    "py": "háizi",
+    "jp": "子供"
+  },
+  {
+    "id": "u2-l5-158",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "和",
+    "py": "hé",
+    "jp": "と"
+  },
+  {
+    "id": "u2-l5-159",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "几",
+    "py": "jǐ",
+    "jp": "幾つ"
+  },
+  {
+    "id": "u2-l5-160",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "姐姐",
+    "py": "jiějie",
+    "jp": "姉妹"
+  },
+  {
+    "id": "u2-l5-161",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "今年",
+    "py": "jīnnián",
+    "jp": "今年"
+  },
+  {
+    "id": "u2-l5-162",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "可爱",
+    "py": "kě'ài",
+    "jp": "可愛い"
+  },
+  {
+    "id": "u2-l5-163",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "口",
+    "py": "kǒu",
+    "jp": "人数を数える量詞"
+  },
+  {
+    "id": "u2-l5-164",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "妈妈",
+    "py": "māma",
+    "jp": "お母さん"
+  },
+  {
+    "id": "u2-l5-165",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "没",
+    "py": "méi",
+    "jp": "〜ない"
+  },
+  {
+    "id": "u2-l5-166",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "妹妹",
+    "py": "mèimei",
+    "jp": "妹"
+  },
+  {
+    "id": "u2-l5-167",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "摩托车",
+    "py": "mótuōchē",
+    "jp": "オートバイ"
+  },
+  {
+    "id": "u2-l5-168",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "汽车",
+    "py": "qìchē",
+    "jp": "自動車"
+  },
+  {
+    "id": "u2-l5-169",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "岁",
+    "py": "suì",
+    "jp": "歳"
+  },
+  {
+    "id": "u2-l5-170",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "岁数",
+    "py": "suìshu",
+    "jp": "年齢"
+  },
+  {
+    "id": "u2-l5-171",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "相机",
+    "py": "xiàngjī",
+    "jp": "カメラ"
+  },
+  {
+    "id": "u2-l5-172",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "兄弟姐妹",
+    "py": "xiōngdì jiěmèi",
+    "jp": "兄弟姉妹"
+  },
+  {
+    "id": "u2-l5-173",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "爷爷",
+    "py": "yéye",
+    "jp": "おじいさん"
+  },
+  {
+    "id": "u2-l5-174",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "有",
+    "py": "yǒu",
+    "jp": "ある"
+  },
+  {
+    "id": "u2-l5-175",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "赵朋",
+    "py": "Zhào Péng",
+    "jp": "趙朋（名前）"
+  },
+  {
+    "id": "u2-l5-176",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "真",
+    "py": "zhēn",
+    "jp": "真に"
+  },
+  {
+    "id": "u2-l5-177",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "侄子",
+    "py": "zhízi",
+    "jp": "おい"
+  },
+  {
+    "id": "u2-l5-178",
+    "unit": 2,
+    "lesson": 5,
+    "cn": "自行车",
+    "py": "zìxíngchē",
+    "jp": "自転車"
+  },
+  {
+    "id": "u2-l6-179",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "不错",
+    "py": "búcuò",
+    "jp": "悪くない、いい"
+  },
+  {
+    "id": "u2-l6-180",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "唱",
+    "py": "chàng",
+    "jp": "歌う"
+  },
+  {
+    "id": "u2-l6-181",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "重阳节",
+    "py": "Chóngyángjié",
+    "jp": "重陽の節句"
+  },
+  {
+    "id": "u2-l6-182",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "春节",
+    "py": "Chūnjié",
+    "jp": "旧正月、春節"
+  },
+  {
+    "id": "u2-l6-183",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "打",
+    "py": "dǎ",
+    "jp": "（球技を）する"
+  },
+  {
+    "id": "u2-l6-184",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "端午节",
+    "py": "Duānwǔjié",
+    "jp": "端午の節句"
+  },
+  {
+    "id": "u2-l6-185",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "对",
+    "py": "duì",
+    "jp": "そうです"
+  },
+  {
+    "id": "u2-l6-186",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "儿童节",
+    "py": "Értóngjié",
+    "jp": "こどもの日"
+  },
+  {
+    "id": "u2-l6-187",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "饭",
+    "py": "fàn",
+    "jp": "飯、食事"
+  },
+  {
+    "id": "u2-l6-188",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "歌",
+    "py": "gē",
+    "jp": "歌"
+  },
+  {
+    "id": "u2-l6-189",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "国庆节",
+    "py": "Guóqìngjié",
+    "jp": "国慶節"
+  },
+  {
+    "id": "u2-l6-190",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "号",
+    "py": "hào",
+    "jp": "日"
+  },
+  {
+    "id": "u2-l6-191",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "KTV",
+    "py": "KTV",
+    "jp": "カラオケ"
+  },
+  {
+    "id": "u2-l6-192",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "开",
+    "py": "kāi",
+    "jp": "開く"
+  },
+  {
+    "id": "u2-l6-193",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "课",
+    "py": "kè",
+    "jp": "課"
+  },
+  {
+    "id": "u2-l6-194",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "聊天",
+    "py": "liáotiān",
+    "jp": "おしゃべりする"
+  },
+  {
+    "id": "u2-l6-195",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "明年",
+    "py": "míngnián",
+    "jp": "来年"
+  },
+  {
+    "id": "u2-l6-196",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "明天",
+    "py": "míngtiān",
+    "jp": "明日"
+  },
+  {
+    "id": "u2-l6-197",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "那",
+    "py": "nà",
+    "jp": "それでは"
+  },
+  {
+    "id": "u2-l6-198",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "哪一天",
+    "py": "nǎ yī tiān",
+    "jp": "何日"
+  },
+  {
+    "id": "u2-l6-199",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "派对",
+    "py": "pàiduì",
+    "jp": "パーティ"
+  },
+  {
+    "id": "u2-l6-200",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "排球",
+    "py": "páiqiú",
+    "jp": "バレーボール"
+  },
+  {
+    "id": "u2-l6-201",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "清明节",
+    "py": "Qīngmíngjié",
+    "jp": "清明節"
+  },
+  {
+    "id": "u2-l6-202",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "情人节",
+    "py": "Qíngrénjié",
+    "jp": "バレンタインデー"
+  },
+  {
+    "id": "u2-l6-203",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "上",
+    "py": "shàng（名）",
+    "jp": "（名詞）前の"
+  },
+  {
+    "id": "u2-l6-204",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "上",
+    "py": "shàng（動）",
+    "jp": "（授業に）出る"
+  },
+  {
+    "id": "u2-l6-205",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "上学",
+    "py": "shàngxué",
+    "jp": "学校へ行く"
+  },
+  {
+    "id": "u2-l6-206",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "圣诞节",
+    "py": "Shèngdànjié",
+    "jp": "クリスマス"
+  },
+  {
+    "id": "u2-l6-207",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "生日",
+    "py": "shēngrì",
+    "jp": "誕生日"
+  },
+  {
+    "id": "u2-l6-208",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "体育馆",
+    "py": "tǐyùguǎn",
+    "jp": "体育館"
+  },
+  {
+    "id": "u2-l6-209",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "下",
+    "py": "xià",
+    "jp": "次の"
+  },
+  {
+    "id": "u2-l6-210",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "星期",
+    "py": "xīngqī",
+    "jp": "曜日"
+  },
+  {
+    "id": "u2-l6-211",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "邀请",
+    "py": "yāoqǐng",
+    "jp": "招待する"
+  },
+  {
+    "id": "u2-l6-212",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "一起",
+    "py": "yìqǐ",
+    "jp": "一緒に"
+  },
+  {
+    "id": "u2-l6-213",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "元旦",
+    "py": "Yuándàn",
+    "jp": "元旦"
+  },
+  {
+    "id": "u2-l6-214",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "月",
+    "py": "yuè",
+    "jp": "月"
+  },
+  {
+    "id": "u2-l6-215",
+    "unit": 2,
+    "lesson": 6,
+    "cn": "中秋节",
+    "py": "Zhōngqiūjié",
+    "jp": "中秋の名月"
+  },
+  {
+    "id": "u2-l7-216",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "北海道",
+    "py": "Běihǎidào",
+    "jp": "北海道"
+  },
+  {
+    "id": "u2-l7-217",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "本",
+    "py": "běn",
+    "jp": "冊"
+  },
+  {
+    "id": "u2-l7-218",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "餐厅",
+    "py": "cāntīng",
+    "jp": "レストラン"
+  },
+  {
+    "id": "u2-l7-219",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "抽屉",
+    "py": "chōuti",
+    "jp": "引き出し"
+  },
+  {
+    "id": "u2-l7-220",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "大通",
+    "py": "Dàtōng",
+    "jp": "大通"
+  },
+  {
+    "id": "u2-l7-221",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "电脑",
+    "py": "diànnǎo",
+    "jp": "パソコン"
+  },
+  {
+    "id": "u2-l7-222",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "电视塔",
+    "py": "diànshìtǎ",
+    "jp": "テレビ塔"
+  },
+  {
+    "id": "u2-l7-223",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "东边",
+    "py": "dōngbiān",
+    "jp": "東側"
+  },
+  {
+    "id": "u2-l7-224",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "对面",
+    "py": "duìmiàn",
+    "jp": "向かい、真正面"
+  },
+  {
+    "id": "u2-l7-225",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "房间",
+    "py": "fángjiān",
+    "jp": "部屋"
+  },
+  {
+    "id": "u2-l7-226",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "附近",
+    "py": "fùjìn",
+    "jp": "付近、近く"
+  },
+  {
+    "id": "u2-l7-227",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "公园",
+    "py": "gōngyuán",
+    "jp": "公園"
+  },
+  {
+    "id": "u2-l7-228",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "酒店",
+    "py": "jiǔdiàn",
+    "jp": "ホテル"
+  },
+  {
+    "id": "u2-l7-229",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "巨蛋",
+    "py": "jùdàn",
+    "jp": "ドーム"
+  },
+  {
+    "id": "u2-l7-230",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "咖啡店",
+    "py": "kāfēidiàn",
+    "jp": "喫茶店"
+  },
+  {
+    "id": "u2-l7-231",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "里",
+    "py": "lǐ",
+    "jp": "中"
+  },
+  {
+    "id": "u2-l7-232",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "里边儿",
+    "py": "lǐbiānr",
+    "jp": "内側"
+  },
+  {
+    "id": "u2-l7-233",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "那儿",
+    "py": "nàr",
+    "jp": "あそこ"
+  },
+  {
+    "id": "u2-l7-234",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "哪儿",
+    "py": "nǎr",
+    "jp": "どこ"
+  },
+  {
+    "id": "u2-l7-235",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "旁边儿",
+    "py": "pángbiānr",
+    "jp": "そば、横"
+  },
+  {
+    "id": "u2-l7-236",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "前",
+    "py": "qián",
+    "jp": "前"
+  },
+  {
+    "id": "u2-l7-237",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "前边儿",
+    "py": "qiánbiānr",
+    "jp": "前方"
+  },
+  {
+    "id": "u2-l7-238",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "书架",
+    "py": "shūjià",
+    "jp": "本棚"
+  },
+  {
+    "id": "u2-l7-239",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "台",
+    "py": "tái",
+    "jp": "台"
+  },
+  {
+    "id": "u2-l7-240",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "外边儿",
+    "py": "wàibiānr",
+    "jp": "外側"
+  },
+  {
+    "id": "u2-l7-241",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "小卖部",
+    "py": "xiǎomàibù",
+    "jp": "売店"
+  },
+  {
+    "id": "u2-l7-242",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "洗手间",
+    "py": "xǐshǒujiān",
+    "jp": "お手洗い"
+  },
+  {
+    "id": "u2-l7-243",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "钥匙",
+    "py": "yàoshi",
+    "jp": "鍵"
+  },
+  {
+    "id": "u2-l7-244",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "银行",
+    "py": "yínháng",
+    "jp": "銀行"
+  },
+  {
+    "id": "u2-l7-245",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "邮局",
+    "py": "yóujú",
+    "jp": "郵便局"
+  },
+  {
+    "id": "u2-l7-246",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "在",
+    "py": "zài",
+    "jp": "〜にある"
+  },
+  {
+    "id": "u2-l7-247",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "札幌",
+    "py": "Zháhuǎng",
+    "jp": "札幌"
+  },
+  {
+    "id": "u2-l7-248",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "张",
+    "py": "zhāng",
+    "jp": "枚"
+  },
+  {
+    "id": "u2-l7-249",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "照片",
+    "py": "zhàopiàn",
+    "jp": "写真"
+  },
+  {
+    "id": "u2-l7-250",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "这里",
+    "py": "zhèlǐ",
+    "jp": "ここ"
+  },
+  {
+    "id": "u2-l7-251",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "这儿",
+    "py": "zhèr",
+    "jp": "ここ"
+  },
+  {
+    "id": "u2-l7-252",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "中间",
+    "py": "zhōngjiān",
+    "jp": "中間、間"
+  },
+  {
+    "id": "u2-l7-253",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "钟楼",
+    "py": "Zhōnglóu",
+    "jp": "時計台"
+  },
+  {
+    "id": "u2-l7-254",
+    "unit": 2,
+    "lesson": 7,
+    "cn": "桌子",
+    "py": "zhuōzi",
+    "jp": "机"
+  },
+  {
+    "id": "u2-l8-255",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "吧",
+    "py": "ba",
+    "jp": "〜しませんか"
+  },
+  {
+    "id": "u2-l8-256",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "半",
+    "py": "bàn",
+    "jp": "半、30分"
+  },
+  {
+    "id": "u2-l8-257",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "杯",
+    "py": "bēi",
+    "jp": "杯"
+  },
+  {
+    "id": "u2-l8-258",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "便利店",
+    "py": "biànlìdiàn",
+    "jp": "コンビニエンスストア"
+  },
+  {
+    "id": "u2-l8-259",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "必修",
+    "py": "bìxiū",
+    "jp": "必修"
+  },
+  {
+    "id": "u2-l8-260",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "参加",
+    "py": "cānjiā",
+    "jp": "参加する"
+  },
+  {
+    "id": "u2-l8-261",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "差",
+    "py": "chà",
+    "jp": "足りない"
+  },
+  {
+    "id": "u2-l8-262",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "打工",
+    "py": "dǎgōng",
+    "jp": "アルバイトする"
+  },
+  {
+    "id": "u2-l8-263",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "第一",
+    "py": "dì—",
+    "jp": "第〜"
+  },
+  {
+    "id": "u2-l8-264",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "点",
+    "py": "diǎn",
+    "jp": "時"
+  },
+  {
+    "id": "u2-l8-265",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "分",
+    "py": "fēn",
+    "jp": "分"
+  },
+  {
+    "id": "u2-l8-266",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "份",
+    "py": "fèn",
+    "jp": "〜人前"
+  },
+  {
+    "id": "u2-l8-267",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "根",
+    "py": "gēn",
+    "jp": "本"
+  },
+  {
+    "id": "u2-l8-268",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "果汁",
+    "py": "guǒzhī",
+    "jp": "ジュース"
+  },
+  {
+    "id": "u2-l8-269",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "黑",
+    "py": "hēi",
+    "jp": "黒い"
+  },
+  {
+    "id": "u2-l8-270",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "煎",
+    "py": "jiān",
+    "jp": "焼く"
+  },
+  {
+    "id": "u2-l8-271",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "鸡蛋",
+    "py": "jīdàn",
+    "jp": "鶏卵"
+  },
+  {
+    "id": "u2-l8-272",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "节",
+    "py": "jié",
+    "jp": "いくつかの区切りに分けられるものを数える量詞"
+  },
+  {
+    "id": "u2-l8-273",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "开始",
+    "py": "kāishǐ",
+    "jp": "始める"
+  },
+  {
+    "id": "u2-l8-274",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "看",
+    "py": "kàn",
+    "jp": "読む"
+  },
+  {
+    "id": "u2-l8-275",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "刻",
+    "py": "kè",
+    "jp": "15分間"
+  },
+  {
+    "id": "u2-l8-276",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "来",
+    "py": "lái",
+    "jp": "来る"
+  },
+  {
+    "id": "u2-l8-277",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "篮球",
+    "py": "lánqiú",
+    "jp": "バスケットボール"
+  },
+  {
+    "id": "u2-l8-278",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "两",
+    "py": "liǎng",
+    "jp": "2"
+  },
+  {
+    "id": "u2-l8-279",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "每天",
+    "py": "měitiān",
+    "jp": "毎日"
+  },
+  {
+    "id": "u2-l8-280",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "面包",
+    "py": "miànbāo",
+    "jp": "パン"
+  },
+  {
+    "id": "u2-l8-281",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "那么",
+    "py": "nàme",
+    "jp": "そんなに"
+  },
+  {
+    "id": "u2-l8-282",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "片",
+    "py": "piàn",
+    "jp": "枚"
+  },
+  {
+    "id": "u2-l8-283",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "起床",
+    "py": "qǐchuáng",
+    "jp": "起床する"
+  },
+  {
+    "id": "u2-l8-284",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "沙拉",
+    "py": "shālā",
+    "jp": "サラダ"
+  },
+  {
+    "id": "u2-l8-285",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "上课",
+    "py": "shàngkè",
+    "jp": "授業に出る、授業をする"
+  },
+  {
+    "id": "u2-l8-286",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "午饭",
+    "py": "wǔfàn",
+    "jp": "昼食"
+  },
+  {
+    "id": "u2-l8-287",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "香肠",
+    "py": "xiāngcháng",
+    "jp": "ソーセージ"
+  },
+  {
+    "id": "u2-l8-288",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "下午",
+    "py": "xiàwǔ",
+    "jp": "午後"
+  },
+  {
+    "id": "u2-l8-289",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "下学",
+    "py": "xiàxué",
+    "jp": "下校する"
+  },
+  {
+    "id": "u2-l8-290",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "休息",
+    "py": "xiūxi",
+    "jp": "休憩する"
+  },
+  {
+    "id": "u2-l8-291",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "选修",
+    "py": "xuǎnxiū",
+    "jp": "選択必修"
+  },
+  {
+    "id": "u2-l8-292",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "以后",
+    "py": "yǐhòu",
+    "jp": "以後"
+  },
+  {
+    "id": "u2-l8-293",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "早饭",
+    "py": "zǎofàn",
+    "jp": "朝食"
+  },
+  {
+    "id": "u2-l8-294",
+    "unit": 2,
+    "lesson": 8,
+    "cn": "只",
+    "py": "zhǐ",
+    "jp": "ただ、だけ"
+  },
+  {
+    "id": "u3-l9-295",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "北",
+    "py": "běi",
+    "jp": "北"
+  },
+  {
+    "id": "u3-l9-296",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "北京",
+    "py": "Běijīng",
+    "jp": "北京"
+  },
+  {
+    "id": "u3-l9-297",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "北十八条",
+    "py": "Běishíbātiáo",
+    "jp": "北18条"
+  },
+  {
+    "id": "u3-l9-298",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "车",
+    "py": "chē",
+    "jp": "車"
+  },
+  {
+    "id": "u3-l9-299",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "地铁",
+    "py": "dìtiě",
+    "jp": "地下鉄"
+  },
+  {
+    "id": "u3-l9-300",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "拐",
+    "py": "guǎi",
+    "jp": "曲がる"
+  },
+  {
+    "id": "u3-l9-301",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "火车",
+    "py": "huǒchē",
+    "jp": "汽車、列車"
+  },
+  {
+    "id": "u3-l9-302",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "近",
+    "py": "jìn",
+    "jp": "近い"
+  },
+  {
+    "id": "u3-l9-303",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "开水",
+    "py": "kāishuǐ",
+    "jp": "お湯"
+  },
+  {
+    "id": "u3-l9-304",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "烤鸭",
+    "py": "kǎoyā",
+    "jp": "ローストダック"
+  },
+  {
+    "id": "u3-l9-305",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "离",
+    "py": "lí",
+    "jp": "から"
+  },
+  {
+    "id": "u3-l9-306",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "南北线",
+    "py": "Nánběixiàn",
+    "jp": "南北線"
+  },
+  {
+    "id": "u3-l9-307",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "普洱茶",
+    "py": "Pǔ'ěrchá",
+    "jp": "プーアル茶"
+  },
+  {
+    "id": "u3-l9-308",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "然后",
+    "py": "ránhòu",
+    "jp": "その後"
+  },
+  {
+    "id": "u3-l9-309",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "十字路口",
+    "py": "shízìlùkǒu",
+    "jp": "十字路"
+  },
+  {
+    "id": "u3-l9-310",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "往",
+    "py": "wǎng",
+    "jp": "〜の方へ"
+  },
+  {
+    "id": "u3-l9-311",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "西",
+    "py": "xī",
+    "jp": "西"
+  },
+  {
+    "id": "u3-l9-312",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "写",
+    "py": "xiě",
+    "jp": "書く"
+  },
+  {
+    "id": "u3-l9-313",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "学校",
+    "py": "xuéxiào",
+    "jp": "学校"
+  },
+  {
+    "id": "u3-l9-314",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "一直",
+    "py": "yīzhí",
+    "jp": "まっすぐ、ずっと"
+  },
+  {
+    "id": "u3-l9-315",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "用",
+    "py": "yòng",
+    "jp": "使う、用いる"
+  },
+  {
+    "id": "u3-l9-316",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "右",
+    "py": "yòu",
+    "jp": "右"
+  },
+  {
+    "id": "u3-l9-317",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "远",
+    "py": "yuǎn",
+    "jp": "遠い"
+  },
+  {
+    "id": "u3-l9-318",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "在",
+    "py": "zài（介）",
+    "jp": "〜で"
+  },
+  {
+    "id": "u3-l9-319",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "怎么",
+    "py": "zěnme",
+    "jp": "どう、どのように"
+  },
+  {
+    "id": "u3-l9-320",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "站",
+    "py": "zhàn",
+    "jp": "駅"
+  },
+  {
+    "id": "u3-l9-321",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "种",
+    "py": "zhǒng",
+    "jp": "種類"
+  },
+  {
+    "id": "u3-l9-322",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "走",
+    "py": "zǒu",
+    "jp": "行く"
+  },
+  {
+    "id": "u3-l9-323",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "左",
+    "py": "zuǒ",
+    "jp": "左"
+  },
+  {
+    "id": "u3-l9-324",
+    "unit": 3,
+    "lesson": 9,
+    "cn": "坐",
+    "py": "zuò",
+    "jp": "座る、乗る"
+  },
+  {
+    "id": "u3-l10-325",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "百",
+    "py": "bǎi",
+    "jp": "百"
+  },
+  {
+    "id": "u3-l10-326",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "菜",
+    "py": "cài",
+    "jp": "料理"
+  },
+  {
+    "id": "u3-l10-327",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "参考书",
+    "py": "cānkǎoshū",
+    "jp": "参考書"
+  },
+  {
+    "id": "u3-l10-328",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "长城",
+    "py": "Chángchéng",
+    "jp": "万里の長城"
+  },
+  {
+    "id": "u3-l10-329",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "的",
+    "py": "de",
+    "jp": "〜の"
+  },
+  {
+    "id": "u3-l10-330",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "电话",
+    "py": "diànhuà",
+    "jp": "電話"
+  },
+  {
+    "id": "u3-l10-331",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "电影",
+    "py": "diànyǐng",
+    "jp": "映画"
+  },
+  {
+    "id": "u3-l10-332",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "对不起",
+    "py": "duìbuqǐ",
+    "jp": "ごめんなさい"
+  },
+  {
+    "id": "u3-l10-333",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "告诉",
+    "py": "gàosu",
+    "jp": "告げる"
+  },
+  {
+    "id": "u3-l10-334",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "给",
+    "py": "gěi",
+    "jp": "〜にあげる、くれる"
+  },
+  {
+    "id": "u3-l10-335",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "公里",
+    "py": "gōnglǐ",
+    "jp": "キロメートル"
+  },
+  {
+    "id": "u3-l10-336",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "还是",
+    "py": "háishi",
+    "jp": "それとも"
+  },
+  {
+    "id": "u3-l10-337",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "号码",
+    "py": "hàomǎ",
+    "jp": "番号"
+  },
+  {
+    "id": "u3-l10-338",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "教",
+    "py": "jiāo",
+    "jp": "教える"
+  },
+  {
+    "id": "u3-l10-339",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "集会",
+    "py": "jíhuì",
+    "jp": "集会する"
+  },
+  {
+    "id": "u3-l10-340",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "空",
+    "py": "kòng",
+    "jp": "空いている"
+  },
+  {
+    "id": "u3-l10-341",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "辣",
+    "py": "là",
+    "jp": "辛い"
+  },
+  {
+    "id": "u3-l10-342",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "面积",
+    "py": "miànjī",
+    "jp": "面積"
+  },
+  {
+    "id": "u3-l10-343",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "男生",
+    "py": "nánshēng",
+    "jp": "男性"
+  },
+  {
+    "id": "u3-l10-344",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "女生",
+    "py": "nǚshēng",
+    "jp": "女性"
+  },
+  {
+    "id": "u3-l10-345",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "票",
+    "py": "piào",
+    "jp": "チケット"
+  },
+  {
+    "id": "u3-l10-346",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "平方",
+    "py": "píngfāng",
+    "jp": "平方"
+  },
+  {
+    "id": "u3-l10-347",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "葡萄酒",
+    "py": "pútaojiǔ",
+    "jp": "ワイン"
+  },
+  {
+    "id": "u3-l10-348",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "千",
+    "py": "qiān",
+    "jp": "千"
+  },
+  {
+    "id": "u3-l10-349",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "人口",
+    "py": "rénkǒu",
+    "jp": "人口"
+  },
+  {
+    "id": "u3-l10-350",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "送",
+    "py": "sòng",
+    "jp": "送る"
+  },
+  {
+    "id": "u3-l10-351",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "甜",
+    "py": "tián",
+    "jp": "甘い"
+  },
+  {
+    "id": "u3-l10-352",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "万",
+    "py": "wàn",
+    "jp": "万"
+  },
+  {
+    "id": "u3-l10-353",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "位",
+    "py": "wèi",
+    "jp": "敬意を持って人を数える時の量詞"
+  },
+  {
+    "id": "u3-l10-354",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "位子",
+    "py": "wèizi",
+    "jp": "席"
+  },
+  {
+    "id": "u3-l10-355",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "乌龙茶",
+    "py": "wūlóngchá",
+    "jp": "烏龍茶"
+  },
+  {
+    "id": "u3-l10-356",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "现在",
+    "py": "xiànzài",
+    "jp": "現在"
+  },
+  {
+    "id": "u3-l10-357",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "消息",
+    "py": "xiāoxi",
+    "jp": "知らせ、ニュース"
+  },
+  {
+    "id": "u3-l10-358",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "亿",
+    "py": "yì",
+    "jp": "億"
+  },
+  {
+    "id": "u3-l10-359",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "座位",
+    "py": "zuòwèi",
+    "jp": "座席"
+  },
+  {
+    "id": "u3-l10-360",
+    "unit": 3,
+    "lesson": 10,
+    "cn": "左右",
+    "py": "zuǒyòu",
+    "jp": "くらい、前後"
+  },
+  {
+    "id": "u3-l11-361",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "帮",
+    "py": "bāng",
+    "jp": "助ける"
+  },
+  {
+    "id": "u3-l11-362",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "暴风雨",
+    "py": "bàofēngyǔ",
+    "jp": "暴風雨"
+  },
+  {
+    "id": "u3-l11-363",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "报告",
+    "py": "bàogào",
+    "jp": "レポート"
+  },
+  {
+    "id": "u3-l11-364",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "不过",
+    "py": "búguò",
+    "jp": "しかし"
+  },
+  {
+    "id": "u3-l11-365",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "不行",
+    "py": "bùxíng",
+    "jp": "いけない、ダメ"
+  },
+  {
+    "id": "u3-l11-366",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "抽",
+    "py": "chōu",
+    "jp": "吸う"
+  },
+  {
+    "id": "u3-l11-367",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "达夫",
+    "py": "Dáfū",
+    "jp": "人名（ダフさん）"
+  },
+  {
+    "id": "u3-l11-368",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "东西",
+    "py": "dōngxi",
+    "jp": "もの"
+  },
+  {
+    "id": "u3-l11-369",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "分钟",
+    "py": "fēn(zhōng)",
+    "jp": "分"
+  },
+  {
+    "id": "u3-l11-370",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "会",
+    "py": "huì",
+    "jp": "できる（習得）"
+  },
+  {
+    "id": "u3-l11-371",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "教室",
+    "py": "jiàoshì",
+    "jp": "教室"
+  },
+  {
+    "id": "u3-l11-372",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "驾照",
+    "py": "jiàzhào",
+    "jp": "運転免許証"
+  },
+  {
+    "id": "u3-l11-373",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "进来",
+    "py": "jìnlái",
+    "jp": "入ってくる"
+  },
+  {
+    "id": "u3-l11-374",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "酒",
+    "py": "jiǔ",
+    "jp": "酒"
+  },
+  {
+    "id": "u3-l11-375",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "可以",
+    "py": "kěyǐ",
+    "jp": "できる（許可）"
+  },
+  {
+    "id": "u3-l11-376",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "厉害",
+    "py": "lìhai",
+    "jp": "すごい、激しい"
+  },
+  {
+    "id": "u3-l11-377",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "米",
+    "py": "mǐ",
+    "jp": "メートル"
+  },
+  {
+    "id": "u3-l11-378",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "能",
+    "py": "néng",
+    "jp": "できる（状況・能力）"
+  },
+  {
+    "id": "u3-l11-379",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "生鱼片",
+    "py": "shēngyúpiàn",
+    "jp": "刺身"
+  },
+  {
+    "id": "u3-l11-380",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "身体",
+    "py": "shēntǐ",
+    "jp": "身体"
+  },
+  {
+    "id": "u3-l11-381",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "舒服",
+    "py": "shūfu",
+    "jp": "気分がよい"
+  },
+  {
+    "id": "u3-l11-382",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "小玲",
+    "py": "Xiǎolíng",
+    "jp": "玲さん"
+  },
+  {
+    "id": "u3-l11-383",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "烟",
+    "py": "yān",
+    "jp": "タバコ"
+  },
+  {
+    "id": "u3-l11-384",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "英文",
+    "py": "Yīngwén",
+    "jp": "英語"
+  },
+  {
+    "id": "u3-l11-385",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "医院",
+    "py": "yīyuàn",
+    "jp": "病院"
+  },
+  {
+    "id": "u3-l11-386",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "游",
+    "py": "yóu",
+    "jp": "泳ぐ（動詞単体）"
+  },
+  {
+    "id": "u3-l11-387",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "游泳",
+    "py": "yóuyǒng",
+    "jp": "泳ぐ（游泳する）"
+  },
+  {
+    "id": "u3-l11-388",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "字",
+    "py": "zì",
+    "jp": "字"
+  },
+  {
+    "id": "u3-l11-389",
+    "unit": 3,
+    "lesson": 11,
+    "cn": "做",
+    "py": "zuò",
+    "jp": "つくる、する"
+  },
+  {
+    "id": "u3-l12-390",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "比",
+    "py": "bǐ",
+    "jp": "比べる"
+  },
+  {
+    "id": "u3-l12-391",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "大",
+    "py": "dà",
+    "jp": "年かさがいっている"
+  },
+  {
+    "id": "u3-l12-392",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "高",
+    "py": "gāo",
+    "jp": "高い"
+  },
+  {
+    "id": "u3-l12-393",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "跟",
+    "py": "gēn",
+    "jp": "〜と（介詞）"
+  },
+  {
+    "id": "u3-l12-394",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "更",
+    "py": "gèng",
+    "jp": "いっそう、ますます"
+  },
+  {
+    "id": "u3-l12-395",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "个子",
+    "py": "gèzi",
+    "jp": "背丈"
+  },
+  {
+    "id": "u3-l12-396",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "贵",
+    "py": "guì",
+    "jp": "値段が高い"
+  },
+  {
+    "id": "u3-l12-397",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "和",
+    "py": "hé",
+    "jp": "〜と（介詞）"
+  },
+  {
+    "id": "u3-l12-398",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "黄豆",
+    "py": "huángdòu",
+    "jp": "大豆"
+  },
+  {
+    "id": "u3-l12-399",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "件",
+    "py": "jiàn",
+    "jp": "衣類を数える量詞"
+  },
+  {
+    "id": "u3-l12-400",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "冷",
+    "py": "lěng",
+    "jp": "寒い"
+  },
+  {
+    "id": "u3-l12-401",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "了解",
+    "py": "liǎojiě",
+    "jp": "理解する、知る"
+  },
+  {
+    "id": "u3-l12-402",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "牛肉",
+    "py": "niúròu",
+    "jp": "牛肉"
+  },
+  {
+    "id": "u3-l12-403",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "便宜",
+    "py": "piányi",
+    "jp": "値段が安い"
+  },
+  {
+    "id": "u3-l12-404",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "情况",
+    "py": "qíngkuàng",
+    "jp": "状況"
+  },
+  {
+    "id": "u3-l12-405",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "水平",
+    "py": "shuǐpíng",
+    "jp": "レベル"
+  },
+  {
+    "id": "u3-l12-406",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "样子",
+    "py": "yàngzi",
+    "jp": "形、様子"
+  },
+  {
+    "id": "u3-l12-407",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "一点儿",
+    "py": "yīdiǎnr",
+    "jp": "少し"
+  },
+  {
+    "id": "u3-l12-408",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "营养",
+    "py": "yíngyǎng",
+    "jp": "栄養"
+  },
+  {
+    "id": "u3-l12-409",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "一样",
+    "py": "yīyàng",
+    "jp": "同じ"
+  },
+  {
+    "id": "u3-l12-410",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "有点儿",
+    "py": "yǒudiǎnr",
+    "jp": "少し（やや〜）"
+  },
+  {
+    "id": "u3-l12-411",
+    "unit": 3,
+    "lesson": 12,
+    "cn": "昨天",
+    "py": "zuótiān",
+    "jp": "昨日"
+  }
+];
+
+// ── ストレージ ──
+function loadMastery() {
+  try { return JSON.parse(localStorage.getItem('cn_mastery') || '{}'); } catch { return {}; }
+}
+function saveMastery(m) {
+  localStorage.setItem('cn_mastery', JSON.stringify(m));
+}
+function getMasteryKey(wordId, quizType) { return wordId + '_' + quizType; }
+
+// ── 状態 ──
+let cfg = { unit: null, type: null, mode: null };
+let session = { questions: [], current: 0, correct: 0, results: [] };
+
+// ── UI ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function selectOpt(btn, group) {
+  btn.closest('.option-grid').querySelectorAll('.opt-btn')
+    .forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  cfg[group] = btn.dataset.val;
+  updateStartBtn();
+}
+
+function updateStartBtn() {
+  document.getElementById('start-btn').disabled = !(cfg.unit && cfg.type && cfg.mode);
+}
+
+// ── 単語フィルタ ──
+function getWordPool() {
+  let pool = WORDS;
+  if (cfg.unit !== 'all') pool = pool.filter(w => w.unit === parseInt(cfg.unit));
+  return pool;
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ── クイズ開始 ──
+function startQuiz() {
+  let pool = getWordPool();
+  if (pool.length < 4) { alert('この単元の単語が少なすぎます（最低4語必要）'); return; }
+
+  const mastery = loadMastery();
+
+  if (cfg.mode === 'priority') {
+    const unknown = pool.filter(w => !mastery[getMasteryKey(w.id, cfg.type)]);
+    const known   = pool.filter(w =>  mastery[getMasteryKey(w.id, cfg.type)]);
+    // 未習得を先に、不足分を習得済みから補充
+    const shuffledUnknown = shuffle(unknown);
+    const shuffledKnown   = shuffle(known);
+    pool = [...shuffledUnknown, ...shuffledKnown];
+  } else {
+    pool = shuffle(pool);
+  }
+
+  session.questions = pool.slice(0, 10);
+  session.current = 0;
+  session.correct = 0;
+  session.results = [];
+
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+// ── 問題描画 ──
+function renderQuestion() {
+  const q = session.questions[session.current];
+  const total = session.questions.length;
+
+  document.getElementById('q-counter').textContent = (session.current + 1) + ' / ' + total;
+  document.getElementById('progress-fill').style.width = (session.current / total * 100) + '%';
+
+  const typeLabels = {
+    '4choice-cn-jp': '中→日 4択',
+    '4choice-jp-cn': '日→中 4択',
+    'pinyin': 'ピンイン入力'
+  };
+  document.getElementById('q-type-label').textContent = typeLabels[cfg.type];
+
+  // フィードバック・覚えた判定リセット
+  const fb = document.getElementById('feedback-box');
+  fb.className = 'feedback-box';
+  document.getElementById('mastery-box').className = 'mastery-box';
+
+  if (cfg.type === '4choice-cn-jp') {
+    document.getElementById('q-direction').textContent = '日本語の意味を選んでください';
+    const qt = document.getElementById('q-text');
+    qt.className = 'question-text';
+    qt.textContent = q.cn;
+    document.getElementById('q-sub').textContent = '';
+    render4Choice(q, 'jp');
+    document.getElementById('choices-wrap').style.display = 'grid';
+    document.getElementById('pinyin-wrap').style.display = 'none';
+
+  } else if (cfg.type === '4choice-jp-cn') {
+    document.getElementById('q-direction').textContent = '中国語を選んでください';
+    const qt = document.getElementById('q-text');
+    qt.className = 'question-text jp';
+    qt.textContent = q.jp;
+    document.getElementById('q-sub').textContent = '';
+    render4Choice(q, 'cn');
+    document.getElementById('choices-wrap').style.display = 'grid';
+    document.getElementById('pinyin-wrap').style.display = 'none';
+
+  } else {
+    document.getElementById('q-direction').textContent = 'ピンインを入力してください';
+    const qt = document.getElementById('q-text');
+    qt.className = 'question-text';
+    qt.textContent = q.cn;
+    document.getElementById('q-sub').textContent = q.jp;
+    document.getElementById('choices-wrap').style.display = 'none';
+    document.getElementById('pinyin-wrap').style.display = 'block';
+    const inp = document.getElementById('pinyin-input');
+    inp.value = '';
+    inp.className = 'pinyin-input';
+    inp.disabled = false;
+    document.getElementById('pinyin-hint').textContent = '';
+    document.getElementById('submit-btn').disabled = false;
+    setTimeout(() => inp.focus(), 100);
+  }
+}
+
+function render4Choice(q, answerField) {
+  const pool = getWordPool();
+  // 不正解選択肢（同じ答えにならないように）
+  const distractors = shuffle(
+    pool.filter(w => w.id !== q.id && w[answerField] !== q[answerField])
+  ).slice(0, 3);
+  const options = shuffle([q, ...distractors]);
+
+  const wrap = document.getElementById('choices-wrap');
+  wrap.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    if (answerField === 'cn') {
+      btn.innerHTML = '<span class="choice-cn">' + opt.cn + '</span><span class="choice-py">' + opt.py + '</span>';
+    } else {
+      btn.textContent = opt.jp;
+    }
+    btn.dataset.id = opt.id;
+    btn.onclick = () => checkChoice(btn, q, opt, answerField);
+    wrap.appendChild(btn);
+  });
+}
+
+// ── 4択 正誤判定 ──
+function checkChoice(btn, q, selected, answerField) {
+  const isCorrect = selected.id === q.id;
+  document.querySelectorAll('.choice-btn').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.id === q.id) b.classList.add('reveal');
+  });
+  if (!isCorrect) btn.classList.add('wrong');
+
+  showFeedback(isCorrect, q);
+  if (isCorrect) session.correct++;
+  session.results.push({ word: q, correct: isCorrect, known: null });
+  showMasteryBox();
+}
+
+// ── ピンイン正誤判定 ──
+function submitPinyin() {
+  const q = session.questions[session.current];
+  const inp = document.getElementById('pinyin-input');
+  const val = inp.value.trim().toLowerCase();
+  const ans = q.py.toLowerCase();
+
+  // トーンマークを除いた比較も許容
+  const normalize = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
+  const isCorrect = val === ans || normalize(val) === normalize(ans);
+
+  inp.disabled = true;
+  document.getElementById('submit-btn').disabled = true;
+  inp.className = 'pinyin-input ' + (isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    document.getElementById('pinyin-hint').textContent = '正解: ' + q.py;
+  }
+
+  showFeedback(isCorrect, q);
+  if (isCorrect) session.correct++;
+  session.results.push({ word: q, correct: isCorrect, known: null });
+  showMasteryBox();
+}
+
+// Enter送信
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('pinyin-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !document.getElementById('submit-btn').disabled) submitPinyin();
+  });
+});
+
+function showFeedback(isCorrect, q) {
+  const fb = document.getElementById('feedback-box');
+  fb.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  document.getElementById('feedback-result').textContent = isCorrect ? '✓ 正解！' : '✗ 不正解';
+  document.getElementById('feedback-answer').innerHTML =
+    '<strong>' + q.cn + '</strong>　' + q.py + '　' + q.jp;
+}
+
+function showMasteryBox() {
+  document.getElementById('mastery-box').className = 'mastery-box show';
+}
+
+// ── 覚えた記録 ──
+function recordMastery(known) {
+  const r = session.results[session.results.length - 1];
+  r.known = known;
+
+  const mastery = loadMastery();
+  mastery[getMasteryKey(r.word.id, cfg.type)] = known;
+  saveMastery(mastery);
+
+  document.getElementById('mastery-box').className = 'mastery-box';
+  session.current++;
+  if (session.current >= session.questions.length) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+// ── 結果 ──
+function showResult() {
+  const total = session.results.length;
+  const correct = session.correct;
+  const knownCount = session.results.filter(r => r.known).length;
+  const wrongItems = session.results.filter(r => !r.correct);
+
+  document.getElementById('result-score').innerHTML = correct + '<span>/' + total + '</span>';
+  const pct = Math.round(correct / total * 100);
+  document.getElementById('result-label').textContent =
+    pct === 100 ? '完璧です！🎉' : pct >= 70 ? 'よくできました！' : 'もう少し頑張りましょう！';
+  document.getElementById('stat-correct').textContent = correct;
+  document.getElementById('stat-wrong').textContent = total - correct;
+  document.getElementById('stat-known').textContent = knownCount;
+
+  const reviewWrap = document.getElementById('result-review');
+  if (wrongItems.length > 0) {
+    reviewWrap.innerHTML = '<div class="review-title">間違えた単語</div>' +
+      wrongItems.map(r =>
+        '<div class="review-item">' +
+        '<span class="ri-cn">' + r.word.cn + '</span>' +
+        '<div class="ri-right"><div>' + r.word.py + '</div><div>' + r.word.jp + '</div></div>' +
+        '</div>'
+      ).join('');
+  } else {
+    reviewWrap.innerHTML = '';
+  }
+
+  showScreen('screen-result');
+}
+
+// ── 進捗確認 ──
+function showProgress() {
+  const mastery = loadMastery();
+  const units = [
+    { label: '第1単元（第1〜4課）', val: 1 },
+    { label: '第2単元（第5〜8課）', val: 2 },
+    { label: '第3単元（第9〜12課）', val: 3 },
+  ];
+  const types = [
+    { key: '4choice-cn-jp', label: '中→日 4択' },
+    { key: '4choice-jp-cn', label: '日→中 4択' },
+    { key: 'pinyin',        label: 'ピンイン入力' },
+  ];
+
+  let html = '';
+  units.forEach(u => {
+    const pool = WORDS.filter(w => w.unit === u.val);
+    html += '<div class="section-title" style="margin-top:20px;">' + u.label + '</div>';
+    html += '<div class="progress-overview">';
+    types.forEach(t => {
+      const known = pool.filter(w => mastery[getMasteryKey(w.id, t.key)]).length;
+      const pct = Math.round(known / pool.length * 100);
+      html += '<div class="progress-row">' +
+        '<span class="pr-label">' + t.label + '</span>' +
+        '<div class="pr-bar-wrap"><div class="pr-bar"><div class="pr-fill" style="width:' + pct + '%"></div></div></div>' +
+        '<span class="pr-num">' + known + ' / ' + pool.length + '</span>' +
+        '</div>';
+    });
+    html += '</div>';
+  });
+
+  document.getElementById('progress-content').innerHTML = html;
+  showScreen('screen-progress');
+}
+
+function resetProgress() {
+  localStorage.removeItem('cn_mastery');
+  showProgress();
+}
+
+function confirmBack() {
+  if (session.current > 0 && confirm('クイズを中断しますか？')) showScreen('screen-setup');
+  else if (session.current === 0) showScreen('screen-setup');
+}
+</script>
+</body>
+</html>
