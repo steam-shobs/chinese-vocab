@@ -251,25 +251,15 @@
       <h1>クイズ設定</h1>
     </div>
 
-    <div class="section-title">単元を選択</div>
-    <div class="option-grid col2" id="unit-options">
-      <button class="opt-btn" data-val="all" onclick="selectOpt(this,'unit')">
-        <span class="opt-main">全単元</span>
-        <span class="opt-sub">第1〜12課・全412語</span>
-      </button>
-      <button class="opt-btn" data-val="1" onclick="selectOpt(this,'unit')">
-        <span class="opt-main">第1単元</span>
-        <span class="opt-sub">第1〜4課</span>
-      </button>
-      <button class="opt-btn" data-val="2" onclick="selectOpt(this,'unit')">
-        <span class="opt-main">第2単元</span>
-        <span class="opt-sub">第5〜8課</span>
-      </button>
-      <button class="opt-btn" data-val="3" onclick="selectOpt(this,'unit')">
-        <span class="opt-main">第3単元</span>
-        <span class="opt-sub">第9〜12課</span>
-      </button>
+    <div class="section-title">課を選択（複数選択可）</div>
+    <div style="margin-bottom:8px;display:flex;gap:8px;flex-wrap:wrap;" id="unit-filter-btns">
+      <button class="toggle-btn active" data-unit="all" onclick="filterUnit(this)">全て</button>
+      <button class="toggle-btn" data-unit="1" onclick="filterUnit(this)">第1単元</button>
+      <button class="toggle-btn" data-unit="2" onclick="filterUnit(this)">第2単元</button>
+      <button class="toggle-btn" data-unit="3" onclick="filterUnit(this)">第3単元</button>
     </div>
+    <div class="option-grid" id="lesson-options" style="grid-template-columns:repeat(4,1fr);gap:8px;"></div>
+    <div style="margin-top:8px;font-size:12px;color:var(--text-sub);" id="lesson-count-label"></div>
 
     <div class="section-title">問題形式</div>
     <div class="option-grid col2" id="type-options">
@@ -291,7 +281,7 @@
     <div class="option-grid col2" id="mode-options">
       <button class="opt-btn" data-val="priority" onclick="selectOpt(this,'mode')">
         <span class="opt-main">⚡ 優先モード</span>
-        <span class="opt-sub">覚えていない単語を優先出題</span>
+        <span class="opt-sub">未習得を優先・不足分は習得済みで補充</span>
       </button>
       <button class="opt-btn" data-val="all" onclick="selectOpt(this,'mode')">
         <span class="opt-main">🔀 全範囲モード</span>
@@ -333,9 +323,9 @@
     <div id="pinyin-wrap" style="display:none;">
       <div class="pinyin-input-wrap">
         <input type="text" class="pinyin-input" id="pinyin-input"
-          placeholder="ピンインを入力（例: nǐ hǎo）"
+          placeholder="例: ni3hao3 または ni3 hao3"
           autocomplete="off" autocorrect="off" spellcheck="false">
-        <div class="pinyin-hint" id="pinyin-hint"></div>
+        <div class="pinyin-hint" id="pinyin-hint" style="min-height:18px;"></div>
       </div>
       <button class="submit-btn" id="submit-btn" onclick="submitPinyin()">答える</button>
     </div>
@@ -3713,7 +3703,7 @@ function saveMastery(m) {
 function getMasteryKey(wordId, quizType) { return wordId + '_' + quizType; }
 
 // ── 状態 ──
-let cfg = { unit: null, type: null, mode: null };
+let cfg = { lessons: new Set(), type: null, mode: null };
 let session = { questions: [], current: 0, correct: 0, results: [] };
 
 // ── UI ──
@@ -3721,6 +3711,55 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
+}
+
+// ── 課選択 ──
+function buildLessonButtons(unitFilter) {
+  const wrap = document.getElementById('lesson-options');
+  wrap.innerHTML = '';
+  const lessons = [...new Set(WORDS.map(w => w.unit + '-' + w.lesson))].sort((a,b)=>{
+    const [au,al] = a.split('-').map(Number);
+    const [bu,bl] = b.split('-').map(Number);
+    return au !== bu ? au - bu : al - bl;
+  });
+  lessons.forEach(key => {
+    const [u, l] = key.split('-').map(Number);
+    if (unitFilter !== 'all' && u !== parseInt(unitFilter)) return;
+    const count = WORDS.filter(w => w.unit === u && w.lesson === l).length;
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn' + (cfg.lessons.has(key) ? ' selected' : '');
+    btn.dataset.key = key;
+    btn.innerHTML = '<span class="opt-main">第' + l + '課</span><span class="opt-sub">' + count + '語</span>';
+    btn.onclick = () => toggleLesson(btn, key);
+    wrap.appendChild(btn);
+  });
+  updateLessonLabel();
+}
+
+function toggleLesson(btn, key) {
+  if (cfg.lessons.has(key)) {
+    cfg.lessons.delete(key);
+    btn.classList.remove('selected');
+  } else {
+    cfg.lessons.add(key);
+    btn.classList.add('selected');
+  }
+  updateLessonLabel();
+  updateStartBtn();
+}
+
+function filterUnit(btn) {
+  document.querySelectorAll('#unit-filter-btns .toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildLessonButtons(btn.dataset.unit);
+}
+
+function updateLessonLabel() {
+  const pool = getWordPool();
+  const lbl = document.getElementById('lesson-count-label');
+  lbl.textContent = cfg.lessons.size === 0
+    ? '課を1つ以上選択してください'
+    : cfg.lessons.size + '課選択中・' + pool.length + '語対象';
 }
 
 function selectOpt(btn, group) {
@@ -3732,15 +3771,20 @@ function selectOpt(btn, group) {
 }
 
 function updateStartBtn() {
-  document.getElementById('start-btn').disabled = !(cfg.unit && cfg.type && cfg.mode);
+  document.getElementById('start-btn').disabled =
+    !(cfg.lessons.size > 0 && cfg.type && cfg.mode);
 }
 
 // ── 単語フィルタ ──
 function getWordPool() {
-  let pool = WORDS;
-  if (cfg.unit !== 'all') pool = pool.filter(w => w.unit === parseInt(cfg.unit));
-  return pool;
+  if (cfg.lessons.size === 0) return [];
+  return WORDS.filter(w => cfg.lessons.has(w.unit + '-' + w.lesson));
 }
+
+// 初期化
+document.addEventListener('DOMContentLoaded', () => {
+  buildLessonButtons('all');
+});
 
 function shuffle(arr) {
   const a = [...arr];
@@ -3759,12 +3803,11 @@ function startQuiz() {
   const mastery = loadMastery();
 
   if (cfg.mode === 'priority') {
-    const unknown = pool.filter(w => !mastery[getMasteryKey(w.id, cfg.type)]);
-    const known   = pool.filter(w =>  mastery[getMasteryKey(w.id, cfg.type)]);
-    // 未習得を先に、不足分を習得済みから補充
-    const shuffledUnknown = shuffle(unknown);
-    const shuffledKnown   = shuffle(known);
-    pool = [...shuffledUnknown, ...shuffledKnown];
+    const unknown = shuffle(pool.filter(w => !mastery[getMasteryKey(w.id, cfg.type)]));
+    const known   = shuffle(pool.filter(w =>  mastery[getMasteryKey(w.id, cfg.type)]));
+    // 未習得が10問未満なら習得済みで補充
+    const need = 10 - unknown.length;
+    pool = need > 0 ? [...unknown, ...known.slice(0, need)] : unknown;
   } else {
     pool = shuffle(pool);
   }
@@ -3819,7 +3862,7 @@ function renderQuestion() {
     document.getElementById('pinyin-wrap').style.display = 'none';
 
   } else {
-    document.getElementById('q-direction').textContent = 'ピンインを入力してください';
+    document.getElementById('q-direction').textContent = 'ピンインを入力してください（声調番号: 例 ni3hao3）';
     const qt = document.getElementById('q-text');
     qt.className = 'question-text';
     qt.textContent = q.cn;
@@ -3876,22 +3919,49 @@ function checkChoice(btn, q, selected, answerField) {
 }
 
 // ── ピンイン正誤判定 ──
+// 声調記号→番号変換テーブル
+const TONE_MAP = {
+  'ā':'a1','á':'a2','ǎ':'a3','à':'a4',
+  'ē':'e1','é':'e2','ě':'e3','è':'e4',
+  'ī':'i1','í':'i2','ǐ':'i3','ì':'i4',
+  'ō':'o1','ó':'o2','ǒ':'o3','ò':'o4',
+  'ū':'u1','ú':'u2','ǔ':'u3','ù':'u4',
+  'ǖ':'v1','ǘ':'v2','ǚ':'v3','ǜ':'v4',
+  'ü':'v',
+};
+
+// 声調記号付きピンイン → 声調番号ピンインに正規化（スペース・大文字除去）
+function normalizePy(s) {
+  let r = s.toLowerCase();
+  for (const [mark, num] of Object.entries(TONE_MAP)) {
+    r = r.replaceAll(mark, num);
+  }
+  // ü → v（声調なし）
+  r = r.replace(/ü/g, 'v');
+  // スペース・ハイフン除去
+  r = r.replace(/[\s\-]+/g, '');
+  return r;
+}
+
 function submitPinyin() {
   const q = session.questions[session.current];
   const inp = document.getElementById('pinyin-input');
-  const val = inp.value.trim().toLowerCase();
-  const ans = q.py.toLowerCase();
+  const val = inp.value.trim();
+  if (!val) return;
 
-  // トーンマークを除いた比較も許容
-  const normalize = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
-  const isCorrect = val === ans || normalize(val) === normalize(ans);
+  const userNorm = normalizePy(val);
+  const ansNorm  = normalizePy(q.py);
+  const isCorrect = userNorm === ansNorm;
 
   inp.disabled = true;
   document.getElementById('submit-btn').disabled = true;
   inp.className = 'pinyin-input ' + (isCorrect ? 'correct' : 'wrong');
-  if (!isCorrect) {
-    document.getElementById('pinyin-hint').textContent = '正解: ' + q.py;
-  }
+
+  // ヒント：声調番号表記で正解を表示
+  const ansNum = normalizePy(q.py); // 番号表記
+  document.getElementById('pinyin-hint').innerHTML = isCorrect
+    ? ''
+    : '入力: <b>' + normalizePy(val) + '</b>　正解: <b>' + ansNum + '</b>';
 
   showFeedback(isCorrect, q);
   if (isCorrect) session.correct++;
@@ -3910,8 +3980,18 @@ function showFeedback(isCorrect, q) {
   const fb = document.getElementById('feedback-box');
   fb.className = 'feedback-box show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
   document.getElementById('feedback-result').textContent = isCorrect ? '✓ 正解！' : '✗ 不正解';
+
+  // 声調番号表記も横に並べて表示
+  const pyNum = normalizePy(q.py);
   document.getElementById('feedback-answer').innerHTML =
-    '<strong>' + q.cn + '</strong>　' + q.py + '　' + q.jp;
+    '<div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px;">' +
+      '<span style="font-family:Noto Sans SC,sans-serif;font-size:20px;font-weight:600;color:var(--text);">' + q.cn + '</span>' +
+      '<span style="font-size:16px;font-style:italic;color:var(--pinyin,#b5505a);">' + q.py + '</span>' +
+    '</div>' +
+    '<div style="font-size:12px;color:var(--text-sub);margin-bottom:2px;">' +
+      '声調番号: <b style="letter-spacing:.04em;">' + pyNum + '</b>' +
+    '</div>' +
+    '<div style="font-size:13px;color:var(--text-sub);">' + q.jp + '</div>';
 }
 
 function showMasteryBox() {
@@ -3970,32 +4050,37 @@ function showResult() {
 // ── 進捗確認 ──
 function showProgress() {
   const mastery = loadMastery();
-  const units = [
-    { label: '第1単元（第1〜4課）', val: 1 },
-    { label: '第2単元（第5〜8課）', val: 2 },
-    { label: '第3単元（第9〜12課）', val: 3 },
-  ];
   const types = [
-    { key: '4choice-cn-jp', label: '中→日 4択' },
-    { key: '4choice-jp-cn', label: '日→中 4択' },
-    { key: 'pinyin',        label: 'ピンイン入力' },
+    { key: '4choice-cn-jp', label: '中→日' },
+    { key: '4choice-jp-cn', label: '日→中' },
+    { key: 'pinyin',        label: 'ピンイン' },
+  ];
+  const units = [
+    { label: '第1単元', val: 1 },
+    { label: '第2単元', val: 2 },
+    { label: '第3単元', val: 3 },
   ];
 
   let html = '';
   units.forEach(u => {
-    const pool = WORDS.filter(w => w.unit === u.val);
+    const lessons = [...new Set(WORDS.filter(w=>w.unit===u.val).map(w=>w.lesson))].sort((a,b)=>a-b);
     html += '<div class="section-title" style="margin-top:20px;">' + u.label + '</div>';
-    html += '<div class="progress-overview">';
-    types.forEach(t => {
-      const known = pool.filter(w => mastery[getMasteryKey(w.id, t.key)]).length;
-      const pct = Math.round(known / pool.length * 100);
-      html += '<div class="progress-row">' +
-        '<span class="pr-label">' + t.label + '</span>' +
-        '<div class="pr-bar-wrap"><div class="pr-bar"><div class="pr-fill" style="width:' + pct + '%"></div></div></div>' +
-        '<span class="pr-num">' + known + ' / ' + pool.length + '</span>' +
-        '</div>';
+    lessons.forEach(l => {
+      const pool = WORDS.filter(w => w.unit === u.val && w.lesson === l);
+      html += '<div style="margin-bottom:8px;">';
+      html += '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px;">第' + l + '課（' + pool.length + '語）</div>';
+      html += '<div class="progress-overview">';
+      types.forEach(t => {
+        const known = pool.filter(w => mastery[getMasteryKey(w.id, t.key)]).length;
+        const pct = Math.round(known / pool.length * 100);
+        html += '<div class="progress-row" style="padding:8px 14px;">' +
+          '<span class="pr-label" style="min-width:60px;font-size:12px;">' + t.label + '</span>' +
+          '<div class="pr-bar-wrap"><div class="pr-bar"><div class="pr-fill" style="width:' + pct + '%"></div></div></div>' +
+          '<span class="pr-num">' + known + '/' + pool.length + '</span>' +
+          '</div>';
+      });
+      html += '</div></div>';
     });
-    html += '</div>';
   });
 
   document.getElementById('progress-content').innerHTML = html;
