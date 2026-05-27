@@ -89,6 +89,50 @@
   .start-btn:active { transform: scale(.99); }
   .start-btn:disabled { opacity: .4; cursor: not-allowed; }
 
+
+  /* ── 中断中クイズ ── */
+  .resume-box {
+    display: none;
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: var(--yellow-light);
+    border: 1px solid #e2c686;
+    border-radius: 6px;
+  }
+  .resume-box.show { display: block; }
+  .resume-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 5px;
+    letter-spacing: .06em;
+  }
+  .resume-summary {
+    font-size: 12px;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .resume-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .resume-btn {
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Noto Serif JP', serif;
+    cursor: pointer;
+    transition: opacity .15s, transform .1s;
+  }
+  .resume-btn:hover { opacity: .85; }
+  .resume-btn:active { transform: scale(.98); }
+  .resume-btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .resume-btn.secondary { background: var(--card); color: var(--text-sub); }
+
   /* ── 問題画面 ── */
   .progress-bar-wrap { margin-bottom: 20px; }
   .progress-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-sub); margin-bottom: 6px; }
@@ -352,6 +396,16 @@
     </div>
 
     <button class="start-btn" id="start-btn" onclick="startQuiz()" disabled>開始する</button>
+
+
+    <div class="resume-box" id="resume-box">
+      <div class="resume-title">中断中のクイズがあります</div>
+      <div class="resume-summary" id="resume-summary"></div>
+      <div class="resume-actions">
+        <button class="resume-btn primary" onclick="resumeQuiz()">再開する</button>
+        <button class="resume-btn secondary" onclick="discardSuspendedQuiz()">削除する</button>
+      </div>
+    </div>
 
     <div style="margin-top:28px; text-align:center;">
       <button class="back-btn" onclick="showProgress()" style="justify-content:center;">
@@ -3764,6 +3818,138 @@ function saveMastery(m) {
 }
 function getMasteryKey(wordId, quizType) { return wordId + '_' + quizType; }
 
+
+// ── 中断データ ──
+const SUSPENDED_KEY = 'cn_suspended_quiz_v1';
+
+function loadSuspendedQuiz() {
+  try { return JSON.parse(localStorage.getItem(SUSPENDED_KEY) || 'null'); } catch { return null; }
+}
+function saveSuspendedQuizData(data) {
+  localStorage.setItem(SUSPENDED_KEY, JSON.stringify(data));
+}
+function clearSuspendedQuiz() {
+  localStorage.removeItem(SUSPENDED_KEY);
+}
+function hasActiveQuiz() {
+  return Array.isArray(session.questions) && session.questions.length > 0 && session.current < session.questions.length;
+}
+function isAwaitingMasteryChoice() {
+  return document.getElementById('mastery-box')?.classList.contains('show');
+}
+function wordById(id) {
+  return WORDS.find(w => w.id === id) || null;
+}
+function typeLabel(type) {
+  return ({
+    '4choice-cn-jp': '中→日 4択',
+    '4choice-jp-cn': '日→中 4択',
+    'pinyin': 'ピンイン入力'
+  })[type] || type || '未設定';
+}
+function modeLabel(mode) {
+  return ({ priority: '優先モード', all: '全範囲モード' })[mode] || mode || '未設定';
+}
+function lessonLabelFromKey(key) {
+  const [u, l] = String(key).split('-').map(Number);
+  return Number.isFinite(u) && Number.isFinite(l) ? '第' + l + '課' : key;
+}
+function createSuspendedPayload() {
+  return {
+    version: 1,
+    savedAt: new Date().toISOString(),
+    cfg: {
+      lessons: [...cfg.lessons],
+      type: cfg.type,
+      mode: cfg.mode
+    },
+    session: {
+      questions: session.questions.map(w => w.id),
+      current: session.current,
+      correct: session.correct,
+      results: session.results.map(r => ({
+        wordId: r.word.id,
+        correct: r.correct,
+        known: r.known
+      }))
+    }
+  };
+}
+function restoreSuspendedPayload(data) {
+  if (!data || !data.cfg || !data.session) return false;
+  const questions = (data.session.questions || []).map(wordById).filter(Boolean);
+  if (!questions.length) return false;
+
+  cfg.lessons = new Set(data.cfg.lessons || []);
+  cfg.type = data.cfg.type;
+  cfg.mode = data.cfg.mode;
+  session.questions = questions;
+  session.current = Math.min(Math.max(Number(data.session.current) || 0, 0), questions.length - 1);
+  session.correct = Number(data.session.correct) || 0;
+  session.results = (data.session.results || []).map(r => {
+    const w = wordById(r.wordId);
+    return w ? { word: w, correct: !!r.correct, known: r.known } : null;
+  }).filter(Boolean);
+  return true;
+}
+function updateSetupSelectionUI() {
+  document.querySelectorAll('#type-options .opt-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.val === cfg.type);
+  });
+  document.querySelectorAll('#mode-options .opt-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.val === cfg.mode);
+  });
+  const activeFilter = document.querySelector('#unit-filter-btns .toggle-btn.active');
+  buildLessonButtons(activeFilter ? activeFilter.dataset.unit : 'all');
+  updateStartBtn();
+}
+function updateResumeBox() {
+  const box = document.getElementById('resume-box');
+  if (!box) return;
+  const data = loadSuspendedQuiz();
+  if (!data || !data.session || !Array.isArray(data.session.questions)) {
+    box.className = 'resume-box';
+    return;
+  }
+
+  const total = data.session.questions.length;
+  const current = Math.min((Number(data.session.current) || 0) + 1, total);
+  const lessons = (data.cfg?.lessons || []).map(lessonLabelFromKey).join('・') || '未選択';
+  const savedAt = data.savedAt ? new Date(data.savedAt) : null;
+  const savedText = savedAt && !Number.isNaN(savedAt.getTime())
+    ? savedAt.toLocaleString('ja-JP', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+    : '日時不明';
+
+  document.getElementById('resume-summary').innerHTML =
+    '範囲: ' + lessons + '<br>' +
+    '形式: ' + typeLabel(data.cfg?.type) + ' / ' + modeLabel(data.cfg?.mode) + '<br>' +
+    '進行: ' + current + ' / ' + total + '問目　保存: ' + savedText;
+  box.className = 'resume-box show';
+}
+function resumeQuiz() {
+  const data = loadSuspendedQuiz();
+  if (!restoreSuspendedPayload(data)) {
+    alert('中断データを読み込めませんでした。中断データを削除します。');
+    clearSuspendedQuiz();
+    updateResumeBox();
+    return;
+  }
+  clearSuspendedQuiz();
+  updateSetupSelectionUI();
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+function discardSuspendedQuiz() {
+  if (!confirm('中断中のクイズを削除しますか？')) return;
+  clearSuspendedQuiz();
+  updateResumeBox();
+}
+function suspendCurrentQuiz() {
+  if (!hasActiveQuiz()) return false;
+  saveSuspendedQuizData(createSuspendedPayload());
+  return true;
+}
+
 // ── 状態 ──
 let cfg = { lessons: new Set(), type: null, mode: null };
 let session = { questions: [], current: 0, correct: 0, results: [] };
@@ -3772,6 +3958,7 @@ let session = { questions: [], current: 0, correct: 0, results: [] };
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  if (id === 'screen-setup') updateResumeBox();
   window.scrollTo(0, 0);
 }
 
@@ -3846,6 +4033,7 @@ function getWordPool() {
 // 初期化
 document.addEventListener('DOMContentLoaded', () => {
   buildLessonButtons('all');
+  updateResumeBox();
 });
 
 function shuffle(arr) {
@@ -3859,6 +4047,14 @@ function shuffle(arr) {
 
 // ── クイズ開始 ──
 function startQuiz() {
+  const suspended = loadSuspendedQuiz();
+  if (suspended) {
+    const ok = confirm('中断中のクイズがあります。新しく開始すると中断データは削除されます。よろしいですか？');
+    if (!ok) return;
+    clearSuspendedQuiz();
+    updateResumeBox();
+  }
+
   let pool = getWordPool();
   if (pool.length < 4) { alert('この単元の単語が少なすぎます（最低4語必要）'); return; }
 
@@ -4219,6 +4415,8 @@ function showResult() {
     reviewWrap.innerHTML = '';
   }
 
+  clearSuspendedQuiz();
+  updateResumeBox();
   showScreen('screen-result');
 }
 
@@ -4306,8 +4504,21 @@ function resetProgress() {
 }
 
 function confirmBack() {
-  if (session.current > 0 && confirm('クイズを中断しますか？')) showScreen('screen-setup');
-  else if (session.current === 0) showScreen('screen-setup');
+  if (!hasActiveQuiz()) {
+    showScreen('screen-setup');
+    return;
+  }
+
+  if (isAwaitingMasteryChoice()) {
+    alert('この問題の「覚えた」または「まだ」を選んでから中断してください。');
+    return;
+  }
+
+  const ok = confirm('現在のクイズを中断して保存しますか？\n\nOK: 保存して設定に戻る\nキャンセル: クイズを続ける');
+  if (!ok) return;
+
+  suspendCurrentQuiz();
+  showScreen('screen-setup');
 }
 </script>
 </body>
