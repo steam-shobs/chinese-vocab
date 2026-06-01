@@ -73,10 +73,18 @@
   .unit-arrow { color: var(--accent); flex-shrink: 0; margin-left: 16px; transition: transform .2s; }
   .unit-card:hover .unit-arrow { transform: translateX(4px); }
 
-  .footer-note {
+  .footer-area {
     margin-top: 48px;
     padding-top: 24px;
     border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+  }
+
+  .footer-note {
     font-size: 12px;
     color: var(--text-sub);
     letter-spacing: .06em;
@@ -85,6 +93,23 @@
     gap: 8px;
     justify-content: center;
   }
+
+  .feedback-note {
+    font-size: 13px;
+    color: var(--text-sub);
+    letter-spacing: .04em;
+    line-height: 1.7;
+  }
+
+  .feedback-note a {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+  }
+
+  .feedback-note a:hover { opacity: .75; }
 
   @media (max-width: 480px) {
     .unit-card { padding: 18px 16px; }
@@ -174,9 +199,15 @@
     </a>
   </div>
 
-  <div class="footer-note">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-    各単語をタップすると中国語の発音が再生されます（要インターネット接続）
+  <div class="footer-area">
+    <div class="footer-note">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      各単語をタップすると中国語の発音が再生されます（要インターネット接続）
+    </div>
+    <div class="feedback-note">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdI0qwbcTpxI8dWa-xG44i_XWwiM1hRmyvXPRJMMWbxr_PbMw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">不具合の報告、感想等はこちら</a><br>
+      感想はモチベーションにつながるので是非お願いします。
+    </div>
   </div>
 
 </div>
