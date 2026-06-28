@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国語 単語練習プリント 解答 第4単元</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2; --card: #ffffff; --accent: #b5505a;
+    --accent-light: #f3dde0; --text: #2c2420; --text-sub: #7a6a56;
+    --border: #e8ddd5; --header-bg: #2c2420; --row-alt: #fdf5f0;
+    --pinyin: #b5505a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'Noto Serif JP', serif; color: var(--text); min-height: 100vh; }
+  .wrapper { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  .doc-header { text-align: center; margin-bottom: 40px; }
+  .doc-header::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent); margin: 20px auto 0; }
+  .doc-header .subtitle { font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 10px; }
+  .doc-header h1 { font-size: 28px; font-weight: 700; letter-spacing: .08em; }
+
+  .hint-bar { display: flex; align-items: center; gap: 10px; background: var(--accent-light); border: 1px solid #e8c0c4; border-radius: 6px; padding: 10px 18px; font-size: 13px; color: var(--accent); margin-bottom: 36px; }
+
+  .lesson { margin-bottom: 52px; }
+  .lesson-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+  .lesson-number { background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; letter-spacing: .12em; padding: 5px 14px; border-radius: 2px; white-space: nowrap; }
+  .lesson-title { font-size: 17px; font-weight: 600; letter-spacing: .06em; border-bottom: 1px solid var(--border); flex: 1; padding-bottom: 6px; }
+
+  .vocab-table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(44,36,32,.06); }
+  .vocab-table thead tr { background: var(--header-bg); color: #fff; }
+  .vocab-table thead th { padding: 12px 16px; text-align: center; font-size: 12px; letter-spacing: .15em; font-weight: 500; }
+  .vocab-table thead th:nth-child(1) { width: 32%; }
+  .vocab-table thead th:nth-child(2) { width: 30%; }
+  .vocab-table thead th:nth-child(3) { width: 38%; }
+  .vocab-table tbody tr { border-bottom: 1px solid var(--border); }
+  .vocab-table tbody tr:last-child { border-bottom: none; }
+  .vocab-table tbody tr:nth-child(even) { background: var(--row-alt); }
+  .vocab-table td { padding: 10px 16px; vertical-align: middle; }
+  .td-py { font-size: 13px; color: var(--pinyin); text-align: center; font-style: italic; }
+  .td-jp { font-size: 13.5px; color: var(--text-sub); }
+
+  .speak-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid transparent; border-radius: 6px; padding: 4px 8px; cursor: pointer; font-family: 'Noto Sans SC', sans-serif; font-size: 17px; font-weight: 500; color: var(--text); letter-spacing: .05em; transition: background .15s, border-color .15s, transform .1s; }
+  .speak-btn:hover { background: var(--accent-light); border-color: #e8c0c4; }
+  .speak-btn:active { transform: scale(.96); }
+  .speak-btn.playing { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .speak-btn .icon { font-size: 13px; opacity: .6; transition: opacity .15s; }
+  .speak-btn.playing .icon, .speak-btn:hover .icon { opacity: 1; }
+
+  /* ── 列表示トグル ── */
+  .toggle-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+  .toggle-label {
+    font-size: 12px;
+    color: var(--text-sub);
+    letter-spacing: .08em;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--text-sub);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .toggle-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .toggle-btn .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .7;
+  }
+  /* 列非表示 */
+  .hide-cn .col-cn { display: none; }
+  .hide-py .col-py { display: none; }
+  .hide-jp .col-jp { display: none; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="doc-header">
+    <p class="subtitle">中国語 · 第4単元 · 解答</p>
+    <h1>単語練習プリント</h1>
+  </div>
+
+  <div class="hint-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+    中国語をクリックすると発音が再生されます（音声ファイル同梱版）
+    <div class="toggle-bar">
+    <span class="toggle-label">表示する列：</span>
+    <button class="toggle-btn active" data-col="cn"><span class="dot"></span>中国語</button>
+    <button class="toggle-btn active" data-col="py"><span class="dot"></span>ピンイン</button>
+    <button class="toggle-btn active" data-col="jp"><span class="dot"></span>日本語</button>
+  </div>
+
+</div>
+
+  <!-- ═══ 第13課 ═══ -->
+  <div class="lesson">
+    <div class="lesson-header"><span class="lesson-number">第 13 課</span><span class="lesson-title">予定・義務</span></div>
+    <table class="vocab-table"><thead><tr><th class="col-cn">中国語</th><th class="col-py">ピンイン</th><th class="col-jp">日本語</th></tr></thead><tbody>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="背" data-audio="audio/unit4/001.mp3"><span class="icon">🔊</span>背</button></td><td class="td-py col-py">bèi</td><td class="td-jp col-jp">暗記する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="传统" data-audio="audio/unit4/002.mp3"><span class="icon">🔊</span>传统</button></td><td class="td-py col-py">chuántǒng</td><td class="td-jp col-jp">伝統</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="大阪" data-audio="audio/unit4/003.mp3"><span class="icon">🔊</span>大阪</button></td><td class="td-py col-py">Dàbǎn</td><td class="td-jp col-jp">大阪</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="打算" data-audio="audio/unit4/004.mp3"><span class="icon">🔊</span>打算</button></td><td class="td-py col-py">dǎsuan</td><td class="td-jp col-jp">～つもりだ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="得" data-audio="audio/unit4/005.mp3"><span class="icon">🔊</span>得</button></td><td class="td-py col-py">děi</td><td class="td-jp col-jp">しなければならない</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="饿" data-audio="audio/unit4/006.mp3"><span class="icon">🔊</span>饿</button></td><td class="td-py col-py">è</td><td class="td-jp col-jp">お腹がすく</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="发" data-audio="audio/unit4/007.mp3"><span class="icon">🔊</span>发</button></td><td class="td-py col-py">fā</td><td class="td-jp col-jp">発する、送る</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="父母" data-audio="audio/unit4/008.mp3"><span class="icon">🔊</span>父母</button></td><td class="td-py col-py">fùmǔ</td><td class="td-jp col-jp">父母</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="复习" data-audio="audio/unit4/009.mp3"><span class="icon">🔊</span>复习</button></td><td class="td-py col-py">fùxí</td><td class="td-jp col-jp">復習</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="给" data-audio="audio/unit4/010.mp3"><span class="icon">🔊</span>给</button></td><td class="td-py col-py">gěi</td><td class="td-jp col-jp">前置詞、受益者を導く</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="功夫片" data-audio="audio/unit4/011.mp3"><span class="icon">🔊</span>功夫片</button></td><td class="td-py col-py">gōngfupiàn</td><td class="td-jp col-jp">カンフー映画</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="功课" data-audio="audio/unit4/012.mp3"><span class="icon">🔊</span>功课</button></td><td class="td-py col-py">gōngkè</td><td class="td-jp col-jp">勉強、宿題</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="海边" data-audio="audio/unit4/013.mp3"><span class="icon">🔊</span>海边</button></td><td class="td-py col-py">hǎibiān</td><td class="td-jp col-jp">海辺、海浜</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="寒假" data-audio="audio/unit4/014.mp3"><span class="icon">🔊</span>寒假</button></td><td class="td-py col-py">hánjià</td><td class="td-jp col-jp">冬休み</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="河南" data-audio="audio/unit4/015.mp3"><span class="icon">🔊</span>河南</button></td><td class="td-py col-py">Hénán</td><td class="td-jp col-jp">河南</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="后天" data-audio="audio/unit4/016.mp3"><span class="icon">🔊</span>后天</button></td><td class="td-py col-py">hòutiān</td><td class="td-jp col-jp">明後日</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="回" data-audio="audio/unit4/017.mp3"><span class="icon">🔊</span>回</button></td><td class="td-py col-py">huí</td><td class="td-jp col-jp">帰る</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="加班" data-audio="audio/unit4/018.mp3"><span class="icon">🔊</span>加班</button></td><td class="td-py col-py">jiābān</td><td class="td-jp col-jp">残業する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="介绍" data-audio="audio/unit4/019.mp3"><span class="icon">🔊</span>介绍</button></td><td class="td-py col-py">jièshào</td><td class="td-jp col-jp">紹介する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="句子" data-audio="audio/unit4/020.mp3"><span class="icon">🔊</span>句子</button></td><td class="td-py col-py">jùzi</td><td class="td-jp col-jp">文</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="考试" data-audio="audio/unit4/021.mp3"><span class="icon">🔊</span>考试</button></td><td class="td-py col-py">kǎoshi</td><td class="td-jp col-jp">試験</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="老家" data-audio="audio/unit4/022.mp3"><span class="icon">🔊</span>老家</button></td><td class="td-py col-py">lǎojiā</td><td class="td-jp col-jp">実家、故郷</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="旅游" data-audio="audio/unit4/023.mp3"><span class="icon">🔊</span>旅游</button></td><td class="td-py col-py">lǚyóu</td><td class="td-jp col-jp">旅行</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="美国" data-audio="audio/unit4/024.mp3"><span class="icon">🔊</span>美国</button></td><td class="td-py col-py">Měiguó</td><td class="td-jp col-jp">アメリカ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="女儿" data-audio="audio/unit4/025.mp3"><span class="icon">🔊</span>女儿</button></td><td class="td-py col-py">nǚ'ér</td><td class="td-jp col-jp">娘</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="三不沾" data-audio="audio/unit4/026.mp3"><span class="icon">🔊</span>三不沾</button></td><td class="td-py col-py">sānbùzhān</td><td class="td-jp col-jp">河南料理</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="暑假" data-audio="audio/unit4/027.mp3"><span class="icon">🔊</span>暑假</button></td><td class="td-py col-py">shǔjià</td><td class="td-jp col-jp">夏休み</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="想" data-audio="audio/unit4/028.mp3"><span class="icon">🔊</span>想</button></td><td class="td-py col-py">xiǎng</td><td class="td-jp col-jp">したいと思う</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="小学" data-audio="audio/unit4/029.mp3"><span class="icon">🔊</span>小学</button></td><td class="td-py col-py">xiǎoxué</td><td class="td-jp col-jp">小学校</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="要" data-audio="audio/unit4/030.mp3"><span class="icon">🔊</span>要</button></td><td class="td-py col-py">yào</td><td class="td-jp col-jp">しなければならない</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="一定" data-audio="audio/unit4/031.mp3"><span class="icon">🔊</span>一定</button></td><td class="td-py col-py">yídìng</td><td class="td-jp col-jp">きっと</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="应该" data-audio="audio/unit4/032.mp3"><span class="icon">🔊</span>应该</button></td><td class="td-py col-py">yīnggāi</td><td class="td-jp col-jp">～すべきだ、はずだ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="一下" data-audio="audio/unit4/033.mp3"><span class="icon">🔊</span>一下</button></td><td class="td-py col-py">yíxià</td><td class="td-jp col-jp">ちょっと</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="邮件" data-audio="audio/unit4/034.mp3"><span class="icon">🔊</span>邮件</button></td><td class="td-py col-py">yóujiàn</td><td class="td-jp col-jp">メール、郵便物</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="咱们" data-audio="audio/unit4/035.mp3"><span class="icon">🔊</span>咱们</button></td><td class="td-py col-py">zánmen</td><td class="td-jp col-jp">私達</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="找" data-audio="audio/unit4/036.mp3"><span class="icon">🔊</span>找</button></td><td class="td-py col-py">zhǎo</td><td class="td-jp col-jp">探す</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="资料" data-audio="audio/unit4/037.mp3"><span class="icon">🔊</span>资料</button></td><td class="td-py col-py">zīliào</td><td class="td-jp col-jp">資料</td></tr>
+    </tbody></table>
+  </div>
+
+  <!-- ═══ 第14課 ═══ -->
+  <div class="lesson">
+    <div class="lesson-header"><span class="lesson-number">第 14 課</span><span class="lesson-title">数量・買い物</span></div>
+    <table class="vocab-table"><thead><tr><th class="col-cn">中国語</th><th class="col-py">ピンイン</th><th class="col-jp">日本語</th></tr></thead><tbody>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="巴士" data-audio="audio/unit4/038.mp3"><span class="icon">🔊</span>巴士</button></td><td class="td-py col-py">bāshì</td><td class="td-jp col-jp">バス</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="杯子" data-audio="audio/unit4/039.mp3"><span class="icon">🔊</span>杯子</button></td><td class="td-py col-py">bēizi</td><td class="td-jp col-jp">コップ、湯飲み</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="本店" data-audio="audio/unit4/040.mp3"><span class="icon">🔊</span>本店</button></td><td class="td-py col-py">běndiàn</td><td class="td-jp col-jp">私どもの店</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="部" data-audio="audio/unit4/041.mp3"><span class="icon">🔊</span>部</button></td><td class="td-py col-py">bù</td><td class="td-jp col-jp">機械を数える量詞</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="衬衫" data-audio="audio/unit4/042.mp3"><span class="icon">🔊</span>衬衫</button></td><td class="td-py col-py">chènshān</td><td class="td-jp col-jp">シャツ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="穿" data-audio="audio/unit4/043.mp3"><span class="icon">🔊</span>穿</button></td><td class="td-py col-py">chuān</td><td class="td-jp col-jp">着る</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="从" data-audio="audio/unit4/044.mp3"><span class="icon">🔊</span>从</button></td><td class="td-py col-py">cóng</td><td class="td-jp col-jp">～から</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="大概" data-audio="audio/unit4/045.mp3"><span class="icon">🔊</span>大概</button></td><td class="td-py col-py">dàgài</td><td class="td-jp col-jp">おおよそ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="到" data-audio="audio/unit4/046.mp3"><span class="icon">🔊</span>到</button></td><td class="td-py col-py">dào</td><td class="td-jp col-jp">～まで</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="多长时间" data-audio="audio/unit4/047.mp3"><span class="icon">🔊</span>多长时间</button></td><td class="td-py col-py">duōcháng shíjiān</td><td class="td-jp col-jp">どのくらいの時間</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="多高" data-audio="audio/unit4/048.mp3"><span class="icon">🔊</span>多高</button></td><td class="td-py col-py">duōgāo</td><td class="td-jp col-jp">どのくらいの高さ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="多少钱" data-audio="audio/unit4/049.mp3"><span class="icon">🔊</span>多少钱</button></td><td class="td-py col-py">duōshao qián</td><td class="td-jp col-jp">いくら</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="多重" data-audio="audio/unit4/050.mp3"><span class="icon">🔊</span>多重</button></td><td class="td-py col-py">duōzhòng</td><td class="td-jp col-jp">どのくらいの重さ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="分" data-audio="audio/unit4/051.mp3"><span class="icon">🔊</span>分</button></td><td class="td-py col-py">fēn</td><td class="td-jp col-jp">分</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="付" data-audio="audio/unit4/052.mp3"><span class="icon">🔊</span>付</button></td><td class="td-py col-py">fù</td><td class="td-jp col-jp">支払う</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="公斤" data-audio="audio/unit4/053.mp3"><span class="icon">🔊</span>公斤</button></td><td class="td-py col-py">gōngjīn</td><td class="td-jp col-jp">キログラム</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="光临" data-audio="audio/unit4/054.mp3"><span class="icon">🔊</span>光临</button></td><td class="td-py col-py">guānglín</td><td class="td-jp col-jp">いらっしゃる</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="好看" data-audio="audio/unit4/055.mp3"><span class="icon">🔊</span>好看</button></td><td class="td-py col-py">hǎokàn</td><td class="td-jp col-jp">見栄えがよい</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="盒" data-audio="audio/unit4/056.mp3"><span class="icon">🔊</span>盒</button></td><td class="td-py col-py">hé</td><td class="td-jp col-jp">箱状のものを数える量詞</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="欢迎" data-audio="audio/unit4/057.mp3"><span class="icon">🔊</span>欢迎</button></td><td class="td-py col-py">huānyíng</td><td class="td-jp col-jp">歓迎する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="架" data-audio="audio/unit4/058.mp3"><span class="icon">🔊</span>架</button></td><td class="td-py col-py">jià</td><td class="td-jp col-jp">支えのついたものや機械を数える量詞</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="减肥" data-audio="audio/unit4/059.mp3"><span class="icon">🔊</span>减肥</button></td><td class="td-py col-py">jiǎnféi</td><td class="td-jp col-jp">ダイエットする</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="斤" data-audio="audio/unit4/060.mp3"><span class="icon">🔊</span>斤</button></td><td class="td-py col-py">jīn</td><td class="td-jp col-jp">500グラムを表す単位</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="块" data-audio="audio/unit4/061.mp3"><span class="icon">🔊</span>块</button></td><td class="td-py col-py">kuài</td><td class="td-jp col-jp">塊状、片状ものを数える量詞</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="卖" data-audio="audio/unit4/062.mp3"><span class="icon">🔊</span>卖</button></td><td class="td-py col-py">mài</td><td class="td-jp col-jp">売る</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="毛" data-audio="audio/unit4/063.mp3"><span class="icon">🔊</span>毛</button></td><td class="td-py col-py">máo</td><td class="td-jp col-jp">お金の単位「角」の口語</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="明信片" data-audio="audio/unit4/064.mp3"><span class="icon">🔊</span>明信片</button></td><td class="td-py col-py">míngxìnpiàn</td><td class="td-jp col-jp">郵便はがき</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="苹果" data-audio="audio/unit4/065.mp3"><span class="icon">🔊</span>苹果</button></td><td class="td-py col-py">píngguǒ</td><td class="td-jp col-jp">リンゴ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="钱" data-audio="audio/unit4/066.mp3"><span class="icon">🔊</span>钱</button></td><td class="td-py col-py">qián</td><td class="td-jp col-jp">お金</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="铅笔" data-audio="audio/unit4/067.mp3"><span class="icon">🔊</span>铅笔</button></td><td class="td-py col-py">qiānbǐ</td><td class="td-jp col-jp">エンピツ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="日元" data-audio="audio/unit4/068.mp3"><span class="icon">🔊</span>日元</button></td><td class="td-py col-py">Rìyuán</td><td class="td-jp col-jp">日本円</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="试" data-audio="audio/unit4/069.mp3"><span class="icon">🔊</span>试</button></td><td class="td-py col-py">shì</td><td class="td-jp col-jp">試す</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="石头" data-audio="audio/unit4/070.mp3"><span class="icon">🔊</span>石头</button></td><td class="td-py col-py">shítou</td><td class="td-jp col-jp">石</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="市中心" data-audio="audio/unit4/071.mp3"><span class="icon">🔊</span>市中心</button></td><td class="td-py col-py">shìzhōngxīn</td><td class="td-jp col-jp">市の中心</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="挺" data-audio="audio/unit4/072.mp3"><span class="icon">🔊</span>挺</button></td><td class="td-py col-py">tǐng</td><td class="td-jp col-jp">とても</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="信用卡" data-audio="audio/unit4/073.mp3"><span class="icon">🔊</span>信用卡</button></td><td class="td-py col-py">xìnyòngkǎ</td><td class="td-jp col-jp">クレジットカード</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="一共" data-audio="audio/unit4/074.mp3"><span class="icon">🔊</span>一共</button></td><td class="td-py col-py">yígòng</td><td class="td-jp col-jp">全部で</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="纸巾" data-audio="audio/unit4/075.mp3"><span class="icon">🔊</span>纸巾</button></td><td class="td-py col-py">zhǐjīn</td><td class="td-jp col-jp">ティッシュペーパー、紙のナプキン</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="珠穆朗玛峰" data-audio="audio/unit4/076.mp3"><span class="icon">🔊</span>珠穆朗玛峰</button></td><td class="td-py col-py">Zhūmùlǎngmǎfēng</td><td class="td-jp col-jp">チョモランマ</td></tr>
+    </tbody></table>
+  </div>
+
+  <!-- ═══ 第15課 ═══ -->
+  <div class="lesson">
+    <div class="lesson-header"><span class="lesson-number">第 15 課</span><span class="lesson-title">禁止・時間</span></div>
+    <table class="vocab-table"><thead><tr><th class="col-cn">中国語</th><th class="col-py">ピンイン</th><th class="col-jp">日本語</th></tr></thead><tbody>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="百货商店" data-audio="audio/unit4/077.mp3"><span class="icon">🔊</span>百货商店</button></td><td class="td-py col-py">bǎihuòshāngdiàn</td><td class="td-jp col-jp">デパート</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="别" data-audio="audio/unit4/078.mp3"><span class="icon">🔊</span>别</button></td><td class="td-py col-py">bié</td><td class="td-jp col-jp">～するな</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="不见不散" data-audio="audio/unit4/079.mp3"><span class="icon">🔊</span>不见不散</button></td><td class="td-py col-py">bú jiàn bú sàn</td><td class="td-jp col-jp">会えるまでその場を立ち去らずに待っている</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="不要" data-audio="audio/unit4/080.mp3"><span class="icon">🔊</span>不要</button></td><td class="td-py col-py">búyào</td><td class="td-jp col-jp">～するな</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="不用" data-audio="audio/unit4/081.mp3"><span class="icon">🔊</span>不用</button></td><td class="td-py col-py">búyòng</td><td class="td-jp col-jp">～する必要がない</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="茶" data-audio="audio/unit4/082.mp3"><span class="icon">🔊</span>茶</button></td><td class="td-py col-py">chá</td><td class="td-jp col-jp">お茶</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="迟到" data-audio="audio/unit4/083.mp3"><span class="icon">🔊</span>迟到</button></td><td class="td-py col-py">chídào</td><td class="td-jp col-jp">遅刻する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="打扫" data-audio="audio/unit4/084.mp3"><span class="icon">🔊</span>打扫</button></td><td class="td-py col-py">dǎsǎo</td><td class="td-jp col-jp">掃除する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="大声" data-audio="audio/unit4/085.mp3"><span class="icon">🔊</span>大声</button></td><td class="td-py col-py">dàshēng</td><td class="td-jp col-jp">大きな声</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="电影院" data-audio="audio/unit4/086.mp3"><span class="icon">🔊</span>电影院</button></td><td class="td-py col-py">diànyǐngyuàn</td><td class="td-jp col-jp">映画館</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="动物" data-audio="audio/unit4/087.mp3"><span class="icon">🔊</span>动物</button></td><td class="td-py col-py">dòngwù</td><td class="td-jp col-jp">動物</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="动物园" data-audio="audio/unit4/088.mp3"><span class="icon">🔊</span>动物园</button></td><td class="td-py col-py">dòngwùyuán</td><td class="td-jp col-jp">動物園</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="放" data-audio="audio/unit4/089.mp3"><span class="icon">🔊</span>放</button></td><td class="td-py col-py">fàng</td><td class="td-jp col-jp">置く</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="飞机" data-audio="audio/unit4/090.mp3"><span class="icon">🔊</span>飞机</button></td><td class="td-py col-py">fēijī</td><td class="td-jp col-jp">飛行機</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="干净" data-audio="audio/unit4/091.mp3"><span class="icon">🔊</span>干净</button></td><td class="td-py col-py">gānjing</td><td class="td-jp col-jp">きれい、清潔</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="急" data-audio="audio/unit4/092.mp3"><span class="icon">🔊</span>急</button></td><td class="td-py col-py">jí</td><td class="td-jp col-jp">あせる、急ぐ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="见面" data-audio="audio/unit4/093.mp3"><span class="icon">🔊</span>见面</button></td><td class="td-py col-py">jiànmiàn</td><td class="td-jp col-jp">会う</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="客气" data-audio="audio/unit4/094.mp3"><span class="icon">🔊</span>客气</button></td><td class="td-py col-py">kèqi</td><td class="td-jp col-jp">遠慮する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="口福" data-audio="audio/unit4/095.mp3"><span class="icon">🔊</span>口福</button></td><td class="td-py col-py">kǒufú</td><td class="td-jp col-jp">口の幸せ、口福</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="浪费" data-audio="audio/unit4/096.mp3"><span class="icon">🔊</span>浪费</button></td><td class="td-py col-py">làngfèi</td><td class="td-jp col-jp">浪費する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="慢慢儿" data-audio="audio/unit4/097.mp3"><span class="icon">🔊</span>慢慢儿</button></td><td class="td-py col-py">mànmānr</td><td class="td-jp col-jp">ゆっくりと</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="起飞" data-audio="audio/unit4/098.mp3"><span class="icon">🔊</span>起飞</button></td><td class="td-py col-py">qǐfēi</td><td class="td-jp col-jp">離陸する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="上班" data-audio="audio/unit4/099.mp3"><span class="icon">🔊</span>上班</button></td><td class="td-py col-py">shàngbān</td><td class="td-jp col-jp">出勤する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="上午" data-audio="audio/unit4/100.mp3"><span class="icon">🔊</span>上午</button></td><td class="td-py col-py">shàngwǔ</td><td class="td-jp col-jp">午前</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="时" data-audio="audio/unit4/101.mp3"><span class="icon">🔊</span>时</button></td><td class="td-py col-py">shí</td><td class="td-jp col-jp">時</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="时间" data-audio="audio/unit4/102.mp3"><span class="icon">🔊</span>时间</button></td><td class="td-py col-py">shíjiān</td><td class="td-jp col-jp">時間</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="事" data-audio="audio/unit4/103.mp3"><span class="icon">🔊</span>事</button></td><td class="td-py col-py">shì</td><td class="td-jp col-jp">用件</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="说话" data-audio="audio/unit4/104.mp3"><span class="icon">🔊</span>说话</button></td><td class="td-py col-py">shuōhuà</td><td class="td-jp col-jp">話しをする</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="它" data-audio="audio/unit4/105.mp3"><span class="icon">🔊</span>它</button></td><td class="td-py col-py">tā</td><td class="td-jp col-jp">人間以外の事物を指す</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="太了" data-audio="audio/unit4/106.mp3"><span class="icon">🔊</span>太～了</button></td><td class="td-py col-py">tài ～ le</td><td class="td-jp col-jp">とても～だ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="糖" data-audio="audio/unit4/107.mp3"><span class="icon">🔊</span>糖</button></td><td class="td-py col-py">táng</td><td class="td-jp col-jp">砂糖</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="提" data-audio="audio/unit4/108.mp3"><span class="icon">🔊</span>提</button></td><td class="td-py col-py">tí</td><td class="td-jp col-jp">提起する、指摘する</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="晚上" data-audio="audio/unit4/109.mp3"><span class="icon">🔊</span>晚上</button></td><td class="td-py col-py">wǎnshang</td><td class="td-jp col-jp">夜</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="先" data-audio="audio/unit4/110.mp3"><span class="icon">🔊</span>先</button></td><td class="td-py col-py">xiān</td><td class="td-jp col-jp">まず、先んじて</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="圆山" data-audio="audio/unit4/111.mp3"><span class="icon">🔊</span>圆山</button></td><td class="td-py col-py">Yuánshān</td><td class="td-jp col-jp">円山</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="再" data-audio="audio/unit4/112.mp3"><span class="icon">🔊</span>再</button></td><td class="td-py col-py">zài</td><td class="td-jp col-jp">再び</td></tr>
+    </tbody></table>
+  </div>
+
+  <!-- ═══ 第16課 ═══ -->
+  <div class="lesson">
+    <div class="lesson-header"><span class="lesson-number">第 16 課</span><span class="lesson-title">動作・学部</span></div>
+    <table class="vocab-table"><thead><tr><th class="col-cn">中国語</th><th class="col-py">ピンイン</th><th class="col-jp">日本語</th></tr></thead><tbody>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="包" data-audio="audio/unit4/113.mp3"><span class="icon">🔊</span>包</button></td><td class="td-py col-py">bāo</td><td class="td-jp col-jp">包む</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="表" data-audio="audio/unit4/114.mp3"><span class="icon">🔊</span>表</button></td><td class="td-py col-py">biǎo</td><td class="td-jp col-jp">表</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="尝" data-audio="audio/unit4/115.mp3"><span class="icon">🔊</span>尝</button></td><td class="td-py col-py">cháng</td><td class="td-jp col-jp">味見をする</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="法律系" data-audio="audio/unit4/116.mp3"><span class="icon">🔊</span>法律系</button></td><td class="td-py col-py">fǎlǜxì</td><td class="td-jp col-jp">法学部</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="好吃" data-audio="audio/unit4/117.mp3"><span class="icon">🔊</span>好吃</button></td><td class="td-py col-py">hǎochī</td><td class="td-jp col-jp">美味しい</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="画" data-audio="audio/unit4/118.mp3"><span class="icon">🔊</span>画</button></td><td class="td-py col-py">huà</td><td class="td-jp col-jp">描く</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="画儿" data-audio="audio/unit4/119.mp3"><span class="icon">🔊</span>画儿</button></td><td class="td-py col-py">huàr</td><td class="td-jp col-jp">絵</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="讲" data-audio="audio/unit4/120.mp3"><span class="icon">🔊</span>讲</button></td><td class="td-py col-py">jiǎng</td><td class="td-jp col-jp">話す</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="借" data-audio="audio/unit4/121.mp3"><span class="icon">🔊</span>借</button></td><td class="td-py col-py">jiè</td><td class="td-jp col-jp">借りる、貸す</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="进" data-audio="audio/unit4/122.mp3"><span class="icon">🔊</span>进</button></td><td class="td-py col-py">jìn</td><td class="td-jp col-jp">（ある場所に）入る</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="累" data-audio="audio/unit4/123.mp3"><span class="icon">🔊</span>累</button></td><td class="td-py col-py">lèi</td><td class="td-jp col-jp">疲れる</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="理科" data-audio="audio/unit4/124.mp3"><span class="icon">🔊</span>理科</button></td><td class="td-py col-py">lǐkē</td><td class="td-jp col-jp">理系</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="买" data-audio="audio/unit4/125.mp3"><span class="icon">🔊</span>买</button></td><td class="td-py col-py">mǎi</td><td class="td-jp col-jp">買う</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="漂亮" data-audio="audio/unit4/126.mp3"><span class="icon">🔊</span>漂亮</button></td><td class="td-py col-py">piàoliang</td><td class="td-jp col-jp">きれい、美しい</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="请问" data-audio="audio/unit4/127.mp3"><span class="icon">🔊</span>请问</button></td><td class="td-py col-py">qǐngwèn</td><td class="td-jp col-jp">お尋ねします</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="设计" data-audio="audio/unit4/128.mp3"><span class="icon">🔊</span>设计</button></td><td class="td-py col-py">shèjì</td><td class="td-jp col-jp">デザイン、設計</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="申请" data-audio="audio/unit4/129.mp3"><span class="icon">🔊</span>申请</button></td><td class="td-py col-py">shēnqǐng</td><td class="td-jp col-jp">申請</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="手绢" data-audio="audio/unit4/130.mp3"><span class="icon">🔊</span>手绢</button></td><td class="td-py col-py">shǒujuàn</td><td class="td-jp col-jp">ハンカチ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="填" data-audio="audio/unit4/131.mp3"><span class="icon">🔊</span>填</button></td><td class="td-py col-py">tián</td><td class="td-jp col-jp">書きこむ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="题目" data-audio="audio/unit4/132.mp3"><span class="icon">🔊</span>题目</button></td><td class="td-py col-py">tímù</td><td class="td-jp col-jp">題目、テーマ</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="文科" data-audio="audio/unit4/133.mp3"><span class="icon">🔊</span>文科</button></td><td class="td-py col-py">wénkē</td><td class="td-jp col-jp">文系</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="系" data-audio="audio/unit4/134.mp3"><span class="icon">🔊</span>系</button></td><td class="td-py col-py">xì</td><td class="td-jp col-jp">学部</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="县" data-audio="audio/unit4/135.mp3"><span class="icon">🔊</span>县</button></td><td class="td-py col-py">xiàn</td><td class="td-jp col-jp">県（行政単位）</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="新" data-audio="audio/unit4/136.mp3"><span class="icon">🔊</span>新</button></td><td class="td-py col-py">xīn</td><td class="td-jp col-jp">新しい</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="信" data-audio="audio/unit4/137.mp3"><span class="icon">🔊</span>信</button></td><td class="td-py col-py">xìn</td><td class="td-jp col-jp">手紙</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="衣服" data-audio="audio/unit4/138.mp3"><span class="icon">🔊</span>衣服</button></td><td class="td-py col-py">yīfu</td><td class="td-jp col-jp">衣服</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="印刷" data-audio="audio/unit4/139.mp3"><span class="icon">🔊</span>印刷</button></td><td class="td-py col-py">yìnshuā</td><td class="td-jp col-jp">印刷</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="脏" data-audio="audio/unit4/140.mp3"><span class="icon">🔊</span>脏</button></td><td class="td-py col-py">zāng</td><td class="td-jp col-jp">汚れている、汚い</td></tr>
+      <tr><td class="col-cn"><button class="speak-btn" data-text="助学金" data-audio="audio/unit4/141.mp3"><span class="icon">🔊</span>助学金</button></td><td class="td-py col-py">zhùxuéjīn</td><td class="td-jp col-jp">奨学金</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<script>
+  let currentBtn = null;
+  const audio = new Audio();
+  audio.preload = 'none';
+
+  function clearPlaying(btn = currentBtn) {
+    if (btn) btn.classList.remove('playing');
+    if (currentBtn === btn) currentBtn = null;
+  }
+
+  function showAudioError(btn) {
+    const oldTitle = btn.getAttribute('title') || '';
+    btn.setAttribute('title', '音声ファイルが見つからないか、再生できません');
+    setTimeout(() => btn.setAttribute('title', oldTitle), 2500);
+  }
+
+  function speak(btn) {
+    const text = btn.dataset.text || btn.textContent.trim();
+    const src = btn.dataset.audio;
+
+    audio.pause();
+    audio.currentTime = 0;
+    audio.removeAttribute('src');
+    audio.load();
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+
+    if (currentBtn) {
+      const same = currentBtn === btn;
+      clearPlaying(currentBtn);
+      if (same) return;
+    }
+
+    btn.classList.add('playing');
+    currentBtn = btn;
+
+    if (!src) {
+      webSpeechFallback(text, btn);
+      return;
+    }
+
+    audio.src = src;
+    audio.onended = () => clearPlaying(btn);
+    audio.onerror = () => {
+      clearPlaying(btn);
+      webSpeechFallback(text, btn);
+      showAudioError(btn);
+    };
+
+    const p = audio.play();
+    if (p && p.catch) {
+      p.catch(() => {
+        clearPlaying(btn);
+        webSpeechFallback(text, btn);
+      });
+    }
+  }
+
+  function webSpeechFallback(text, btn) {
+    if (!window.speechSynthesis) return;
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'zh-CN';
+    utter.rate = 0.85;
+    const voices = window.speechSynthesis.getVoices();
+    const zh = voices.find(v => v.lang === 'zh-CN') ||
+               voices.find(v => v.lang === 'zh-TW') ||
+               voices.find(v => v.lang.startsWith('zh'));
+    if (zh) utter.voice = zh;
+    btn.classList.add('playing');
+    currentBtn = btn;
+    utter.onend = utter.onerror = () => clearPlaying(btn);
+    window.speechSynthesis.speak(utter);
+  }
+
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+  }
+
+  document.querySelectorAll('.speak-btn').forEach(btn => {
+    btn.addEventListener('click', () => speak(btn));
+  });
+
+  // 列表示トグル
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    const col = btn.dataset.col;
+    btn.addEventListener('click', () => {
+      const cls = 'hide-' + col;
+      document.body.classList.toggle(cls);
+      btn.classList.toggle('active', !document.body.classList.contains(cls));
+    });
+  });
+</script>
+</body>
+</html>

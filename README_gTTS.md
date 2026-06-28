@@ -73,6 +73,7 @@ python regenerate_audio_with_gtts.py --start 100 --overwrite
 - `unit1.html`
 - `unit2.html`
 - `unit3.html`
+- `unit4.html`
 - `audio/`
 - 必要なら `audio_manifest.csv`
 
