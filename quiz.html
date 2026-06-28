@@ -3041,7 +3041,7 @@ const WORDS = [
     "unit": 3,
     "lesson": 9,
     "cn": "一直",
-    "py": "yīzhí",
+    "py": "yìzhí",
     "jp": "まっすぐ、ずっと"
   },
   {
@@ -3785,7 +3785,7 @@ const WORDS = [
     "unit": 3,
     "lesson": 12,
     "cn": "一点儿",
-    "py": "yīdiǎnr",
+    "py": "yìdiǎnr",
     "jp": "少し"
   },
   {
@@ -3801,7 +3801,7 @@ const WORDS = [
     "unit": 3,
     "lesson": 12,
     "cn": "一样",
-    "py": "yīyàng",
+    "py": "yíyàng",
     "jp": "同じ"
   },
   {
@@ -5445,13 +5445,20 @@ function deaccentChar(ch) {
 }
 
 function normalizeNumberedToken(token) {
-  return token
+  const normalized = token
     .split('')
     .map(deaccentChar)
     .join('')
     .replace(/u:/g, 'v')
     .replace(/ü/g, 'v')
     .replace(/[^a-zv1-5]/g, '');
+
+  // 旧形式の dianr3 / nar3 も入力としては受け付け、
+  // 儿化の標準形 dian3r / na3r に正規化する。
+  // 独立音節 er2（儿子・女儿など）はそのまま保持する。
+  return normalized.replace(/([a-zv]+)r([1-5])/g, (_, base, tone) =>
+    base === 'e' ? 'er' + tone : base + tone + 'r'
+  );
 }
 
 function splitBasePinyin(base) {
@@ -5506,6 +5513,11 @@ function normalizeMarkedToken(token) {
   return parts.map(([a, b]) => {
     const syl = base.slice(a, b);
     const tone = toneAt.slice(a, b).filter(Boolean)[0] || '';
+    // 儿化の r は音節末尾だが、数字声調では声調番号を r の前に置く。
+    // 例: biānr -> bian1r。独立音節 er は er2 のまま。
+    if (syl !== 'er' && syl.endsWith('r') && PY_SYLLABLES.has(syl.slice(0, -1))) {
+      return syl.slice(0, -1) + tone + 'r';
+    }
     return syl + tone;
   }).join('');
 }
