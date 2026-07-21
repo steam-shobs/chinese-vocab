@@ -405,7 +405,7 @@
     <div class="option-grid col2" id="mode-options">
       <button class="opt-btn" data-val="priority" onclick="selectOpt(this,'mode')">
         <span class="opt-main">⚡ 優先モード</span>
-        <span class="opt-sub">選択範囲の未習得をすべて出題</span>
+        <span class="opt-sub">未習得のみから指定数を出題</span>
       </button>
       <button class="opt-btn" data-val="all" onclick="selectOpt(this,'mode')">
         <span class="opt-main">🔀 全範囲モード</span>
@@ -5293,7 +5293,7 @@ function updateQuestionCountNote() {
   const isPriority = cfg.mode === 'priority';
   note.classList.toggle('priority-note', isPriority);
   if (isPriority) {
-    note.textContent = '※優先モードでは、問題数の設定にかかわらず、選択範囲の未習得問題をすべて出題します。';
+    note.textContent = '※優先モードでは未習得問題のみが対象です。10〜50問は指定数（不足時は未習得の全問）、範囲全問は未習得をすべて出題します。';
   } else if (!poolLength) {
     note.textContent = '課を選択すると実際の出題数が表示されます';
   } else if (cfg.questionCount === 'all') {
@@ -5353,7 +5353,7 @@ function startQuiz() {
       alert('選択範囲に未習得の問題はありません。');
       return;
     }
-    questionCount = pool.length;
+    questionCount = getQuestionCount(pool.length);
   } else {
     pool = shuffle(pool);
     questionCount = getQuestionCount(pool.length);
