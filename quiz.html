@@ -49,6 +49,10 @@
   .option-grid.col2 { grid-template-columns: 1fr 1fr; }
   .option-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
 
+  .question-count-grid .opt-btn { align-items: center; text-align: center; padding: 13px 10px; }
+  .question-count-grid .opt-main { margin-bottom: 0; }
+  .question-count-note { margin-top: 8px; font-size: 12px; color: var(--text-sub); line-height: 1.6; }
+
   .opt-btn {
     display: flex; flex-direction: column; align-items: flex-start;
     padding: 16px 18px; border-radius: 6px;
@@ -407,6 +411,29 @@
         <span class="opt-sub">選択範囲からランダム出題</span>
       </button>
     </div>
+
+    <div class="section-title">出題問題数</div>
+    <div class="option-grid col3 question-count-grid" id="question-count-options">
+      <button class="opt-btn selected" data-val="10" onclick="selectQuestionCount(this)">
+        <span class="opt-main">10問</span>
+      </button>
+      <button class="opt-btn" data-val="20" onclick="selectQuestionCount(this)">
+        <span class="opt-main">20問</span>
+      </button>
+      <button class="opt-btn" data-val="30" onclick="selectQuestionCount(this)">
+        <span class="opt-main">30問</span>
+      </button>
+      <button class="opt-btn" data-val="40" onclick="selectQuestionCount(this)">
+        <span class="opt-main">40問</span>
+      </button>
+      <button class="opt-btn" data-val="50" onclick="selectQuestionCount(this)">
+        <span class="opt-main">50問</span>
+      </button>
+      <button class="opt-btn" data-val="all" onclick="selectQuestionCount(this)">
+        <span class="opt-main">範囲全問</span>
+      </button>
+    </div>
+    <div class="question-count-note" id="question-count-note">課を選択すると実際の出題数が表示されます</div>
 
     <button class="start-btn" id="start-btn" onclick="startQuiz()" disabled>開始する</button>
 
@@ -5002,7 +5029,8 @@ function createSuspendedPayload() {
     cfg: {
       lessons: [...cfg.lessons],
       type: cfg.type,
-      mode: cfg.mode
+      mode: cfg.mode,
+      questionCount: cfg.questionCount
     },
     session: {
       questions: session.questions.map(w => w.id),
@@ -5024,6 +5052,10 @@ function restoreSuspendedPayload(data) {
   cfg.lessons = new Set(data.cfg.lessons || []);
   cfg.type = data.cfg.type;
   cfg.mode = data.cfg.mode;
+  const savedCount = data.cfg.questionCount;
+  cfg.questionCount = savedCount === 'all' || [10, 20, 30, 40, 50].includes(Number(savedCount))
+    ? (savedCount === 'all' ? 'all' : Number(savedCount))
+    : 10;
   session.questions = questions;
   session.current = Math.min(Math.max(Number(data.session.current) || 0, 0), questions.length - 1);
   session.correct = Number(data.session.correct) || 0;
@@ -5039,6 +5071,9 @@ function updateSetupSelectionUI() {
   });
   document.querySelectorAll('#mode-options .opt-btn').forEach(btn => {
     btn.classList.toggle('selected', btn.dataset.val === cfg.mode);
+  });
+  document.querySelectorAll('#question-count-options .opt-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.val === String(cfg.questionCount));
   });
   const activeFilter = document.querySelector('#unit-filter-btns .toggle-btn.active');
   buildLessonButtons(activeFilter ? activeFilter.dataset.unit : 'all');
@@ -5092,7 +5127,7 @@ function suspendCurrentQuiz() {
 }
 
 // ── 状態 ──
-let cfg = { lessons: new Set(), type: null, mode: null };
+let cfg = { lessons: new Set(), type: null, mode: null, questionCount: 10 };
 let session = { questions: [], current: 0, correct: 0, results: [] };
 
 // ── 正誤画面の発音再生 ──
@@ -5225,6 +5260,7 @@ function updateLessonLabel() {
   lbl.textContent = cfg.lessons.size === 0
     ? '課を1つ以上選択してください'
     : cfg.lessons.size + '課選択中・' + pool.length + '語対象';
+  updateQuestionCountNote();
 }
 
 function selectOpt(btn, group) {
@@ -5233,6 +5269,34 @@ function selectOpt(btn, group) {
   btn.classList.add('selected');
   cfg[group] = btn.dataset.val;
   updateStartBtn();
+}
+
+function selectQuestionCount(btn) {
+  document.querySelectorAll('#question-count-options .opt-btn')
+    .forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  cfg.questionCount = btn.dataset.val === 'all' ? 'all' : Number(btn.dataset.val);
+  updateQuestionCountNote();
+}
+
+function getQuestionCount(poolLength = getWordPool().length) {
+  if (cfg.questionCount === 'all') return poolLength;
+  return Math.min(Number(cfg.questionCount) || 10, poolLength);
+}
+
+function updateQuestionCountNote() {
+  const note = document.getElementById('question-count-note');
+  if (!note) return;
+  const poolLength = getWordPool().length;
+  if (!poolLength) {
+    note.textContent = '課を選択すると実際の出題数が表示されます';
+  } else if (cfg.questionCount === 'all') {
+    note.textContent = '選択範囲の全' + poolLength + '問を出題します';
+  } else if (poolLength < cfg.questionCount) {
+    note.textContent = '対象は' + poolLength + '語のため、全' + poolLength + '問を出題します';
+  } else {
+    note.textContent = cfg.questionCount + '問を出題します';
+  }
 }
 
 function updateStartBtn() {
@@ -5273,20 +5337,20 @@ function startQuiz() {
 
   let pool = getWordPool();
   if (pool.length < 4) { alert('この単元の単語が少なすぎます（最低4語必要）'); return; }
+  const questionCount = getQuestionCount(pool.length);
 
   const mastery = loadMastery();
 
   if (cfg.mode === 'priority') {
     const unknown = shuffle(pool.filter(w => !mastery[getMasteryKey(w.id, cfg.type)]));
     const known   = shuffle(pool.filter(w =>  mastery[getMasteryKey(w.id, cfg.type)]));
-    // 未習得が10問未満なら習得済みで補充
-    const need = 10 - unknown.length;
-    pool = need > 0 ? [...unknown, ...known.slice(0, need)] : unknown;
+    // 未習得を先に並べ、不足分は習得済みから補充する。
+    pool = [...unknown, ...known];
   } else {
     pool = shuffle(pool);
   }
 
-  session.questions = pool.slice(0, 10);
+  session.questions = pool.slice(0, questionCount);
   session.current = 0;
   session.correct = 0;
   session.results = [];
