@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中国語 単語学習</title>
+<title>中国語練習</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root { --bg:#faf7f2; --card:#fff; --accent:#b5505a; --accent-light:#f3dde0; --text:#2c2420; --text-sub:#7a6a56; --border:#e8ddd5; --gold:#a07830; }
@@ -23,8 +23,17 @@
   .term-card p { color:var(--text-sub); font-size:13px; line-height:1.8; }
   .term-card .range { display:block; margin-top:18px; padding-top:14px; border-top:1px solid var(--border); font-size:12px; color:var(--text-sub); }
   .term-card.sem2 .term-en { color:var(--gold); }
+  .patch-notes { margin-top:42px; padding:26px 28px; background:var(--card); border:1px solid var(--border); border-radius:8px; box-shadow:0 2px 8px rgba(44,36,32,.05); }
+  .patch-header { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding-bottom:16px; border-bottom:1px solid var(--border); }
+  .patch-kicker { margin-bottom:4px; color:var(--accent); font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; }
+  .patch-title { font-size:20px; letter-spacing:.04em; }
+  .patch-date { color:var(--text-sub); font-size:11px; white-space:nowrap; }
+  .patch-list { display:grid; gap:14px; margin-top:18px; list-style:none; }
+  .patch-item { display:flex; gap:11px; color:var(--text-sub); font-size:13px; line-height:1.75; }
+  .patch-dot { flex:0 0 7px; width:7px; height:7px; margin-top:8px; border-radius:50%; background:var(--accent); }
+  .patch-item strong { display:block; color:var(--text); font-size:14px; }
   .footer { margin-top:42px; text-align:center; color:var(--text-sub); font-size:12px; line-height:1.8; }
-  @media (max-width:580px) { .wrapper{padding:44px 18px 60px}.hero h1{font-size:26px}.term-grid{grid-template-columns:1fr}.term-card{padding:24px 22px} }
+  @media (max-width:580px) { .wrapper{padding:44px 18px 60px}.hero h1{font-size:26px}.term-grid{grid-template-columns:1fr}.term-card{padding:24px 22px}.patch-notes{padding:22px 20px} }
 </style>
 </head>
 <body>
@@ -32,7 +41,7 @@
   <header class="hero">
     <span class="version">ver.3.0</span>
     <p class="subtitle">北海道大学 · 中国語</p>
-    <h1>単語学習</h1>
+    <h1>中国語練習</h1>
   </header>
   <div class="term-grid">
     <a class="term-card" href="semester1.html">
@@ -48,6 +57,20 @@
       <span class="range">第17課〜第28課 · 第5〜7単元</span>
     </a>
   </div>
+  <section class="patch-notes" aria-labelledby="patch-notes-title">
+    <div class="patch-header">
+      <div>
+        <p class="patch-kicker">Patch Notes</p>
+        <h2 class="patch-title" id="patch-notes-title">ver.3.0</h2>
+      </div>
+      <span class="patch-date">2026.08.28</span>
+    </div>
+    <ul class="patch-list">
+      <li class="patch-item"><span class="patch-dot" aria-hidden="true"></span><div><strong>後期（中国語 II）の内容を追加</strong><span>第17課〜第28課の単語一覧、クイズ、学習進捗、MP3音声に対応しました。</span></div></li>
+      <li class="patch-item"><span class="patch-dot" aria-hidden="true"></span><div><strong>聞き取り・声調トレーニングを追加</strong><span>単語の聞き取り特訓と、声調番号だけに集中して学べるトレーニングを追加しました。</span></div></li>
+      <li class="patch-item"><span class="patch-dot" aria-hidden="true"></span><div><strong>後期の例文プリントを作成</strong><span>本文（课文）、ミニダイアログ、学習のポイントにある例文の対訳一覧と、日本語のみの練習プリントを追加しました。</span></div></li>
+    </ul>
+  </section>
   <p class="footer">学期を選んで学習を始めてください。</p>
 </main>
 </body>
