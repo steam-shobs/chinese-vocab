@@ -70,10 +70,9 @@ python regenerate_audio_with_gtts.py --start 100 --overwrite
 
 生成後、以下をGitHubにアップロードしてください。
 
-- `unit1.html`
-- `unit2.html`
-- `unit3.html`
-- `unit4.html`
+- `unit1.html` 〜 `unit7.html`
+- `quiz.html`、`quiz2.html`
+- `semester1.html`、`semester2.html`
 - `audio/`
 - 必要なら `audio_manifest.csv`
 

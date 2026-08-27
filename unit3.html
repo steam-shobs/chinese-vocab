@@ -284,14 +284,12 @@
   }
 
   function speak(btn) {
-    const text = btn.dataset.text || btn.textContent.trim();
     const src = btn.dataset.audio;
 
     audio.pause();
     audio.currentTime = 0;
     audio.removeAttribute('src');
     audio.load();
-    if (window.speechSynthesis) window.speechSynthesis.cancel();
 
     if (currentBtn) {
       const same = currentBtn === btn;
@@ -303,7 +301,8 @@
     currentBtn = btn;
 
     if (!src) {
-      webSpeechFallback(text, btn);
+      clearPlaying(btn);
+      showAudioError(btn);
       return;
     }
 
@@ -311,7 +310,6 @@
     audio.onended = () => clearPlaying(btn);
     audio.onerror = () => {
       clearPlaying(btn);
-      webSpeechFallback(text, btn);
       showAudioError(btn);
     };
 
@@ -319,30 +317,9 @@
     if (p && p.catch) {
       p.catch(() => {
         clearPlaying(btn);
-        webSpeechFallback(text, btn);
+        showAudioError(btn);
       });
     }
-  }
-
-  function webSpeechFallback(text, btn) {
-    if (!window.speechSynthesis) return;
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'zh-CN';
-    utter.rate = 0.85;
-    const voices = window.speechSynthesis.getVoices();
-    const zh = voices.find(v => v.lang === 'zh-CN') ||
-               voices.find(v => v.lang === 'zh-TW') ||
-               voices.find(v => v.lang.startsWith('zh'));
-    if (zh) utter.voice = zh;
-    btn.classList.add('playing');
-    currentBtn = btn;
-    utter.onend = utter.onerror = () => clearPlaying(btn);
-    window.speechSynthesis.speak(utter);
-  }
-
-  if (window.speechSynthesis) {
-    window.speechSynthesis.getVoices();
-    window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
   }
 
   document.querySelectorAll('.speak-btn').forEach(btn => {

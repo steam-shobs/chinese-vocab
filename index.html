@@ -3,312 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>中国語 単語練習プリント</title>
+<title>中国語 単語学習</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #faf7f2;
-    --card: #ffffff;
-    --accent: #b5505a;
-    --accent-light: #f3dde0;
-    --text: #2c2420;
-    --text-sub: #7a6a56;
-    --border: #e8ddd5;
-    --header-bg: #2c2420;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); font-family: 'Noto Serif JP', serif; color: var(--text); min-height: 100vh; }
-  .wrapper { max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; }
-
-  .doc-header { text-align: center; margin-bottom: 48px; }
-  .doc-header::after { content: ''; display: block; width: 60px; height: 3px; background: var(--accent); margin: 20px auto 0; }
-  .doc-header .subtitle { font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--text-sub); margin-bottom: 10px; }
-  .doc-header h1 { font-size: 28px; font-weight: 700; letter-spacing: .08em; color: var(--text); }
-
-  .unit-list { display: flex; flex-direction: column; gap: 16px; }
-
-  .unit-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--card);
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(44,36,32,.06);
-    padding: 24px 28px;
-    text-decoration: none;
-    color: var(--text);
-    border: 1px solid var(--border);
-    transition: background .15s, box-shadow .15s;
-  }
-  .unit-card:hover { background: var(--accent-light); box-shadow: 0 4px 12px rgba(44,36,32,.1); }
-
-  .unit-left { display: flex; align-items: center; gap: 20px; min-width: 0; }
-
-  .unit-badge {
-    background: var(--header-bg);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .1em;
-    padding: 5px 12px;
-    border-radius: 2px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .unit-info { min-width: 0; }
-  .unit-title { font-size: 17px; font-weight: 700; letter-spacing: .04em; margin-bottom: 4px; }
-  .unit-range { font-size: 12px; color: var(--text-sub); letter-spacing: .06em; margin-bottom: 8px; }
-  .unit-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag {
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 20px;
-    background: var(--accent-light);
-    color: var(--accent);
-    letter-spacing: .05em;
-    font-family: 'Noto Serif JP', serif;
-  }
-
-  .unit-arrow { color: var(--accent); flex-shrink: 0; margin-left: 16px; transition: transform .2s; }
-  .unit-card:hover .unit-arrow { transform: translateX(4px); }
-
-  .footer-area {
-    margin-top: 48px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    text-align: center;
-  }
-
-  .footer-note {
-    font-size: 12px;
-    color: var(--text-sub);
-    letter-spacing: .06em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-  }
-
-  .feedback-note {
-    font-size: 13px;
-    color: var(--text-sub);
-    letter-spacing: .04em;
-    line-height: 1.7;
-  }
-
-  .feedback-note a {
-    color: var(--accent);
-    font-weight: 700;
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
-  }
-
-  .feedback-note a:hover { opacity: .75; }
-
-  .patch-notes {
-    margin-top: 48px;
-    padding: 26px 28px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    box-shadow: 0 1px 4px rgba(44,36,32,.06);
-  }
-
-  .patch-notes-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 16px;
-    margin-bottom: 18px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .patch-kicker {
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    font-weight: 700;
-  }
-
-  .patch-title { font-size: 22px; letter-spacing: .06em; }
-  .patch-date { font-size: 11px; color: var(--text-sub); letter-spacing: .08em; white-space: nowrap; }
-  .patch-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
-  .patch-item { display: grid; grid-template-columns: 9px 1fr; gap: 11px; align-items: start; }
-  .patch-dot { width: 7px; height: 7px; margin-top: 7px; border-radius: 50%; background: var(--accent); }
-  .patch-item strong { display: block; font-size: 13px; margin-bottom: 3px; letter-spacing: .03em; }
-  .patch-item span { display: block; font-size: 12px; color: var(--text-sub); line-height: 1.7; }
-
-  @media (max-width: 480px) {
-    .unit-card { padding: 18px 16px; }
-    .unit-left { gap: 14px; }
-    .unit-badge { font-size: 11px; padding: 4px 8px; }
-    .unit-title { font-size: 15px; }
-    .patch-notes { padding: 20px 17px; }
-    .patch-notes-header { align-items: flex-start; }
-  }
+  :root { --bg:#faf7f2; --card:#fff; --accent:#b5505a; --accent-light:#f3dde0; --text:#2c2420; --text-sub:#7a6a56; --border:#e8ddd5; --gold:#a07830; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { min-height:100vh; background:var(--bg); color:var(--text); font-family:'Noto Serif JP',serif; }
+  .wrapper { max-width:760px; margin:0 auto; padding:64px 24px 80px; }
+  .version { display:inline-block; padding:5px 12px; border-radius:20px; background:var(--accent-light); color:var(--accent); font-size:12px; font-weight:700; letter-spacing:.08em; margin-bottom:18px; }
+  .hero { text-align:center; margin-bottom:48px; }
+  .hero .subtitle { font-size:11px; letter-spacing:.25em; color:var(--text-sub); text-transform:uppercase; margin-bottom:10px; }
+  .hero h1 { font-size:30px; letter-spacing:.08em; }
+  .hero::after { content:''; display:block; width:60px; height:3px; background:var(--accent); margin:20px auto 0; }
+  .term-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .term-card { min-width:0; padding:30px 28px; background:var(--card); border:1px solid var(--border); border-radius:8px; color:var(--text); text-decoration:none; box-shadow:0 2px 8px rgba(44,36,32,.06); transition:transform .15s, box-shadow .15s, border-color .15s; }
+  .term-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(44,36,32,.11); border-color:#d9b4b7; }
+  .term-card .term-en { font-size:11px; color:var(--accent); letter-spacing:.16em; text-transform:uppercase; margin-bottom:8px; font-weight:700; }
+  .term-card h2 { font-size:22px; margin-bottom:8px; letter-spacing:.05em; }
+  .term-card p { color:var(--text-sub); font-size:13px; line-height:1.8; }
+  .term-card .range { display:block; margin-top:18px; padding-top:14px; border-top:1px solid var(--border); font-size:12px; color:var(--text-sub); }
+  .term-card.sem2 .term-en { color:var(--gold); }
+  .footer { margin-top:42px; text-align:center; color:var(--text-sub); font-size:12px; line-height:1.8; }
+  @media (max-width:580px) { .wrapper{padding:44px 18px 60px}.hero h1{font-size:26px}.term-grid{grid-template-columns:1fr}.term-card{padding:24px 22px} }
 </style>
 </head>
 <body>
-<div class="wrapper">
-
-  <div class="doc-header">
+<main class="wrapper">
+  <header class="hero">
+    <span class="version">ver.3.0</span>
     <p class="subtitle">北海道大学 · 中国語</p>
-    <h1>単語練習プリント</h1>
-  </div>
-
-  <div class="unit-list">
-
-    <a class="unit-card" href="unit1.html">
-      <div class="unit-left">
-        <div class="unit-badge">第 1 単元</div>
-        <div class="unit-info">
-          <div class="unit-title">第1課 〜 第4課</div>
-          <div class="unit-range">飲食・人称代名詞・自己紹介・形容詞</div>
-          <div class="unit-tags">
-            <span class="tag">飲食</span>
-            <span class="tag">人称代名詞</span>
-            <span class="tag">自己紹介</span>
-            <span class="tag">形容詞</span>
-          </div>
-        </div>
-      </div>
-      <svg class="unit-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <h1>単語学習</h1>
+  </header>
+  <div class="term-grid">
+    <a class="term-card" href="semester1.html">
+      <div class="term-en">Chinese I · First Semester</div>
+      <h2>前期（中国語 I）</h2>
+      <p>前期の単語一覧・クイズ・学習進捗を開きます。</p>
+      <span class="range">第1課〜第16課 · 第1〜4単元</span>
     </a>
-
-    <a class="unit-card" href="unit2.html">
-      <div class="unit-left">
-        <div class="unit-badge">第 2 単元</div>
-        <div class="unit-info">
-          <div class="unit-title">第5課 〜 第8課</div>
-          <div class="unit-range">家族・行事・場所・日常生活</div>
-          <div class="unit-tags">
-            <span class="tag">家族</span>
-            <span class="tag">行事・日付</span>
-            <span class="tag">場所・位置</span>
-            <span class="tag">日常生活</span>
-          </div>
-        </div>
-      </div>
-      <svg class="unit-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-
-    <a class="unit-card" href="unit3.html">
-      <div class="unit-left">
-        <div class="unit-badge">第 3 単元</div>
-        <div class="unit-info">
-          <div class="unit-title">第9課 〜 第12課</div>
-          <div class="unit-range">道案内・数・能力許可・比較</div>
-          <div class="unit-tags">
-            <span class="tag">道案内</span>
-            <span class="tag">数・情報</span>
-            <span class="tag">能力・許可</span>
-            <span class="tag">比較</span>
-          </div>
-        </div>
-      </div>
-      <svg class="unit-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-
-
-    <a class="unit-card" href="unit4.html">
-      <div class="unit-left">
-        <div class="unit-badge">第 4 単元</div>
-        <div class="unit-info">
-          <div class="unit-title">第13課 〜 第16課</div>
-          <div class="unit-range">予定・義務・数量・禁止・動作</div>
-          <div class="unit-tags">
-            <span class="tag">予定・義務</span>
-            <span class="tag">数量・買い物</span>
-            <span class="tag">禁止・時間</span>
-            <span class="tag">動作・学部</span>
-          </div>
-        </div>
-      </div>
-      <svg class="unit-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-
-    <a class="unit-card" href="quiz.html" style="border-color:#c8a060; background:#fffdf5;">
-      <div class="unit-left">
-        <div class="unit-badge" style="background:#a07830;">練習問題</div>
-        <div class="unit-info">
-          <div class="unit-title">クイズで覚える</div>
-          <div class="unit-range">4択・ピンイン入力・習熟度管理</div>
-          <div class="unit-tags">
-            <span class="tag" style="background:#fdf3dc;color:#a07830;">中→日</span>
-            <span class="tag" style="background:#fdf3dc;color:#a07830;">日→中</span>
-            <span class="tag" style="background:#fdf3dc;color:#a07830;">ピンイン</span>
-            <span class="tag" style="background:#fdf3dc;color:#a07830;">習熟度記録</span>
-          </div>
-        </div>
-      </div>
-      <svg class="unit-arrow" style="color:#a07830;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <a class="term-card sem2" href="semester2.html">
+      <div class="term-en">Chinese II · Second Semester</div>
+      <h2>後期（中国語 II）</h2>
+      <p>後期の単語一覧・クイズ・学習進捗を開きます。</p>
+      <span class="range">第17課〜第28課 · 第5〜7単元</span>
     </a>
   </div>
-
-  <section class="patch-notes" aria-labelledby="patch-notes-title">
-    <div class="patch-notes-header">
-      <div>
-        <p class="patch-kicker">Patch Notes</p>
-        <h2 class="patch-title" id="patch-notes-title">ver.2.1.2</h2>
-      </div>
-      <span class="patch-date">2026.07.21</span>
-    </div>
-    <ul class="patch-list">
-      <li class="patch-item">
-        <span class="patch-dot" aria-hidden="true"></span>
-        <div><strong>優先モードの出題数を調整</strong><span>未習得問題のみから指定数を出題し、「範囲全問」では未習得問題をすべて出題するようにしました。</span></div>
-      </li>
-      <li class="patch-item">
-        <span class="patch-dot" aria-hidden="true"></span>
-        <div><strong>クイズの出題数を選択可能に</strong><span>10・20・30・40・50問、または選択範囲の全問から出題数を選べるようにしました。</span></div>
-      </li>
-      <li class="patch-item">
-        <span class="patch-dot" aria-hidden="true"></span>
-        <div><strong>第4単元を追加</strong><span>第13課〜第16課の一覧、クイズ、学習進捗に対応しました。</span></div>
-      </li>
-      <li class="patch-item">
-        <span class="patch-dot" aria-hidden="true"></span>
-        <div><strong>中国語音声を追加</strong><span>第4単元141語の発音音声を追加しました。</span></div>
-      </li>
-      <li class="patch-item">
-        <span class="patch-dot" aria-hidden="true"></span>
-        <div><strong>クイズの発音確認を改善</strong><span>正誤画面から、すべての単元で正解語の発音を再生できるようにしました。</span></div>
-      </li>
-      <li class="patch-item">
-        <span class="patch-dot" aria-hidden="true"></span>
-        <div><strong>儿化ピンインを修正</strong><span>数字声調を na3r・dian3r の形式に統一し、儿が独立音節となる語は従来どおり区別します。</span></div>
-      </li>
-      <li class="patch-item">
-        <span class="patch-dot" aria-hidden="true"></span>
-        <div><strong>ピンイン入力判定を柔軟化</strong><span>大文字・小文字、空白、ハイフン、アポストロフィの違いに加え、従来の儿化入力形式も許容します。</span></div>
-      </li>
-      <li class="patch-item">
-        <span class="patch-dot" aria-hidden="true"></span>
-        <div><strong>「一」の発音表記を統一</strong><span>序数と後続音節の声調を確認し、一直・一点儿・一样などを実際の発音に合わせました。</span></div>
-      </li>
-    </ul>
-  </section>
-
-  <div class="footer-area">
-    <div class="footer-note">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-      各単語をタップすると中国語の発音が再生されます
-    </div>
-    <div class="feedback-note">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdI0qwbcTpxI8dWa-xG44i_XWwiM1hRmyvXPRJMMWbxr_PbMw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">不具合の報告、感想等はこちら</a><br>
-      感想はモチベーションにつながるので是非お願いします。
-    </div>
-  </div>
-
-</div>
+  <p class="footer">学期を選んで学習を始めてください。</p>
+</main>
 </body>
 </html>
